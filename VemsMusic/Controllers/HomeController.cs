@@ -13,6 +13,17 @@ namespace VemsMusic.Controllers
         [Route("~/")]
         public IActionResult Index()
         {
+            //Список жанров
+            return View();
+        }
+
+        [Route("~/Home/Category")]
+        public IActionResult Category(string categoty)
+        {
+            //Артисты
+            //name
+            //description
+            //img path
             return View();
         }
     }
