@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
 using System.Collections.Generic;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
@@ -14,14 +13,32 @@ namespace UnitTests
         [Fact]
         public void IndexViewTest()
         {
-            var mock = new Mock<IAllGenre>();
-            mock.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            var controller = new HomeController(mock.Object);
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
+            var controller = new HomeController(mockGenre.Object, mockGroup.Object);
 
             var result = controller.Index();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<IEnumerable<Genre>>(viewResult.Model);
+            Assert.NotEmpty(model);
+        }
+        [Fact]
+        public void InGenreTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
+            var controller = new HomeController(mockGenre.Object, mockGroup.Object);
+
+            var result = controller.InGenre("Рок");
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<IEnumerable<MusicalGroup>>(viewResult.Model);
+            Assert.NotEmpty(model);
         }
 
         private List<Genre> GetTestGenres()
@@ -33,6 +50,34 @@ namespace UnitTests
                 new Genre{Name ="Танцевака", Description="Танцует", PicturePath=""}
             };
             return genres;
+        }
+        private List<MusicalGroup> GetTestGroups()
+        {
+            var groups = new List<MusicalGroup>()
+            {
+                new MusicalGroup
+                    {
+                        Name = "Анархисты",
+                        Description = "Анархируют",
+                        Picture = "",
+                        GenreName = "Рок"
+                    },
+                new MusicalGroup
+                    {
+                        Name = "Анархисты",
+                        Description = "Анархируют",
+                        Picture = "",
+                        GenreName = "Рок"
+                    },
+                new MusicalGroup
+                    {
+                        Name = "Анархисты",
+                        Description = "Анархируют",
+                        Picture = "",
+                        GenreName = "Не рок"
+                    }
+            };
+            return groups;
         }
     }
 }

@@ -18,6 +18,18 @@ namespace VemsMusic.Repositories
                         PicturePath = ""
                     });
             }
+            if (!context.Groups.Any())
+            {
+                await context.AddRangeAsync(
+                    new MusicalGroup
+                    {
+                        Name = "Анархисты",
+                        Description = "Анархируют",
+                        Picture = "",
+                        GenreName = "Рок"
+                    });
+            }
         }
+
     }
 }

@@ -40,6 +40,7 @@ namespace VemsMusic
 
             services.AddMemoryCache();
             services.AddTransient<IAllGenre, GenreRepository>();
+            services.AddTransient<IAllGroups, GroupsRepository>();
         }
 
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)

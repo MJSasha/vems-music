@@ -1,4 +1,6 @@
-﻿namespace VemsMusic.Models
+﻿using System.Collections.Generic;
+
+namespace VemsMusic.Models
 {
     public class Genre
     {
@@ -6,5 +8,6 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string PicturePath { get; set; }
+        //public List<MusicalGroup> Groups{ get; set; }
     }
 }
