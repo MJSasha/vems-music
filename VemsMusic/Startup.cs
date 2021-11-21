@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Microsoft.EntityFrameworkCore;
 using VemsMusic.Interfaces;
 using VemsMusic.Repositories;
-using Marten.Schema;
 
 namespace VemsMusic
 {

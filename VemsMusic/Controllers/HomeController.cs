@@ -28,7 +28,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public IActionResult InGenre(string genre)
         {
-            IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g=>g.GenreName==genre);
+            IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreName == genre);
             return View(musicalGroups);
         }
     }

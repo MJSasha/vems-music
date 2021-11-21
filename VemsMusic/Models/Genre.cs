@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace VemsMusic.Models
+﻿namespace VemsMusic.Models
 {
     public class Genre
     {

@@ -41,7 +41,7 @@ namespace UnitTests
             Assert.NotEmpty(model);
         }
 
-        private List<Genre> GetTestGenres()
+        private static List<Genre> GetTestGenres()
         {
             var genres = new List<Genre>()
             {
@@ -51,7 +51,7 @@ namespace UnitTests
             };
             return genres;
         }
-        private List<MusicalGroup> GetTestGroups()
+        private static List<MusicalGroup> GetTestGroups()
         {
             var groups = new List<MusicalGroup>()
             {
