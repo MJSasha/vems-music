@@ -6,8 +6,19 @@
     --color-lpi: #d7bcb1;
 }
 
+@font-face {
+    font-family: 'Bicubik';
+    src: url(~/fonts/Bicubik.otf) format('opentype');
+}
+
+body {
+    font-family: Bicubik; /* Выставлен в bootstrap.min.css в body основным шрифтом, но и здесь прописать нужно */
+    background-color: var(--color-dbr);
+}
+
 nav {
     background-color: var(--color-lbr);
+    border-bottom: 5px solid var(--color-bei);
 }
 
 .navbar-brand img {
@@ -15,5 +26,26 @@ nav {
 }
 
 .nav-link {
+    color: var(--color-dbr);
+}
+
+.nav-link:hover {
+    color: var(--color-lgr);
+}
+
+#main {
+    margin-top: 70px;   /* mt-5 мало для удаления от хэдера, далее для большего отступа использовать padding */
+    background-color: var(--color-dbr); /* Уже указан в body */
+}
+
+footer, #main, #lorem {
     color: white;
+}
+
+#playing {
+    background-color: var(--color-lbr);
+    height: 60px;
+    border: 5px solid var(--color-bei);
+    border-bottom: none;
+    border-radius: 25px 25px 0 0;
 }
