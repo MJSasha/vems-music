@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
+using VemsMusic.Models.ViewModels;
 using Xunit;
 
 namespace UnitTests
@@ -22,8 +23,8 @@ namespace UnitTests
             var result = controller.Index();
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<IEnumerable<Genre>>(viewResult.Model);
-            Assert.NotEmpty(model);
+            var model = Assert.IsAssignableFrom<GenreViewModel>(viewResult.Model);
+            Assert.NotEmpty(model.AllGenres);
         }
         [Fact]
         public void InGenreTest()
@@ -37,8 +38,8 @@ namespace UnitTests
             var result = controller.InGenre("Рок");
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<IEnumerable<MusicalGroup>>(viewResult.Model);
-            Assert.NotEmpty(model);
+            var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
+            Assert.NotEmpty(model.AllGroups);
         }
 
         private static List<Genre> GetTestGenres()

@@ -34,7 +34,11 @@ namespace VemsMusic.Controllers
         public IActionResult InGenre(string genre)
         {
             IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreName == genre);
-            return View(musicalGroups);
+            var groupObj = new GroupsViewModel
+            {
+                AllGroups = musicalGroups
+            };
+            return View(groupObj);
         }
     }
 }
