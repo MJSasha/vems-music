@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
+using VemsMusic.Models.ViewModels;
 
 namespace VemsMusic.Controllers
 {
@@ -21,7 +22,11 @@ namespace VemsMusic.Controllers
         public IActionResult Index()
         {
             IEnumerable<Genre> genres = _allGenre.GetAllGenres;
-            return View(genres);
+            var genreObj = new GenreViewModel
+            {
+                AllGenres = genres
+            };
+            return View(genreObj);
         }
 
         [Route("~/Home/Category")]

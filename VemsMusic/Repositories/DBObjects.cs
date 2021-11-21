@@ -29,6 +29,7 @@ namespace VemsMusic.Repositories
                         GenreName = "Рок"
                     });
             }
+            await context.SaveChangesAsync();
         }
 
     }
