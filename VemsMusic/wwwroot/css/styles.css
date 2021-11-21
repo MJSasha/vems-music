@@ -1,0 +1,11 @@
+﻿:root {
+    color-dbr: #272727;
+    color-lbr: #e3d1c0;
+    color-lgr: #608688;
+    color-bei: #eee3df;
+    color-lpi: #d7bcb1;
+}
+
+nav {
+    background-color: var(--color-lpi);
+}
