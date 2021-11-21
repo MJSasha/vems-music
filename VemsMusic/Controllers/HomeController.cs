@@ -31,9 +31,9 @@ namespace VemsMusic.Controllers
 
         [Route("~/Home/Category")]
         [HttpPost]
-        public IActionResult InGenre(string genre)
+        public IActionResult InGenre(int id)
         {
-            IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreName == genre);
+            IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreId == id);
             var groupObj = new GroupsViewModel
             {
                 AllGroups = musicalGroups

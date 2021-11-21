@@ -35,7 +35,7 @@ namespace UnitTests
             mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object);
 
-            var result = controller.InGenre("Рок");
+            var result = controller.InGenre(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
@@ -61,21 +61,21 @@ namespace UnitTests
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreName = "Рок"
+                        GenreId = 1
                     },
                 new MusicalGroup
                     {
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreName = "Рок"
+                        GenreId = 2
                     },
                 new MusicalGroup
                     {
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreName = "Не рок"
+                        GenreId = 1
                     }
             };
             return groups;

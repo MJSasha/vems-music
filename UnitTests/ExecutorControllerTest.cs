@@ -31,7 +31,7 @@ namespace UnitTests
                 Name = "Анархисты",
                 Description = "Анархируют",
                 Picture = "",
-                GenreName = "Рок"
+                GenreId = 1
             };
         }
     }

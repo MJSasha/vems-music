@@ -26,7 +26,7 @@ namespace VemsMusic.Repositories
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreName = "Рок"
+                        GenreId = 1
                     });
             }
             await context.SaveChangesAsync();
