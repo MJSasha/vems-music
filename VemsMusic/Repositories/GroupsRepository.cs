@@ -14,6 +14,10 @@ namespace VemsMusic.Repositories
             _dbContext = appDBContext;
         }
 
+        public MusicalGroup GetMusicalGroupById(int id)
+        {
+            return _dbContext.Find<MusicalGroup>(id);
+        }
         public IEnumerable<MusicalGroup> GetMusicalGroups
         {
             get
