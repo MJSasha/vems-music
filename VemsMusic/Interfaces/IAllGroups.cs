@@ -6,5 +6,6 @@ namespace VemsMusic.Interfaces
     public interface IAllGroups
     {
         IEnumerable<MusicalGroup> GetMusicalGroups { get; }
+        MusicalGroup GetMusicalGroupById(int id);
     }
 }
