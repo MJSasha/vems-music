@@ -37,6 +37,7 @@ namespace VemsMusic.Controllers
         public IActionResult InGenre(int id)
         {
             IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreId == id);
+            Genre genre=_allGenre.GetGenreById(id);
             if (!musicalGroups.Any())
             {
                 return Redirect("~/Home/NoItems/Группы не добавлены");
@@ -45,6 +46,7 @@ namespace VemsMusic.Controllers
             {
                 AllGroups = musicalGroups
             };
+            ViewBag.Genre = genre.Name;
             return View(groupObj);
         }
 

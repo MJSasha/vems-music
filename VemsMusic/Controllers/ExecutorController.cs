@@ -13,8 +13,7 @@ namespace VemsMusic.Controllers
             _allGroups = allGroups;
         }
 
-        [Route("~/Executor")]
-        [HttpPost]
+        [Route("~/Executor/Index/{id}")]
         public IActionResult Index(int id)
         {
             MusicalGroup group = _allGroups.GetMusicalGroupById(id);

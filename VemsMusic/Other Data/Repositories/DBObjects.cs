@@ -15,6 +15,18 @@ namespace VemsMusic.Repositories
                     {
                         Name = "Рок",
                         Description = "Анархия",
+                        PicturePath = "/img/genre-icon/rock.png"
+                    },
+                    new Genre
+                    {
+                        Name = "Реп",
+                        Description = "Кал",
+                        PicturePath = "/img/genre-icon/hip-hop.png"
+                    },
+                    new Genre
+                    {
+                        Name = "Инди",
+                        Description = "Индюк",
                         PicturePath = ""
                     });
             }
@@ -25,6 +37,20 @@ namespace VemsMusic.Repositories
                     {
                         Name = "Анархисты",
                         Description = "Анархируют",
+                        Picture = "",
+                        GenreId = 1
+                    },
+                    new MusicalGroup
+                    {
+                        Name = "Реперы",
+                        Description = "Читают",
+                        Picture = "",
+                        GenreId = 2
+                    },
+                    new MusicalGroup
+                    {
+                        Name = "Рокеры",
+                        Description = "Рочат",
                         Picture = "",
                         GenreId = 1
                     });

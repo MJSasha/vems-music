@@ -6,5 +6,6 @@ namespace VemsMusic.Interfaces
     public interface IAllGenre
     {
         IEnumerable<Genre> GetAllGenres { get; }
+        Genre GetGenreById(int id);
     }
 }

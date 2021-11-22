@@ -46,6 +46,7 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
+            mockGenre.Setup(repo => repo.GetGenreById(1)).Returns(new Genre { Name = "Рок", Description = "" });
             mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object);
 

@@ -21,5 +21,10 @@ namespace VemsMusic.Repositories
                 return _dbContext.Genres.ToList();
             }
         }
+
+        public Genre GetGenreById(int id)
+        {
+            return _dbContext.Find<Genre>(id);
+        }
     }
 }
