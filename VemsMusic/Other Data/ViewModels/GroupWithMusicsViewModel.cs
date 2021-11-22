@@ -5,7 +5,7 @@ namespace VemsMusic.Other_Data.ViewModels
 {
     public class GroupWithMusicsViewModel
     {
-        public MusicalGroup MusicalGroup { get; set; }
-        public IEnumerable<Music> AllMusic { get; set; }
+        public MusicalGroup GetMusicalGroup { get; set; }
+        public IEnumerable<Music> GetAllMusic { get; set; }
     }
 }

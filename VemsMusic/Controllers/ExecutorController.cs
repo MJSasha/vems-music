@@ -27,8 +27,8 @@ namespace VemsMusic.Controllers
 
             var groupWithMusics = new GroupWithMusicsViewModel
             {
-                MusicalGroup = group,
-                AllMusic = musics
+                GetMusicalGroup = group,
+                GetAllMusic = musics
             };
 
             return View(groupWithMusics);

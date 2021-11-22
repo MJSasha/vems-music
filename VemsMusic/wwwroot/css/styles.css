@@ -89,9 +89,32 @@ nav {
     align-items: center;
 }
 
+.genre-circle img {
+    fill: var(--color-lbr);     /* !!! Не работает, потому что не favicon */
+}
+
+.genre-name a:hover {
+    color: var(--color-lgr);
+}
+
 .genre-line {
     width: 100px;
     height: 3px;
     background-color: var(--color-lbr);
     margin: 15px auto 30px;
+}
+
+
+/* InGenre */
+
+.group-item a {
+    color: white;
+}
+
+.group-item a:hover {
+    color: var(--color-lgr);
+}
+
+.group-item img {
+    
 }

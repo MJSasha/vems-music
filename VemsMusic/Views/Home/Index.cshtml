@@ -8,18 +8,15 @@
 
         <h2 class="text-center mt-3 mb-5">Что хотите послушать сегодня?</h2>
 
-        <!-- !!! Отдельно прописать элемент класса/контейнер для отсутствия жанров -->
-
         @foreach (Genre item in Model.AllGenres)
         {
-            <!-- !!! Под кнопку, увеличить кружок -->
             <div class="genre-item col-xl-4 col-md-6 col-sm-12">
             
                 <div class="genre-circle">
                         <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id"><img src="@item.PicturePath" alt="@item.Name"></a>
                 </div>
 
-                <h5 class="text-center">
+                <h5 class="genre-name text-center">
                     <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id">@item.Name</a>
                 </h5>
 
