@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 using VemsMusic.Other_Data.Interfaces;
@@ -22,7 +23,7 @@ namespace VemsMusic.Controllers
         public IActionResult Index(int id)
         {
             MusicalGroup group = _allGroups.GetMusicalGroupById(id);
-            IEnumerable<Music> musics = _allMusic.GetAllMusic;
+            IEnumerable<Music> musics = _allMusic.GetAllMusic.Where(m=>m.Id == id);
 
             var groupWithMusics = new GroupWithMusicsViewModel
             {
