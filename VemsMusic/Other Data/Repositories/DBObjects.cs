@@ -13,20 +13,20 @@ namespace VemsMusic.Repositories
                 await context.AddRangeAsync(
                     new Genre
                     {
-                        Name = "Рок",
-                        Description = "Анархия",
-                        PicturePath = "/img/genre-icon/rock.png"
-                    },
-                    new Genre
-                    {
-                        Name = "Реп",
-                        Description = "Кал",
+                        Name = "Hip-hop",
+                        Description = "Качает",
                         PicturePath = "/img/genre-icon/hip-hop.png"
                     },
                     new Genre
                     {
-                        Name = "Инди",
-                        Description = "Индюк",
+                        Name = "Рок",
+                        Description = "Рокирует",
+                        PicturePath = "/img/genre-icon/rock.png"
+                    },
+                    new Genre
+                    {
+                        Name = "Инди-рок",
+                        Description = "Индюширует",
                         PicturePath = ""
                     });
             }
@@ -35,24 +35,24 @@ namespace VemsMusic.Repositories
                 await context.AddRangeAsync(
                     new MusicalGroup
                     {
-                        Name = "Анархисты",
-                        Description = "Анархируют",
-                        Picture = "",
-                        GenreId = 1
+                        Name = "Lana del Rey",
+                        Description = "Sadness woman...",
+                        Picture = "/img/group-icon/lana-del-rey.png",
+                        GenreId = 3
                     },
                     new MusicalGroup
                     {
-                        Name = "Реперы",
-                        Description = "Читают",
+                        Name = "Imagine Dragons",
+                        Description = "/img/group-icon/imagine-dragons.png",
                         Picture = "",
-                        GenreId = 2
+                        GenreId = 3
                     },
                     new MusicalGroup
                     {
                         Name = "Рокеры",
                         Description = "Рочат",
                         Picture = "",
-                        GenreId = 1
+                        GenreId = 2
                     });
             }
             if (!context.Musics.Any())
@@ -60,10 +60,10 @@ namespace VemsMusic.Repositories
                 await context.AddRangeAsync(
                     new Music
                     {
-                        Name = "Песенка",
-                        AudioPath = "",
+                        Name = "Breaking Up Slowly",
+                        AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/Lana Del Rey - Breaking Up Slowly.mp3",
                         GroupId = 1,
-                        ImagePath = "",
+                        ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                         Text = "Поется",
                     },
                     new Music
