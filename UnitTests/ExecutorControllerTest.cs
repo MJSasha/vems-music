@@ -24,7 +24,9 @@ namespace UnitTests
             var result = controller.Index(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            Assert.IsAssignableFrom<GroupWithMusicsViewModel>(viewResult.Model);
+            var model = Assert.IsAssignableFrom<GroupWithMusicsViewModel>(viewResult.Model);
+            Assert.NotEmpty(model.AllMusic);
+            Assert.NotNull(model.MusicalGroup);
         }
 
         private static MusicalGroup GetTestGroup()
