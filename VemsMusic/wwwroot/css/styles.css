@@ -11,6 +11,9 @@
     src: url(~/fonts/Bicubik.otf) format('opentype');
 }
 
+
+/* Layout */
+
 body {
     font-family: Bicubik; /* Выставлен в bootstrap.min.css в body основным шрифтом, но и здесь прописать нужно */
     background-color: var(--color-dbr);
@@ -34,11 +37,28 @@ nav {
 }
 
 #main {
-    margin-top: 70px;   /* mt-5 мало для удаления от хэдера, далее для большего отступа использовать padding */
+    margin-top: 70px; /* mt-5 мало для удаления от хэдера, далее для большего отступа использовать padding */
+    margin-bottom: 80px;
     background-color: var(--color-dbr); /* Уже указан в body */
 }
 
-footer, #main, #lorem {
+#up-arrow {
+    margin: 0 0 70px 5px;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--color-bei);
+    background-color: var(--color-lbr);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#up-arrow img {
+    width: 40px;
+}
+
+#main, #lorem {
     color: white;
 }
 
@@ -48,4 +68,25 @@ footer, #main, #lorem {
     border: 5px solid var(--color-bei);
     border-bottom: none;
     border-radius: 25px 25px 0 0;
+}
+
+
+/* Index */
+
+.genre-circle {
+    margin: 0 auto 15px;
+    width: 70px;
+    height: 70px;
+    border: 3px solid var(--color-lbr);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre-line {
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-lbr);
+    margin: 15px auto 30px;
 }

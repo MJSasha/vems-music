@@ -3,13 +3,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="container">
+    <div class="row">
+
+        <h2 class="text-center mt-3 mb-3">Что хотите послушать сегодня?</h2>
+
+    <!-- !!! Отдельно прописать элемент класса/контейнер для отсутствия жанров -->
+
     @foreach (Genre item in Model.AllGenres)
-   {
-       <div class="container">
-           <div class="row">
-               <div class="col-4">@item.Name</div>
-           </div>
-       </div>
-   }
+    {
+        <!-- !!! Под кнопку, увеличить кружок -->
+        <div class="col-xl-4 col-md-6 col-sm-12">
+
+            <div class="genre-circle">
+                <img src="~/genre-icon/@item.PicturePath"></img>
+            </div>
+
+            <h5 class="text-center">@item.Name</h5>
+
+            <div class="genre-line"></div>
+        </div>
+    }
+
+    </div>
 </div>
