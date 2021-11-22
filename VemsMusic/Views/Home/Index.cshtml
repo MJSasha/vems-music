@@ -6,24 +6,26 @@
 <div class="container">
     <div class="row">
 
-        <h2 class="text-center mt-3 mb-3">Что хотите послушать сегодня?</h2>
+        <h2 class="text-center mt-3 mb-5">Что хотите послушать сегодня?</h2>
 
-    <!-- !!! Отдельно прописать элемент класса/контейнер для отсутствия жанров -->
+        <!-- !!! Отдельно прописать элемент класса/контейнер для отсутствия жанров -->
 
-    @foreach (Genre item in Model.AllGenres)
-    {
-        <!-- !!! Под кнопку, увеличить кружок -->
-        <div class="col-xl-4 col-md-6 col-sm-12">
+        @foreach (Genre item in Model.AllGenres)
+        {
+            <!-- !!! Под кнопку, увеличить кружок -->
+            <div class="col-xl-4 col-md-6 col-sm-12">
+            
+                <div class="genre-circle">
+                        <img src="@item.PicturePath" alt="@item.Name"><a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id"></a></img>
+                </div>
 
-            <div class="genre-circle">
-                <img src="~/genre-icon/@item.PicturePath"></img>
+                <h5 class="text-center">
+                    <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id">@item.Name</a>
+                </h5>
+
+                <div class="genre-line"></div>
             </div>
-
-            <h5 class="text-center">@item.Name</h5>
-
-            <div class="genre-line"></div>
-        </div>
-    }
+        }
 
     </div>
 </div>
