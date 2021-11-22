@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using VemsMusic.Interfaces;
+using VemsMusic.Other_Data.Interfaces;
+using VemsMusic.Other_Data.Repositories;
 using VemsMusic.Repositories;
 
 namespace VemsMusic
@@ -39,6 +41,7 @@ namespace VemsMusic
             services.AddMemoryCache();
             services.AddTransient<IAllGenre, GenreRepository>();
             services.AddTransient<IAllGroups, GroupsRepository>();
+            services.AddTransient<IAllMusic, MusicRepository>();
         }
 
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)

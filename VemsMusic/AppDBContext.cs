@@ -7,6 +7,7 @@ namespace VemsMusic
     {
         public DbSet<Genre> Genres { get; set; }
         public DbSet<MusicalGroup> Groups { get; set; }
+        public DbSet<Music> Musics { get; set; }
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {

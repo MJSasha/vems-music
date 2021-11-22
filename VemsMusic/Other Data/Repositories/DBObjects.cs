@@ -55,6 +55,34 @@ namespace VemsMusic.Repositories
                         GenreId = 1
                     });
             }
+            if (!context.Musics.Any())
+            {
+                await context.AddRangeAsync(
+                    new Music
+                    {
+                        Name = "Песенка",
+                        AudioPath = "",
+                        GroupId = 1,
+                        ImagePath = "",
+                        Text = "Поется",
+                    },
+                    new Music
+                    {
+                        Name = "Рокинка",
+                        AudioPath = "",
+                        GroupId = 1,
+                        ImagePath = "",
+                        Text = "Поется",
+                    },
+                    new Music
+                    {
+                        Name = "Трип",
+                        AudioPath = "",
+                        GroupId = 1,
+                        ImagePath = "",
+                        Text = "Поется",
+                    });
+            }
             await context.SaveChangesAsync();
         }
 
