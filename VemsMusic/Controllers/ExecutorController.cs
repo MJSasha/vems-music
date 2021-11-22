@@ -18,7 +18,6 @@ namespace VemsMusic.Controllers
         public IActionResult Index(int id)
         {
             MusicalGroup group = _allGroups.GetMusicalGroupById(id);
-
             return View(group);
         }
     }

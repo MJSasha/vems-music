@@ -12,7 +12,7 @@ namespace UnitTests
     public class HomeControllerTest
     {
         [Fact]
-        public void IndexViewTest()
+        public void IndexViewTestWithNonZeroGenres()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
@@ -25,6 +25,20 @@ namespace UnitTests
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GenreViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGenres);
+        }
+        [Fact]
+        public void IndexViewTestWithZeroGenres()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
+            var controller = new HomeController(mockGenre.Object, mockGroup.Object);
+
+            var result = controller.Index();
+
+            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
+            Assert.Equal("NoGenres", redirectResult.ActionName);
         }
         [Fact]
         public void InGenreTest()
@@ -79,6 +93,11 @@ namespace UnitTests
                     }
             };
             return groups;
+        }
+        private static List<Genre> GetZeroGenres()
+        {
+            var genres = new List<Genre>();
+            return genres;
         }
     }
 }

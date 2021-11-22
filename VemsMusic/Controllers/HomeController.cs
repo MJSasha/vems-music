@@ -22,6 +22,10 @@ namespace VemsMusic.Controllers
         public IActionResult Index()
         {
             IEnumerable<Genre> genres = _allGenre.GetAllGenres;
+            if (!genres.Any())
+            {
+                return RedirectToAction("NoGenres");
+            }
             var genreObj = new GenreViewModel
             {
                 AllGenres = genres
@@ -39,6 +43,12 @@ namespace VemsMusic.Controllers
                 AllGroups = musicalGroups
             };
             return View(groupObj);
+        }
+
+        [Route("~/Home/NoGenres")]
+        public ViewResult NoGenres()
+        {
+            return View();
         }
     }
 }
