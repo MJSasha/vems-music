@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Moq;
 using VemsMusic.Controllers;
-using VemsMusic.Interfaces;
-using VemsMusic.Models;
 using Xunit;
 
 
@@ -15,7 +12,7 @@ namespace UnitTests
         {
             AboutController controller = new AboutController();
 
-            ViewResult viewResult = controller.Index() as ViewResult;
+            ViewResult viewResult = controller.Index();
 
             Assert.IsType<ViewResult>(viewResult);
         }

@@ -24,7 +24,7 @@ namespace VemsMusic.Controllers
             IEnumerable<Genre> genres = _allGenre.GetAllGenres;
             if (!genres.Any())
             {
-                return RedirectToAction("NoGenres");
+                return Redirect("~/Home/NoItems/Жанры не добавлены");
             }
             var genreObj = new GenreViewModel
             {
@@ -38,6 +38,10 @@ namespace VemsMusic.Controllers
         public IActionResult InGenre(int id)
         {
             IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreId == id);
+            if (!musicalGroups.Any())
+            {
+                return Redirect("~/Home/NoItems/Группы не добавлены");
+            }
             var groupObj = new GroupsViewModel
             {
                 AllGroups = musicalGroups
@@ -45,9 +49,10 @@ namespace VemsMusic.Controllers
             return View(groupObj);
         }
 
-        [Route("~/Home/NoGenres")]
-        public ViewResult NoGenres()
+        [Route("~/Home/NoItems/{message}")]
+        public ViewResult NoItems(string message)
         {
+            ViewBag.Message = message;
             return View();
         }
     }

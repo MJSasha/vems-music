@@ -37,15 +37,15 @@ namespace UnitTests
 
             var result = controller.Index();
 
-            var redirectResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Equal("NoGenres", redirectResult.ActionName);
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
         [Fact]
         public void InGenreTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
+            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object);
 
@@ -54,6 +54,20 @@ namespace UnitTests
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
+        }
+        [Fact]
+        public void InGenreTestWithZeroGenres()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
+            var controller = new HomeController(mockGenre.Object, mockGroup.Object);
+
+            var result = controller.InGenre(3);
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/Home/NoItems/Группы не добавлены", redirectResult.Url);
         }
 
         private static List<Genre> GetTestGenres()
