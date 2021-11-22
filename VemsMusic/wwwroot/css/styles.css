@@ -74,6 +74,10 @@ nav {
 
 /* Index */
 
+.genre-item a {
+    color: white;   /* Обводка при нажатии */
+}
+
 .genre-circle {
     margin: 15px auto 15px;
     width: 100px;

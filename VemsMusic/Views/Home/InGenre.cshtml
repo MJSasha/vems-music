@@ -1,0 +1,12 @@
+﻿@model GroupsViewModel
+
+<div class="container">
+    <div class="row">
+
+        @foreach (MusicalGroup item in Model.AllGroups)
+            {
+                <h2>@item.Name</h2>
+            }
+
+    </div>
+</div>

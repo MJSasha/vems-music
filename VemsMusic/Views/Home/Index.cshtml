@@ -13,10 +13,10 @@
         @foreach (Genre item in Model.AllGenres)
         {
             <!-- !!! Под кнопку, увеличить кружок -->
-            <div class="col-xl-4 col-md-6 col-sm-12">
+            <div class="genre-item col-xl-4 col-md-6 col-sm-12">
             
                 <div class="genre-circle">
-                        <img src="@item.PicturePath" alt="@item.Name"><a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id"></a></img>
+                        <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id"><img src="@item.PicturePath" alt="@item.Name"></a>
                 </div>
 
                 <h5 class="text-center">
