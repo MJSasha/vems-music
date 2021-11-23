@@ -68,10 +68,10 @@ namespace VemsMusic.Repositories
                     },
                     new Music
                     {
-                        Name = "Рокинка",
-                        AudioPath = "",
+                        Name = "Chemtrails Over The Country Club",
+                        AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/Lana Del Rey - Chemtrails Over The Country Club.mp3",
                         GroupId = 1,
-                        ImagePath = "",
+                        ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                         Text = "Поется",
                     },
                     new Music

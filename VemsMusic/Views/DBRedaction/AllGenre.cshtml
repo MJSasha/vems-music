@@ -2,12 +2,64 @@
 
 <div class="container">
     <div class="row">
-        <ul class="list-group">
-            @foreach (var item in Model.AllGenres)
-           {
-               <li class="list-group-item">@item.Name</li>
-               <a class="btn" asp-controller="DBRedaction" asp-action="AddGenre" asp-route-genre="@item">@item.Name</a>
-           }
-        </ul>
+            
+            <!-- Тоже самое в DBRedaction/AllGroup, AllMusic -->
+
+
+            <!-- Добавить механизм для добавления, добавлять аккордеон (CheckOut.cshtml в Test) -->
+            Добавить Жанр
+
+            <div class="accordion" id="accordionExample">
+                @foreach (var item in Model.AllGenres)
+                {
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading-@item.Id">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
+                                @item.Name
+
+                                <button class="delete-genre"><a href="#">Удалить</a></button>
+                            </button>
+                        </h2>
+                        <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
+                            <div class="accordion-body text-black">
+
+                                <div class="row g-3 align-items-center">
+
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Имя</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" method="post" asp-for="Name" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-items-center">
+
+                                    <div class="col-auto">
+                                        <label for="inputPassword7" class="col-form-label">Описание</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" method="post" asp-for="Description" id="inputPassword7" class="form-control" aria-describedby="passwordHelpInline">
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-items-center">
+
+                                    <div class="col-auto">
+                                        <label for="inputPassword8" class="col-form-label">Путь к картинке</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" method="post" asp-for="PicturePath" id="inputPassword8" class="form-control" aria-describedby="passwordHelpInline">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <a class="btn" asp-controller="DBRedaction" asp-action="AddGenre" asp-route-genre="@item">@item.Name</a>
+                }
+            </div>
+        
     </div>
 </div>
