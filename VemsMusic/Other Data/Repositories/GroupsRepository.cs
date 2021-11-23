@@ -26,9 +26,9 @@ namespace VemsMusic.Repositories
                 return _dbContext.Groups.ToList();
             }
         }
-        public void DeleteGroup(MusicalGroup musicalGroup)
+        public void DeleteGroup(int id)
         {
-            _dbContext.Groups.Remove(musicalGroup);
+            _dbContext.Groups.Remove(_dbContext.Groups.Find(id));
             _dbContext.SaveChanges();
         }
 

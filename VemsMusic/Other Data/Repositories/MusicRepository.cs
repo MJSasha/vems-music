@@ -22,9 +22,9 @@ namespace VemsMusic.Other_Data.Repositories
             }
         }
 
-        public void DeleteMusic(Music music)
+        public void DeleteMusic(int id)
         {
-            _dbContext.Musics.Remove(music);
+            _dbContext.Musics.Remove(_dbContext.Musics.Find(id));
             _dbContext.SaveChanges();
         }
 

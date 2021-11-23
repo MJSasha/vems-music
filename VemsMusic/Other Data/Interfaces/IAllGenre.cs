@@ -7,7 +7,7 @@ namespace VemsMusic.Interfaces
     {
         IEnumerable<Genre> GetAllGenres { get; }
         Genre GetGenreById(int id);
-        void DeleteGenre(Genre genre);
+        void DeleteGenre(int id);
         void AddGenre(Genre genre);
         void UpdateGenre(Genre genre);
     }

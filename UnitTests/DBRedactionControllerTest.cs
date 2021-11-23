@@ -114,10 +114,10 @@ namespace UnitTests
             var mockMusics = new Mock<IAllMusic>();
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.DeleteGenre(new Genre { Name = "Рок", Description = "Анархия" });
+            var result = controller.DeleteGenre(1);
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/AddGenre", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AllGenre", redirectResult.Url);
         }
         [Fact]
         public void DeleteGroupTest()
@@ -127,10 +127,10 @@ namespace UnitTests
             var mockMusics = new Mock<IAllMusic>();
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.DeleteGroup(new MusicalGroup { Name = "Рокеры", Description = "Рочат" });
+            var result = controller.DeleteGroup(1);
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/AddGroup", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AllGroup", redirectResult.Url);
         }
         [Fact]
         public void DeleteMusicTest()
@@ -140,10 +140,10 @@ namespace UnitTests
             var mockMusics = new Mock<IAllMusic>();
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.DeleteMusic(new Music { Name = "ТуцТуц", GroupId = 1 });
+            var result = controller.DeleteMusic(1);
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/AddMusic", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AllMusic", redirectResult.Url);
         }
 
         [Fact]

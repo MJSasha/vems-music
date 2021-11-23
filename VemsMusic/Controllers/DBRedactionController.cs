@@ -108,29 +108,26 @@ namespace VemsMusic.Controllers
         }
 
 
-        [Route("~/DBRedaction/DeleteGenre")]
-        [HttpPost]
-        public RedirectResult DeleteGenre(Genre genre)
+        [Route("~/DBRedaction/DeleteGenre/{id}")]
+        public RedirectResult DeleteGenre(int id)
         {
-            _allGenre.DeleteGenre(genre);
+            _allGenre.DeleteGenre(id);
 
-            return Redirect("~/DBRedaction/AddGenre");
+            return Redirect("~/DBRedaction/AllGenre");
         }
-        [Route("~/DBRedaction/DeleteGroup")]
-        [HttpPost]
-        public RedirectResult DeleteGroup(MusicalGroup group)
+        [Route("~/DBRedaction/DeleteGroup/{id}")]
+        public RedirectResult DeleteGroup(int id)
         {
-            _allGroups.DeleteGroup(group);
+            _allGroups.DeleteGroup(id);
 
-            return Redirect("~/DBRedaction/AddGroup");
+            return Redirect("~/DBRedaction/AllGroup");
         }
-        [Route("~/DBRedaction/DeleteMusic")]
-        [HttpPost]
-        public RedirectResult DeleteMusic(Music music)
+        [Route("~/DBRedaction/DeleteMusic/{id}")]
+        public RedirectResult DeleteMusic(int id)
         {
-            _allMusic.DeleteMusic(music);
+            _allMusic.DeleteMusic(id);
 
-            return Redirect("~/DBRedaction/AddMusic");
+            return Redirect("~/DBRedaction/AllMusic");
         }
 
 
