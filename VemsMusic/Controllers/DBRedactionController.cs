@@ -139,7 +139,6 @@ namespace VemsMusic.Controllers
 
             return Redirect("~/DBRedaction/AllGenre");
         }
-
         [Route("~/DBRedaction/RedactGroups")]
         [HttpPost]
         public RedirectResult RedactGroups(MusicalGroup musicalGroup)
@@ -148,7 +147,6 @@ namespace VemsMusic.Controllers
 
             return Redirect("~/DBRedaction/AllGroup");
         }
-
         [Route("~/DBRedaction/RedactMusics")]
         [HttpPost]
         public RedirectResult RedactMusics(Music music)
@@ -156,14 +154,6 @@ namespace VemsMusic.Controllers
             _allMusic.UpdateMusic(music);
 
             return Redirect("~/DBRedaction/AllMusic");
-        }
-
-
-        [Route("~/DBRedaction/Complete/{completeMessage}")]
-        public ViewResult Complete(string completeMessage)
-        {
-            ViewBag.CompleteMessage = completeMessage; 
-            return View();
         }
     }
 }
