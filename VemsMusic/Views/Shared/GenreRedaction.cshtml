@@ -1,0 +1,29 @@
+﻿@model Genre
+
+<div class="row">
+    <h3>Оформление заказа</h3>
+    <form asp-action ="DBRedaction" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <div class="col-md-5">
+                <input asp-for="Name" class="form-control"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <div class="col-md-5">
+                <input asp-for="Description" class="form-control"/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PicturePath"></label>
+            <div class="col-md-5">
+                <input asp-for="PicturePath" class="form-control"/>
+                <span asp-validation-for="PicturePath" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-success" type="submit" value="Завершить редактирование" />
+    </form>
+</div>
