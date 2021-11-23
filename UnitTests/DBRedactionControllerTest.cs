@@ -72,15 +72,12 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = controller.AddGenre(new Genre { Name="Рок", Description="Анархия"});
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/Complete/Жанр добавлен", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AllGenre", redirectResult.Url);
         }
         [Fact]
         public void AddGroupTest()
@@ -88,15 +85,12 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = controller.AddGroup(new MusicalGroup { Name="Рокеры",Description="Рочат"});
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/Complete/Группа добавлена", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AllGroup", redirectResult.Url);
         }
         [Fact]
         public void AddMusicTest()
@@ -104,15 +98,12 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = controller.AddMusic(new Music { Name = "ТуцТуц", GroupId = 1 });
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/Complete/Трек добавлен", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AllMusic", redirectResult.Url);
         }
 
         [Fact]

@@ -31,5 +31,11 @@ namespace VemsMusic.Repositories
             _dbContext.Groups.Remove(musicalGroup);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async void UpdateGroup(MusicalGroup musicalGroup)
+        {
+            _dbContext.Groups.Update(musicalGroup);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

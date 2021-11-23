@@ -83,22 +83,28 @@ namespace VemsMusic.Controllers
 
 
         [Route("~/DBRedaction/AddGenre")]
-        //[HttpPost]
+        [HttpPost]
         public RedirectResult AddGenre(Genre genre)
         {
-            return Redirect("~/DBRedaction/Complete/Жанр добавлен");
+            _allGenre.UpdateGenre(genre);
+
+            return Redirect("~/DBRedaction/AllGenre");
         }
         [Route("~/DBRedaction/AddGroup")]
         [HttpPost]
         public RedirectResult AddGroup(MusicalGroup group)
         {
-            return Redirect("~/DBRedaction/Complete/Группа добавлена");
+            _allGroups.UpdateGroup(group);
+
+            return Redirect("~/DBRedaction/AllGroup");
         }
         [Route("~/DBRedaction/AddMusic")]
         [HttpPost]
         public RedirectResult AddMusic(Music music)
         {
-            return Redirect("~/DBRedaction/Complete/Трек добавлен");
+            _allMusic.UpdateMusic(music);
+
+            return Redirect("~/DBRedaction/AllMusic");
         }
 
 

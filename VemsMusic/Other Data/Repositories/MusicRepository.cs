@@ -27,5 +27,11 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext.Musics.Remove(music);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async void UpdateMusic(Music music)
+        {
+            _dbContext.Musics.Update(music);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -32,5 +32,11 @@ namespace VemsMusic.Repositories
             _dbContext.Remove(genre);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async void UpdateGenre(Genre genre)
+        {
+            _dbContext.Genres.Update(genre);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
