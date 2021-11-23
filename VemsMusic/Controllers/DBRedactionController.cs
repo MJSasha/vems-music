@@ -134,38 +134,23 @@ namespace VemsMusic.Controllers
         }
 
 
-        //[Route("~/DBRedaction/RedactGenres")]
-        //public ViewResult RedactGenres()
-        //{
-        //    return View();
-        //}
-        //[Route("~/DBRedaction/RedactGenres/{id}")]
-        //public RedirectResult RedactGenres(int id)
-        //{
-        //    return Redirect("~/DBRedaction/RedactGenres");
-        //}
+        [Route("~/DBRedaction/RedactGenres")]
+        public RedirectResult RedactGenres(Genre genre)
+        {
+            return Redirect("~/DBRedaction/RedactGenres");
+        }
 
-        //[Route("~/DBRedaction/RedactGroups")]
-        //public ViewResult RedactGroups()
-        //{
-        //    return View();
-        //}
-        //[Route("~/DBRedaction/RedactGroups/{id}")]
-        //public RedirectResult RedactGroups(int id)
-        //{
-        //    return Redirect("~/DBRedaction/RedactGroups");
-        //}
+        [Route("~/DBRedaction/RedactGroups")]
+        public RedirectResult RedactGroups(MusicalGroup musicalGroup)
+        {
+            return Redirect("~/DBRedaction/RedactGroups");
+        }
 
-        //[Route("~/DBRedaction/RedactMusics")]
-        //public ViewResult RedactMusics()
-        //{
-        //    return View();
-        //}
-        //[Route("~/DBRedaction/RedactMusics/{id}")]
-        //public RedirectResult RedactMusics(int id)
-        //{
-        //    return Redirect("~/DBRedaction/RedactMusics");
-        //}
+        [Route("~/DBRedaction/RedactMusics")]
+        public RedirectResult RedactMusics(Music music)
+        {
+            return Redirect("~/DBRedaction/RedactMusics");
+        }
 
 
         [Route("~/DBRedaction/Complete/{completeMessage}")]
