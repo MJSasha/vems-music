@@ -5,7 +5,17 @@
       "ProjectGuid": "3fdba55e-51ab-4591-9a59-bf341eed75da",
       "DisplayName": "VemsMusic",
       "ColorIndex": 0
+    },
+    "c2f03b1d-d1d8-48d8-919f-2c9df8e3e178": {
+      "ProjectGuid": "c2f03b1d-d1d8-48d8-919f-2c9df8e3e178",
+      "DisplayName": "UnitTests",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
