@@ -86,7 +86,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public RedirectResult AddGenre(Genre genre)
         {
-            _allGenre.UpdateGenre(genre);
+            _allGenre.AddGenre(genre);
 
             return Redirect("~/DBRedaction/AllGenre");
         }
@@ -94,7 +94,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public RedirectResult AddGroup(MusicalGroup group)
         {
-            _allGroups.UpdateGroup(group);
+            _allGroups.AddGroup(group);
 
             return Redirect("~/DBRedaction/AllGroup");
         }
@@ -102,7 +102,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public RedirectResult AddMusic(Music music)
         {
-            _allMusic.UpdateMusic(music);
+            _allMusic.AddMusic(music);
 
             return Redirect("~/DBRedaction/AllMusic");
         }

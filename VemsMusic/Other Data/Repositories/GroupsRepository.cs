@@ -32,9 +32,9 @@ namespace VemsMusic.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async void UpdateGroup(MusicalGroup musicalGroup)
+        public async void AddGroup(MusicalGroup musicalGroup)
         {
-            _dbContext.Groups.Update(musicalGroup);
+            _dbContext.Groups.Add(musicalGroup);
             await _dbContext.SaveChangesAsync();
         }
     }
