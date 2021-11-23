@@ -9,5 +9,6 @@ namespace VemsMusic.Interfaces
         MusicalGroup GetMusicalGroupById(int id);
         void DeleteGroup(MusicalGroup musicalGroup);
         void AddGroup(MusicalGroup musicalGroup);
+        void UpdateGroup(MusicalGroup musicalGroup);
     }
 }

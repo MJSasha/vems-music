@@ -146,6 +146,46 @@ namespace UnitTests
             Assert.Equal("~/DBRedaction/AddMusic", redirectResult.Url);
         }
 
+        [Fact]
+        public void RedactGenresTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusics = new Mock<IAllMusic>();
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+
+            var result = controller.RedactGenres(new Genre { Name = "Рок", Description = "Анархия" });
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/DBRedaction/AllGenre", redirectResult.Url);
+        }
+        [Fact]
+        public void RedactGroupsTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusics = new Mock<IAllMusic>();
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+
+            var result = controller.RedactGroups(new MusicalGroup { Name = "Рокеры", Description = "Рочат" });
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/DBRedaction/AllGroup", redirectResult.Url);
+        }
+        [Fact]
+        public void RedactMusicsTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusics = new Mock<IAllMusic>();
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+
+            var result = controller.RedactMusics(new Music { Name = "ТуцТуц", GroupId = 1 });
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/DBRedaction/AllMusic", redirectResult.Url);
+        }
+
 
         private static List<Genre> GetTestGenres()
         {

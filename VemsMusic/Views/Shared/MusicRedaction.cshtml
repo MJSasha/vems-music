@@ -4,6 +4,13 @@
     <h3>Оформление заказа</h3>
     <form asp-action ="RedactMusics" method="post" class="form-horizontal">
         <div class="form-group">
+            <label asp-for="Id"></label>
+            <div class="col-md-5">
+                <input asp-for="Id" class="form-control"/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="Name"></label>
             <div class="col-md-5">
                 <input asp-for="Name" class="form-control"/>
@@ -29,6 +36,13 @@
             <div class="col-md-5">
                 <input asp-for="AudioPath" class="form-control"/>
                 <span asp-validation-for="AudioPath" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GroupId"></label>
+            <div class="col-md-5">
+                <input asp-for="GroupId" class="form-control"/>
+                <span asp-validation-for="GroupId" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">

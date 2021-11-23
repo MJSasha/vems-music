@@ -26,16 +26,22 @@ namespace VemsMusic.Repositories
                 return _dbContext.Groups.ToList();
             }
         }
-        public async void DeleteGroup(MusicalGroup musicalGroup)
+        public void DeleteGroup(MusicalGroup musicalGroup)
         {
             _dbContext.Groups.Remove(musicalGroup);
-            await _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
         }
 
-        public async void AddGroup(MusicalGroup musicalGroup)
+        public void AddGroup(MusicalGroup musicalGroup)
         {
             _dbContext.Groups.Add(musicalGroup);
-            await _dbContext.SaveChangesAsync();
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateGroup(MusicalGroup musicalGroup)
+        {
+            _dbContext.Groups.Update(musicalGroup);
+            _dbContext.SaveChanges();
         }
     }
 }

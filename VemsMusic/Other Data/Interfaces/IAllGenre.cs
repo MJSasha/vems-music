@@ -9,5 +9,6 @@ namespace VemsMusic.Interfaces
         Genre GetGenreById(int id);
         void DeleteGenre(Genre genre);
         void AddGenre(Genre genre);
+        void UpdateGenre(Genre genre);
     }
 }
