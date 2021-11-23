@@ -121,15 +121,12 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = controller.DeleteGenre(new Genre { Name = "Рок", Description = "Анархия" });
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/Complete/Жанр удален", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AddGenre", redirectResult.Url);
         }
         [Fact]
         public void DeleteGroupTest()
@@ -137,15 +134,12 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = controller.DeleteGroup(new MusicalGroup { Name = "Рокеры", Description = "Рочат" });
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/Complete/Группа удален", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AddGroup", redirectResult.Url);
         }
         [Fact]
         public void DeleteMusicTest()
@@ -153,15 +147,12 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = controller.DeleteMusic(new Music { Name = "ТуцТуц", GroupId = 1 });
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
-            Assert.Equal("~/DBRedaction/Complete/Трек удален", redirectResult.Url);
+            Assert.Equal("~/DBRedaction/AddMusic", redirectResult.Url);
         }
 
 

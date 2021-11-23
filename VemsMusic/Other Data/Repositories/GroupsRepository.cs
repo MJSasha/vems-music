@@ -18,12 +18,18 @@ namespace VemsMusic.Repositories
         {
             return _dbContext.Find<MusicalGroup>(id);
         }
+
         public IEnumerable<MusicalGroup> GetMusicalGroups
         {
             get
             {
                 return _dbContext.Groups.ToList();
             }
+        }
+        public async void DeleteGroup(MusicalGroup musicalGroup)
+        {
+            _dbContext.Groups.Remove(musicalGroup);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -7,5 +7,6 @@ namespace VemsMusic.Interfaces
     {
         IEnumerable<MusicalGroup> GetMusicalGroups { get; }
         MusicalGroup GetMusicalGroupById(int id);
+        void DeleteGroup(MusicalGroup musicalGroup);
     }
 }

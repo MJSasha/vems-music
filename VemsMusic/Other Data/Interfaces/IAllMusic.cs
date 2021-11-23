@@ -6,5 +6,6 @@ namespace VemsMusic.Other_Data.Interfaces
     public interface IAllMusic
     {
         IEnumerable<Music> GetAllMusic { get; }
+        void DeleteMusic(Music music);
     }
 }
