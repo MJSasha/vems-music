@@ -1,0 +1,12 @@
+﻿@model GroupsViewModel
+
+<div class="container">
+    <div class="row">
+        <ul class="list-group">
+            @foreach (var item in Model.AllGroups)
+           {
+               <li class="list-group-item">@item.Name</li>
+           }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@model MusicViewModel
+
+<div class="container">
+    <div class="row">
+        <ul class="list-group">
+            @foreach (var item in Model.AllMusic)
+           {
+               <li class="list-group-item">@item.Name</li>
+           }
+        </ul>
+    </div>
+</div>

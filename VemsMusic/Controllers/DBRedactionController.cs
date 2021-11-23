@@ -83,7 +83,7 @@ namespace VemsMusic.Controllers
 
 
         [Route("~/DBRedaction/AddGenre")]
-        [HttpPost]
+        //[HttpPost]
         public RedirectResult AddGenre(Genre genre)
         {
             return Redirect("~/DBRedaction/Complete/Жанр добавлен");
