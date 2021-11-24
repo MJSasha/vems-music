@@ -53,7 +53,7 @@ namespace UnitTests
             var result = controller.InGenre(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<AllGroupAndAllGenreViewModel>(viewResult.Model);
+            var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
         }
         [Fact]

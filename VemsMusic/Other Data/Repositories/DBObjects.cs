@@ -86,6 +86,32 @@ namespace VemsMusic.Repositories
                         Text = "Поется",
                     });
             }
+            if (!context.Users.Any())
+            {
+                await context.AddRangeAsync(
+                    new User
+                    {
+                        Email = "Sasha@gmail.com",
+                        Password = "sasha-sasha",
+                    },
+                    new User
+                    {
+                        Email = "Matvey@gmail.com",
+                        Password = "matvey-matvey",
+                    });
+            }
+            if (!context.Roles.Any())
+            {
+                await context.AddRangeAsync(
+                    new Role
+                    {
+                        Name = "admin"
+                    },
+                    new Role
+                    {
+                        Name = "user"
+                    });
+            }
             await context.SaveChangesAsync();
         }
 
