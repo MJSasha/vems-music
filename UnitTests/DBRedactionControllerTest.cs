@@ -74,7 +74,7 @@ namespace UnitTests
             var mockMusics = new Mock<IAllMusic>();
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AddGenre(new Genre { Name="Рок", Description="Анархия"});
+            var result = controller.AddGenre(new Genre { Name = "Рок", Description = "Анархия" });
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/DBRedaction/AllGenre", redirectResult.Url);
@@ -87,7 +87,7 @@ namespace UnitTests
             var mockMusics = new Mock<IAllMusic>();
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AddGroup(new MusicalGroup { Name="Рокеры",Description="Рочат"});
+            var result = controller.AddGroup(new MusicalGroup { Name = "Рокеры", Description = "Рочат" });
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/DBRedaction/AllGroup", redirectResult.Url);

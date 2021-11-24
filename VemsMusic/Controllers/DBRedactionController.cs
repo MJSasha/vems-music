@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using VemsMusic.Interfaces;
@@ -9,6 +10,7 @@ using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class DBRedactionController : Controller
     {
         private readonly IAllGenre _allGenre;
@@ -28,7 +30,6 @@ namespace VemsMusic.Controllers
             return View();
         }
 
-
         [Route("~/DBRedaction/AllGenre")]
         public IActionResult AllGenre()
         {
@@ -42,7 +43,7 @@ namespace VemsMusic.Controllers
             var genreObj = new GenreViewModel
             {
                 AllGenres = genres
-            }; 
+            };
 
             return View(genreObj);
         }
