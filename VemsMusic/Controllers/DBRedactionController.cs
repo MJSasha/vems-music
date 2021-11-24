@@ -10,7 +10,6 @@ using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Controllers
 {
-    [Authorize(Roles = "admin")]
     public class DBRedactionController : Controller
     {
         private readonly IAllGenre _allGenre;
