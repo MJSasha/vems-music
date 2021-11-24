@@ -1,15 +1,16 @@
 ﻿@model Genre
 
 <div class="row">
-    <h3>Оформление заказа</h3>
     <form asp-action ="RedactGenres" method="post" class="form-horizontal">
+
         <div class="form-group">
             <label asp-for="Id"></label>
             <div class="col-md-5">
-                <input asp-for="Id" class="form-control"/>
+                <input asp-for="Id" class="form-control"/>  <p>Редактирование данного поля может привести к созданию новой модели</p>
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
         </div>
+
         <div class="form-group">
             <label asp-for="Name"></label>
             <div class="col-md-5">
@@ -17,6 +18,7 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
+
         <div class="form-group">
             <label asp-for="Description"></label>
             <div class="col-md-5">
@@ -24,6 +26,8 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
         </div>
+
+        <!-- !!! Сделать выпадающий список с жанрами -->
         <div class="form-group">
             <label asp-for="PicturePath"></label>
             <div class="col-md-5">
@@ -31,6 +35,7 @@
                 <span asp-validation-for="PicturePath" class="text-danger"></span>
             </div>
         </div>
+
         <input class="btn btn-success" type="submit" value="Завершить редактирование" />
     </form>
 </div>
