@@ -56,12 +56,13 @@ namespace VemsMusic
 
         public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvc();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            
 
             using (var scope = app.ApplicationServices.CreateScope())
             {

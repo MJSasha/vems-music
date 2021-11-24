@@ -50,6 +50,9 @@ namespace VemsMusic.Migrations
                     b.Property<string>("AudioPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
 

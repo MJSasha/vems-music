@@ -21,6 +21,7 @@ namespace VemsMusic.Models
         [Display(Name = "Id группы")]
         public int GroupId { get; set; }
 
-        // Добавить объект для выбора жанра GenreId
+        [Display(Name = "Id жанра")]
+        public int GenreId { get; set; }
     }
 }
