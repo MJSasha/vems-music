@@ -45,8 +45,9 @@ namespace UnitTests
             var result = controller.AllGroup();
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
+            var model = Assert.IsAssignableFrom<AllGroupAndAllGenreViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
+            Assert.NotNull(model.AllGroups);
         }
         [Fact]
         public void AllMusicTest()
@@ -62,8 +63,10 @@ namespace UnitTests
             var result = controller.AllMusic();
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<MusicViewModel>(viewResult.Model);
+            var model = Assert.IsAssignableFrom<AllMusicAndAllGroupAndAllGenreViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllMusic);
+            Assert.NotNull(model.AllGroup);
+            Assert.NotNull(model.AllGenre);
         }
 
         [Fact]
