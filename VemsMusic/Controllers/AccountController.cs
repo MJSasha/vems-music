@@ -76,7 +76,7 @@ namespace VemsMusic.Controllers
                 {
                     await Authenticate(user);
 
-                    return Redirect("~/DBRedaction/Index");
+                    return Redirect("~/");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
