@@ -78,7 +78,7 @@ namespace VemsMusic.Controllers
 
                     if (user.RoleId == 1)
                     {
-                        return Redirect("~/~/DBRedaction/Index");
+                        return Redirect("~/DBRedaction/Index");
                     }
                     else
                     {
