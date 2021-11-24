@@ -1,9 +1,6 @@
 ﻿@model GenreViewModel
-@{
-    ViewData["Title"] = "Home Page";
-}
 
-<div class="container">
+<div id="genre-view" class="container">
     <div class="row">
 
         <h2 class="text-center mt-3 mb-5">Что хотите послушать сегодня?</h2>
@@ -19,6 +16,8 @@
                 <h5 class="genre-name text-center">
                     <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id">@item.Name</a>
                 </h5>
+
+                <p class="text-center">@item.Description</p>
 
                 <div class="genre-line"></div>
             </div>

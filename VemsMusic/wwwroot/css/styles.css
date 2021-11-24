@@ -58,7 +58,7 @@ nav {
     width: 40px;
 }
 
-#main, #lorem {
+#genre-view, #lorem {
     color: white;
 }
 
@@ -115,13 +115,9 @@ nav {
     color: var(--color-lgr);
 }
 
-.group-item img {
-    
-}
-
 
 /* AllGenre */
 
-.col-form-label {
+.accordion {
     color: black !important;
 }

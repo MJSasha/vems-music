@@ -4,9 +4,10 @@
     <div class="row">
             
             <!-- Тоже самое в DBRedaction/AllGroup, AllMusic -->
+            <!-- Поменять шрифт -->
 
 
-            <!-- Добавить механизм для добавления, добавлять аккордеон (CheckOut.cshtml в Test) -->
+            <!-- !!! Добавить механизм для добавления, добавлять аккордеон (CheckOut.cshtml в Test) -->
 
             <div class="accordion" id="accordionExample">
                 @foreach (var item in Model.AllGenres)
@@ -15,9 +16,12 @@
                         <h2 class="accordion-header" id="heading-@item.Id">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
                                 @item.Name
+
+                                <!-- Кнопка для удаления -->
                                 <button class="delete-genre"><a href="~/DBRedaction/DeleteGenre/@item.Id">Удалить</a></button>
                             </button>
                         </h2>
+
                         <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
                             @await Html.PartialAsync("GenreRedaction", item);
                         </div>
