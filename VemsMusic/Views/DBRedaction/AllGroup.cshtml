@@ -2,7 +2,14 @@
 
 <div class="container">
     <div class="row">
-        <ul class="list-group">
+            
+            @*<p>Список ID жанров</p>
+            @foreach(var genre in Model.AllGenre)
+            {
+                    <p>@genre.Id - @genre.Name</p>
+            }*@
+            
+            <p>Редактирование информации о группе/исполнителе</p>
             @foreach (var item in Model.AllGroups)
            {
                 <div class="accordion-item">
@@ -17,6 +24,5 @@
                     </div>
                 </div>
            }
-        </ul>
     </div>
 </div>
