@@ -4,6 +4,8 @@ using System.Linq;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 using VemsMusic.Models.ViewModels;
+using VemsMusic.Other_Data.Interfaces;
+using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Controllers
 {
@@ -11,11 +13,13 @@ namespace VemsMusic.Controllers
     {
         private readonly IAllGenre _allGenre;
         private readonly IAllGroups _allGroups;
+        private readonly IAllMusic _allMusic;
 
-        public HomeController(IAllGenre allGenre, IAllGroups allGroups)
+        public HomeController(IAllGenre allGenre, IAllGroups allGroups, IAllMusic allMusic)
         {
             _allGenre = allGenre;
             _allGroups = allGroups;
+            _allMusic = allMusic;
         }
 
         [Route("~/")]
@@ -54,6 +58,28 @@ namespace VemsMusic.Controllers
 
             ViewBag.Genre = genre.Name;
             return View(groupObj);
+        }
+
+        [Route("~/Home/Executors")]
+        public ViewResult Executors()
+        {
+            var groupsObj = new GroupsViewModel
+            {
+                AllGroups = _allGroups.GetMusicalGroups
+            };
+
+            return View(groupsObj);
+        }
+
+        [Route("~/Home/AllMusic")]
+        public ViewResult AllMusic()
+        {
+            var musicsObj = new MusicViewModel
+            {
+                AllMusic = _allMusic.GetAllMusic
+            };
+
+            return View(musicsObj);
         }
 
         [Route("~/Home/NoItems/{message}")]
