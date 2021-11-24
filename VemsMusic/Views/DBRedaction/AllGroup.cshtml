@@ -2,16 +2,18 @@
 
 <div class="container">
     <div class="row">
-            
-            @*<p>Список ID жанров</p>
-            @foreach(var genre in Model.AllGenre)
+        <ul class="list-group">
+
+            <!-- !!! Списки ID засунуть в выпадающие списки -->
+            <p>Список ID жанров</p>
+            @foreach (var item in Model.AllGenres)
             {
-                    <p>@genre.Id - @genre.Name</p>
-            }*@
-            
+                <p>@item.Id - @item.Name</p>
+            }
+
             <p>Редактирование информации о группе/исполнителе</p>
             @foreach (var item in Model.AllGroups)
-           {
+            {
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="heading-@item.Id">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
@@ -23,6 +25,7 @@
                         @await Html.PartialAsync("GroupRedaction", item);
                     </div>
                 </div>
-           }
+            }
+        </ul>
     </div>
 </div>
