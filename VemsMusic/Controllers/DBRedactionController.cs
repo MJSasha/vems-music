@@ -56,9 +56,10 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Группы не добавлены");
             }
 
-            var groupObj = new GroupsViewModel
+            var groupObj = new AllGroupAndAllGenreViewModel
             {
-                AllGroups = musicalGroups
+                AllGroups = musicalGroups,
+                AllGenres = _allGenre.GetAllGenres
             };
 
             return View(groupObj);
@@ -73,9 +74,11 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }
 
-            var musicsObj = new MusicViewModel
+            var musicsObj = new AllMusicAndAllGroupAndAllGenreViewModel
             {
-                AllMusic = musics
+                AllMusic = musics,
+                AllGenre = _allGenre.GetAllGenres,
+                AllGroup = _allGroups.GetMusicalGroups
             };
 
             return View(musicsObj);

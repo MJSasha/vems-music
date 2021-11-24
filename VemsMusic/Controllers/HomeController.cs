@@ -47,7 +47,7 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Группы не добавлены");
             }
 
-            var groupObj = new GroupsViewModel
+            var groupObj = new AllGroupAndAllGenreViewModel
             {
                 AllGroups = musicalGroups
             };
