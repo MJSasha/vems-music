@@ -96,8 +96,8 @@ namespace VemsMusic.Repositories
                     },
                     new User
                     {
-                        Email = "Matvey@gmail.com",
-                        Password = "matvey-matvey",
+                        Email = "matvey@gmail.com",
+                        Password = "matvey124",
                     });
             }
             if (!context.Roles.Any())

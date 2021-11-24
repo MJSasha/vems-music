@@ -20,7 +20,7 @@ body {
 }
 
 nav {
-    background-color: var(--color-lbr);
+    background-color: var(--color-lbr) !important;
     border-bottom: 5px solid var(--color-bei);
 }
 
@@ -35,6 +35,18 @@ nav {
 .nav-link:hover {
     color: var(--color-lgr);
 }
+
+/*.offcanvas {
+    background-color: #e3d1c0 !important;
+}
+
+.offcanvas-end {
+    width: 250px;
+}
+
+.offcanvas-header {
+    border-bottom: 3px solid var(--color-dbr);
+}*/
 
 #main {
     margin-top: 70px; /* mt-5 мало для удаления от хэдера, далее для большего отступа использовать padding */
