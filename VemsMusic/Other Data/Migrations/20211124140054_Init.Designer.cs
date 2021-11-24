@@ -9,7 +9,7 @@ using VemsMusic;
 namespace VemsMusic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20211122175825_Init")]
+    [Migration("20211124140054_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,9 @@ namespace VemsMusic.Migrations
                     b.Property<string>("AudioPath")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GenreId")
+                        .HasColumnType("int");
+
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
 
@@ -85,9 +88,6 @@ namespace VemsMusic.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Picture")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShortDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

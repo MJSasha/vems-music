@@ -63,6 +63,7 @@ namespace VemsMusic.Repositories
                         Name = "Breaking Up Slowly",
                         AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/Lana Del Rey - Breaking Up Slowly.mp3",
                         GroupId = 1,
+                        GenreId = 2,
                         ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                         Text = "Поется",
                     },
@@ -71,6 +72,7 @@ namespace VemsMusic.Repositories
                         Name = "Chemtrails Over The Country Club",
                         AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/Lana Del Rey - Chemtrails Over The Country Club.mp3",
                         GroupId = 1,
+                        GenreId = 2,
                         ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                         Text = "Поется",
                     },
@@ -79,6 +81,7 @@ namespace VemsMusic.Repositories
                         Name = "Трип",
                         AudioPath = "",
                         GroupId = 1,
+                        GenreId = 2,
                         ImagePath = "",
                         Text = "Поется",
                     });
