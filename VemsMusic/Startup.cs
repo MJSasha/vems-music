@@ -62,7 +62,7 @@ namespace VemsMusic
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvc();
-            
+
 
             using (var scope = app.ApplicationServices.CreateScope())
             {

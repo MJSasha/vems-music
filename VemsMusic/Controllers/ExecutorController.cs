@@ -22,14 +22,16 @@ namespace VemsMusic.Controllers
         [Route("~/Executor/Index/{id}")]
         public IActionResult Index(int id)
         {
-            MusicalGroup group = _allGroups.GetMusicalGroupById(id);
-            IEnumerable<Music> musics = _allMusic.GetAllMusic.Where(m => m.GroupId == id);
-
             var groupWithMusics = new GroupWithMusicsViewModel
             {
-                GetMusicalGroup = group,
-                GetAllMusic = musics
+                GetMusicalGroup = _allGroups.GetMusicalGroupById(id),
+                GetAllMusic = _allMusic.GetAllMusic.Where(m => m.GroupId == id)
             };
+
+            if (!groupWithMusics.GetAllMusic.Any())
+            {
+                return Redirect("~/Home/NoItems/Музыка не добавлена");
+            }
 
             return View(groupWithMusics);
         }
