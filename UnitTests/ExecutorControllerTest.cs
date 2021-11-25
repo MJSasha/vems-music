@@ -28,6 +28,20 @@ namespace UnitTests
             Assert.NotEmpty(model.GetAllMusic);
             Assert.NotNull(model.GetMusicalGroup);
         }
+        [Fact]
+        public void InGenreTestWithZeroMusic()
+        {
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusics = new Mock<IAllMusic>();
+            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
+            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetZeroMusic());
+            var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
+
+            var result = controller.Index(1);
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/Home/NoItems/Музыка не добавлена", redirectResult.Url);
+        }
 
         private static MusicalGroup GetTestGroup()
         {
@@ -69,6 +83,11 @@ namespace UnitTests
                     Text = "Поется",
                 }
             };
+        }
+        private static List<Music> GetZeroMusic()
+        {
+            var music = new List<Music>();
+            return music;
         }
     }
 }
