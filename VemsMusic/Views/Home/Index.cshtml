@@ -3,21 +3,23 @@
 <div id="genre-view" class="container">
     <div class="row">
 
-        <h2 class="text-center mt-3 mb-5">Что хотите послушать сегодня?</h2>
+        <h2 class="text-center mt-3 mb-3">Что хотите послушать сегодня?</h2>
+
+        <!-- Картинки для жанров качать в 64px -->
 
         @foreach (Genre item in Model.AllGenres)
         {
             <div class="genre-item col-xl-4 col-md-6 col-sm-12">
             
                 <div class="genre-circle">
-                        <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id"><img src="@item.PicturePath" alt="@item.Name"></a>
+                    <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id"><img src="@item.PicturePath" alt="@item.Name"></a>
                 </div>
 
                 <h5 class="genre-name text-center">
                     <a class="btn" asp-controller="Home" asp-action="InGenre" asp-route-id="@item.Id">@item.Name</a>
                 </h5>
 
-                <p class="text-center fs-6">@item.Description</p>
+                <p class="genre-description text-center fs-6">@item.Description</p>
 
                 <div class="genre-line"></div>
             </div>

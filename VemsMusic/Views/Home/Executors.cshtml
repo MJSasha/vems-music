@@ -3,19 +3,21 @@
 <div class="container">
     <div class="row">
 
+        <!-- !!! Скопировать вёрстку из InGenre -->
+
         <h2>@ViewBag.Genre</h2>
 
         @foreach (MusicalGroup item in Model.AllGroups)
         {
                     <div class="group-item col-xl-3 col-md-6 col-sm-12">
 
-                        <img class="img-thumbnail mb-3 mt-3" src="@item.Picture" alt="@item.Name"/>
+                        <img class="group-img img-thumbnail mb-3 mt-3" src="@item.Picture" alt="@item.Name"/>
                         
                         <h5 class="text-center">
                             <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
                         </h5>
 
-                        <p class="text-center">@item.Description</p>
+                        <p class="group-description text-center">@item.Description</p>
                     </div>
         }
 

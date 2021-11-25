@@ -19,6 +19,15 @@ body {
     background-color: var(--color-dbr);
 }
 
+/* !!! Убрать браузерную подсветку, так не работает */
+a:focus, a:active {
+    outline: none !important;
+}
+
+button:active, button:focus {
+    outline: none !important;
+}
+
 nav {
     background-color: var(--color-lbr) !important;
     border-bottom: 5px solid var(--color-bei);
@@ -38,10 +47,6 @@ nav {
         border-radius: 5px;
     }
 
-    .nav-link:hover {
-        color: var(--color-lgr);
-    }
-
 /* Модальное окно */
 .offcanvas {
     background-color: #e3d1c0 !important;
@@ -55,6 +60,11 @@ nav {
     border-bottom: 5px solid var(--color-bei);
 }
 
+.offcanvas-body .nav-link:hover {
+    color: var(--color-lgr);
+}
+
+
 .offcanvas-line {
     width: 150px;
     height: 3px;
@@ -65,7 +75,7 @@ nav {
 #main {
     margin-top: 70px; /* mt-5 мало для удаления от хэдера, далее для большего отступа использовать padding */
     margin-bottom: 80px;
-    background-color: var(--color-dbr); /* Уже указан в body */
+    color: white;
 }
 
 #up-arrow {
@@ -98,26 +108,31 @@ nav {
 }
 
 
-/* Index */
+/* Главная (с жанрами) */
 
 .genre-item a {
-    color: white;   /* Обводка при нажатии */
+    color: white;
+}
+
+.genre-item a:hover {
+    color: var(--color-lbr) !important;
 }
 
 .genre-circle {
     margin: 15px auto 15px;
     width: 100px;
     height: 100px;
-    border: 3px solid var(--color-lbr);
+    border: 5px solid var(--color-bei);
     border-radius: 50%;
+    background-color: var(--color-lbr);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.genre-name a:hover {
-    color: var(--color-lgr);
-}
+    .genre-circle:hover {
+        box-shadow: 0 0 10px var(--color-lbr);
+    }
 
 .genre-line {
     width: 100px;
@@ -127,14 +142,23 @@ nav {
 }
 
 
-/* InGenre */
+/* InGenre, Executors */
 
 .group-item a {
     color: white;
 }
 
+.group-img {
+    width: 300px;
+    height: 300px;
+}
+
 .group-item a:hover {
-    color: var(--color-lgr);
+    color: var(--color-lbr);
+}
+
+.group-description {
+    color: var(--color-bei);
 }
 
 

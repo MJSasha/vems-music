@@ -14,20 +14,20 @@ namespace VemsMusic.Repositories
                     new Genre
                     {
                         Name = "Hip-hop",
-                        Description = "Качает",
+                        Description = "Качает будь здоров",
                         PicturePath = "/img/genre-icon/hip-hop.png"
                     },
                     new Genre
                     {
                         Name = "Рок",
-                        Description = "Рокирует",
+                        Description = "Жоский",
                         PicturePath = "/img/genre-icon/rock.png"
                     },
                     new Genre
                     {
                         Name = "Инди-рок",
-                        Description = "Индюширует",
-                        PicturePath = ""
+                        Description = "Грустненько",
+                        PicturePath = "/img/genre-icon/indie-rock.png"
                     });
             }
             if (!context.Groups.Any())
@@ -36,15 +36,15 @@ namespace VemsMusic.Repositories
                     new MusicalGroup
                     {
                         Name = "Lana del Rey",
-                        Description = "Sadness woman...",
+                        Description = "Sadness woman..",
                         Picture = "/img/group-icon/lana-del-rey.png",
                         GenreId = 3
                     },
                     new MusicalGroup
                     {
                         Name = "Imagine Dragons",
-                        Description = "/img/group-icon/imagine-dragons.png",
-                        Picture = "",
+                        Description = "Imagine.. dragons",
+                        Picture = "/img/group-icon/imagine-dragons.png",
                         GenreId = 3
                     },
                     new MusicalGroup

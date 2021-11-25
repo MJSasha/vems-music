@@ -1,5 +1,7 @@
 ﻿@model GroupsViewModel
 
+<!-- !!! https://html5css.ru/howto/howto_css_cards.php - референс для карточки артиста -->
+
 <div class="container">
     <div class="row">
 
@@ -7,16 +9,16 @@
 
         @foreach (MusicalGroup item in Model.AllGroups)
         {
-                    <div class="group-item col-xl-3 col-md-6 col-sm-12">
+            <div class="group-item col-xl-3 col-md-6 col-sm-12">
 
-                        <img class="img-thumbnail mb-3 mt-3" src="@item.Picture" alt="@item.Name"/>
-                        
-                        <h5 class="text-center">
-                            <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
-                        </h5>
+                <img class="group-img mb-3 mt-3" src="@item.Picture" alt="@item.Name" /> <!-- Картинки 100 на 100 px -->
 
-                        <p class="text-center">@item.Description</p>
-                    </div>
+                <h5 class="text-center">
+                    <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
+                </h5>
+
+                <p class="group-description text-center">@item.Description</p>
+            </div>
         }
 
     </div>
