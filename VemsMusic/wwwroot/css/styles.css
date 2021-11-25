@@ -32,11 +32,18 @@ nav {
     color: var(--color-dbr);
 }
 
-.nav-link:hover {
-    color: var(--color-lgr);
-}
+    .navbar-collapse .nav-link:hover {
+        color: var(--color-lgr);
+        box-shadow: 0 0 3px var(--color-dbr);
+        border-radius: 5px;
+    }
 
-/*.offcanvas {
+    .nav-link:hover {
+        color: var(--color-lgr);
+    }
+
+/* Модальное окно */
+.offcanvas {
     background-color: #e3d1c0 !important;
 }
 
@@ -45,8 +52,15 @@ nav {
 }
 
 .offcanvas-header {
-    border-bottom: 3px solid var(--color-dbr);
-}*/
+    border-bottom: 5px solid var(--color-bei);
+}
+
+.offcanvas-line {
+    width: 150px;
+    height: 3px;
+    background-color: var(--color-bei);
+    margin: 3px;
+}
 
 #main {
     margin-top: 70px; /* mt-5 мало для удаления от хэдера, далее для большего отступа использовать padding */
@@ -99,10 +113,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.genre-circle img {
-    fill: var(--color-lbr);     /* !!! Не работает, потому что не favicon */
 }
 
 .genre-name a:hover {
