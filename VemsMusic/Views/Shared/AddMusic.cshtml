@@ -1,0 +1,54 @@
+﻿@model Music
+
+    <form asp-action="AddMusic" method="post" class="form-horizontal">
+
+        <div class="form-group mt-2 mb-2">
+            <label asp-for="Name"></label>
+            <div class="col-12">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="Text"></label>
+            <div class="col-12">
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="ImagePath"></label>
+            <div class="col-12">
+                <input asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="AudioPath"></label>
+            <div class="col-12">
+                <input asp-for="AudioPath" class="form-control" />
+                <span asp-validation-for="AudioPath" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="GenreId"></label>
+            <div class="col-12">
+                <input asp-for="GenreId" class="form-control" />
+                <span asp-validation-for="GenreId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group mb-2">
+            <label asp-for="GroupId"></label>
+            <div class="col-12">
+                <input asp-for="GroupId" class="form-control" />
+                <span asp-validation-for="GroupId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <input class="btn btn-success col-12" type="submit" value="Добавить" />
+    </form>

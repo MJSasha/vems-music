@@ -10,50 +10,9 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Добавить жанр
+                            @await Html.PartialAsync("AddGenre", new Genre())
                         </button>
                     </h2>
-
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="row">
-                                @*<form asp-action="RedactGenres" method="post" class="form-horizontal">
-
-                                    <div class="form-group">
-                                        <label asp-for="Id"></label>
-                                        <div class="col-md-5">
-                                            <input asp-for="Id" class="form-control" />  <p>Редактирование данного поля может привести к созданию новой модели</p>
-                                            <span asp-validation-for="Id" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label asp-for="Name"></label>
-                                        <div class="col-md-5">
-                                            <input asp-for="Name" class="form-control" />
-                                            <span asp-validation-for="Name" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label asp-for="Description"></label>
-                                        <div class="col-md-5">
-                                            <input asp-for="Description" class="form-control" />
-                                            <span asp-validation-for="Description" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label asp-for="PicturePath"></label>
-                                        <div class="col-md-5">
-                                            <input asp-for="PicturePath" class="form-control" />
-                                            <span asp-validation-for="PicturePath" class="text-danger"></span>
-                                        </div>
-                                    </div>
-
-                                    <input class="btn btn-success" type="submit" value="Завершить редактирование" />
-                                </form>*@
-                            </div>
-                        </div>
                 </div>
             </div>
 

@@ -1,6 +1,6 @@
 ﻿@model Genre
 
-    <form action ="~/DBRedaction/RedactGenres/@Model.Id" method="post" class="form-horizontal">
+    <form asp-action ="AddGenre" method="post" class="form-horizontal">
 
         <div class="form-group mt-2 mb-2">
             <label asp-for="Name"></label>
@@ -26,5 +26,5 @@
             </div>
         </div>
 
-        <input class="btn btn-success col-12" type="submit" value="Завершить редактирование" />
+        <input class="btn btn-success col-12" type="submit" value="Добавить" />
     </form>

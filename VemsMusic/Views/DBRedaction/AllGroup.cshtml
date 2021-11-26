@@ -18,6 +18,16 @@
                 </ul>
             </div>
 
+            <div class="accordion bg-dark mt-3 mb-3" id="accordion-addGenre"
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            @await Html.PartialAsync("AddGroup", new MusicalGroup())
+                        </button>
+                    </h2>
+                </div>
+            </div>
+
             <p class="mt-2 mb-3" style="margin-left: 10px;">Редактирование информации о группе/исполнителе</p>
 
             <div class="accordion" id="accordion-redGenre">
