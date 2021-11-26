@@ -54,6 +54,8 @@ namespace VemsMusic.Repositories
                         Picture = "",
                         GenreId = 2
                     });
+
+                    // !!! Прописать M.I.A. и её треки
             }
             if (!context.Musics.Any())
             {

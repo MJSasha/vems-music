@@ -4,12 +4,19 @@
     <div class="row">
         <ul class="list-group">
 
-            <!-- !!! Списки ID засунуть в выпадающие списки -->
-            <p>Список ID жанров</p>
-            @foreach (var item in Model.AllGenres)
-            {
-                <p>@item.Id - @item.Name</p>
-            }
+            <!-- Список ID жанров -->
+            <div class="btn-group dropend mt-2 mb-3">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Список ID жанров
+                </button>
+
+                <ul class="dropdown-menu">
+                    @foreach (var item in Model.AllGenres)
+                    {
+                        <li><a class="dropdown-item" href="#">@item.Id - @item.Name</a></li>
+                    }
+                </ul>
+            </div>
 
             <p>Редактирование информации о группе/исполнителе</p>
             @foreach (var item in Model.AllGroups)
