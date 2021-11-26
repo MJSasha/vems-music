@@ -49,9 +49,9 @@ namespace VemsMusic.Repositories
                     },
                     new MusicalGroup
                     {
-                        Name = "Рокеры",
-                        Description = "Рочат",
-                        Picture = "",
+                        Name = "Slipknot",
+                        Description = "Орут",
+                        Picture = "/img/group-icon/slipknot.jpg",
                         GenreId = 2
                     });
 
