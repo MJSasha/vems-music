@@ -1,5 +1,7 @@
 ﻿@model AllMusicAndAllGroupAndAllGenreViewModel
 
+<!-- !!! Перенести изменения из AllGroup, AllGenre -->
+
 <div class="container">
     <div class="row">
         <ul class="list-group">
@@ -43,7 +45,7 @@
                         </button>
                     </h2>
                     <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
-                        @await Html.PartialAsync("MusicRedaction", item);
+                        @await Html.PartialAsync("MusicRedaction", item)
                     </div>
                 </div>
             }

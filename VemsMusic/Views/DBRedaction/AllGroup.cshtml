@@ -5,7 +5,7 @@
         <ul class="list-group">
 
             <!-- Список ID жанров -->
-            <div class="btn-group dropend mt-2 mb-3">
+            <div class="btn-group dropend mt-3 mb-3 col-6" style="margin-left: 10px;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Список ID жанров
                 </button>
@@ -18,21 +18,34 @@
                 </ul>
             </div>
 
-            <p>Редактирование информации о группе/исполнителе</p>
-            @foreach (var item in Model.AllGroups)
-            {
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading-@item.Id">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
-                            @item.Name
-                            <button class="delete-genre"><a href="~/DBRedaction/DeleteGroup/@item.Id">Удалить</a></button>
-                        </button>
-                    </h2>
-                    <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
-                        @await Html.PartialAsync("GroupRedaction", item);
+            <p class="mt-2 mb-3" style="margin-left: 10px;">Редактирование информации о группе/исполнителе</p>
+
+            <div class="accordion" id="accordion-redGenre">
+                @foreach (var item in Model.AllGroups)
+                {
+                    <div class="container mb-2">
+                        <div class="row">
+                            <ul style="padding-left: 0;">
+                                <div class="col-xl-8 col-md-8 col-sm-10 accordion-item">
+
+                                    <h2 class="accordion-header" id="heading-@item.Id">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
+                                            @item.Name
+                                        </button>
+                                    </h2>
+
+                                    <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
+                                        @await Html.PartialAsync("GroupRedaction", item)
+                                    </div>
+                                </div>
+
+                                <!-- Кнопка для удаления -->
+                                <button class="delete-genre mt-1"><a href="~/DBRedaction/DeleteGroup/@item.Id">Удалить</a></button>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </ul>
     </div>
 </div>
