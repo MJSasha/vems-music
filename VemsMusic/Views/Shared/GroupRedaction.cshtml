@@ -2,37 +2,37 @@
 
     <form action="~/DBRedaction/RedactGroups/@Model.Id" method="post" class="form-horizontal">
 
-        <div class="form-group">
+        <div class="form-group mt-2 mb-2">
             <label asp-for="Name"></label>
-            <div class="col-md-5">
+            <div class="col-12">
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label asp-for="Description"></label>
-            <div class="col-md-5">
+            <div class="col-12">
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label asp-for="Picture"></label>
-            <div class="col-md-5">
-                <input asp-for="Picture" class="form-control" />
+            <div class="col-12">
+                <input asp-for="Picture" class="form-control"/>
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group mb-2">
             <label asp-for="GenreId"></label>
-            <div class="col-md-5">
-                <input asp-for="GenreId" class="form-control" />
+            <div class="col-12">
+                <input asp-for="GenreId" class="form-control"/>
                 <span asp-validation-for="GenreId" class="text-danger"></span>
             </div>
         </div>
 
-        <input class="btn btn-success" type="submit" value="Завершить редактирование" />
+        <input class="btn btn-success col-12" type="submit" value="Завершить редактирование" />
     </form>

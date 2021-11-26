@@ -162,8 +162,26 @@ nav {
 }
 
 
-/* AllGenre */
+/* AllGenre, AllGroup, AllMusic */
 
 .accordion {
     color: black !important;
 }
+
+
+/* AllGroup */
+
+.delete-genre {
+    background-color: var(--color-lbr);
+    border: 2px solid var(--color-bei);
+}
+
+.delete-genre a {
+    text-decoration: none;
+    color: var(--color-dbr);
+    border-radius: 25px;
+}
+
+
+/* GenreRedaction, GroupRedaction, MusicRedaction */
+

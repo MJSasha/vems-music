@@ -5,10 +5,8 @@
         <ul class="list-group">
 
             <!-- Тоже самое в DBRedaction/AllGroup, AllMusic -->
-            <!-- Поменять шрифт (опционально) -->
-
             <!-- !!! Добавить механизм для добавления, добавлять аккордеон (CheckOut.cshtml в Test) -->
-            <div class="accordion" id="accordion-addGenre"
+            <div class="accordion bg-dark mt-3 mb-3" id="accordion-addGenre"
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -59,23 +57,33 @@
                 </div>
             </div>
 
+            <p class="mt-2 mb-3">Редактирование информации о жанрах</p>
+
             <div class="accordion" id="accordion-redGenre">
                 @foreach (var item in Model.AllGenres)
                 {
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading-@item.Id">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
-                                @item.Name
 
-                                <!-- Кнопка для удаления -->
-                                <button class="delete-genre"><a href="~/DBRedaction/DeleteGenre/@item.Id">Удалить</a></button>
-                            </button>
-                        </h2>
+                <div class="container mb-2">
+                    <div class="row">
+                        <ul style="padding-left: 0;">
+                            <div class="col-xl-8 col-md-8 col-sm-10 accordion-item">
+                                <h2 class="accordion-header" id="heading-@item.Id">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
+                                        @item.Name
+                                    </button>
+                                </h2>
 
-                        <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
-                            @await Html.PartialAsync("GenreRedaction", item);
-                        </div>
+                                <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
+                                    @await Html.PartialAsync("GenreRedaction", item)
+                                </div>
+                            </div>
+
+
+                            <!-- Кнопка для удаления -->
+                            <button class="delete-genre mt-1"><a href="~/DBRedaction/DeleteGenre/@item.Id">Удалить</a></button>
+                        </ul>
                     </div>
+                </div>
                 }
             </div>
         </ul>
