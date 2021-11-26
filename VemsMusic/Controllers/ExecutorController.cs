@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Linq;
 using VemsMusic.Interfaces;
-using VemsMusic.Models;
 using VemsMusic.Other_Data.Interfaces;
 using VemsMusic.Other_Data.ViewModels;
 

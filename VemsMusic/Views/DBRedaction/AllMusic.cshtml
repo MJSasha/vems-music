@@ -13,7 +13,7 @@
                 <ul class="dropdown-menu">
                     @foreach (var item in Model.AllGenre)
                     {
-                        <li><a class="dropdown-item" href="#">@item.Id - @item.Name</a></li>
+                        <li><a class="dropdown-item" href="~/Home/Category/@item.Id">@item.Id - @item.Name</a></li>
                     }
                 </ul>
             </div>
@@ -27,7 +27,7 @@
                 <ul class="dropdown-menu">
                     @foreach (var item in Model.AllGroup)
                     {
-                        <li><a class="dropdown-item" href="#">@item.Id - @item.Name</a></li>
+                        <li><a class="dropdown-item" href="~/Executor/Index/@item.Id">@item.Id - @item.Name</a></li>
                     }
                 </ul>
             </div>

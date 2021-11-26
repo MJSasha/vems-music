@@ -13,7 +13,7 @@
                 <ul class="dropdown-menu">
                     @foreach (var item in Model.AllGenres)
                     {
-                        <li><a class="dropdown-item" href="#">@item.Id - @item.Name</a></li>
+                        <li><a class="dropdown-item" href="~/Home/Category/@item.Id">@item.Id - @item.Name</a></li>
                     }
                 </ul>
             </div>
