@@ -94,13 +94,12 @@ namespace VemsMusic.Repositories
                     new User
                     {
                         Email = "Sasha@gmail.com",
-                        Password = "sasha-sasha",
-                        MusicId = "1,2,3"
+                        Password = "sasha-sasha"
                     },
                     new User
                     {
                         Email = "matvey@gmail.com",
-                        Password = "matvey124",
+                        Password = "matvey124"
                     });
             }
             if (!context.Roles.Any())

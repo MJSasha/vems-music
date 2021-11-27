@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace VemsMusic.Models
 {
@@ -23,5 +24,8 @@ namespace VemsMusic.Models
 
         [Display(Name = "Id жанра")]
         public int GenreId { get; set; }
+
+        public int? UserId { get; set; }
+        public List<User> Users { get; set; } = new();
     }
 }

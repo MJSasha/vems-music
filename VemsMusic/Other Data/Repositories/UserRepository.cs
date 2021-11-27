@@ -13,14 +13,18 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext = appDBContext;
         }
 
-        public User GetUserByEmail(string email)
+        public void AddMusicToUser(int musicId, int userId)
         {
-            var user = _dbContext.Users.Where(u=>u.Email == email).ToList();
-            foreach (var item in user)
-            {
-                return item;
-            }
-            return null;
+            var user = _dbContext.Find<User>(userId);
+            var music = _dbContext.Find<Music>(musicId);
+            user.Musics.Add(music);
+            //music.Users.Add(user);
+            _dbContext.SaveChanges();
+        }
+
+        public User GetUserById(int id)
+        {
+            return _dbContext.Find<User>(id);
         }
     }
 }

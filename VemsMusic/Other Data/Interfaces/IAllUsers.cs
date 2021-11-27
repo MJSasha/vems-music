@@ -4,6 +4,7 @@ namespace VemsMusic.Other_Data.Interfaces
 {
     public interface IAllUsers
     {
-        User GetUserByEmail(string email);
+        User GetUserById(int id);
+        void AddMusicToUser(int musicId, int userId);
     }
 }

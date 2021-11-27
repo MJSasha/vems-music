@@ -19,6 +19,21 @@ namespace VemsMusic.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MusicUser", b =>
+                {
+                    b.Property<int>("MusicsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MusicsId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("MusicUser");
+                });
+
             modelBuilder.Entity("VemsMusic.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
@@ -64,6 +79,9 @@ namespace VemsMusic.Migrations
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -119,8 +137,8 @@ namespace VemsMusic.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MusicId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("MusicId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -133,6 +151,21 @@ namespace VemsMusic.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("MusicUser", b =>
+                {
+                    b.HasOne("VemsMusic.Models.Music", null)
+                        .WithMany()
+                        .HasForeignKey("MusicsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VemsMusic.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("VemsMusic.Models.User", b =>

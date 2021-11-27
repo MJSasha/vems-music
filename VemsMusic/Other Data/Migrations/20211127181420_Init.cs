@@ -48,7 +48,8 @@ namespace VemsMusic.Migrations
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AudioPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GroupId = table.Column<int>(type: "int", nullable: false),
-                    GenreId = table.Column<int>(type: "int", nullable: false)
+                    GenreId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,7 +78,7 @@ namespace VemsMusic.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoleId = table.Column<int>(type: "int", nullable: true),
-                    MusicId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    MusicId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,6 +90,35 @@ namespace VemsMusic.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "MusicUser",
+                columns: table => new
+                {
+                    MusicsId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MusicUser", x => new { x.MusicsId, x.UsersId });
+                    table.ForeignKey(
+                        name: "FK_MusicUser_Musics_MusicsId",
+                        column: x => x.MusicsId,
+                        principalTable: "Musics",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MusicUser_Users_UsersId",
+                        column: x => x.UsersId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MusicUser_UsersId",
+                table: "MusicUser",
+                column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
@@ -103,6 +133,9 @@ namespace VemsMusic.Migrations
 
             migrationBuilder.DropTable(
                 name: "Groups");
+
+            migrationBuilder.DropTable(
+                name: "MusicUser");
 
             migrationBuilder.DropTable(
                 name: "Musics");

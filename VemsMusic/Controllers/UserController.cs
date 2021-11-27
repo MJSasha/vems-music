@@ -25,30 +25,33 @@ namespace VemsMusic.Controllers
         [Route("~/User/MyMusic")]
         public IActionResult MyMusic()
         {
-            string userEmail = ClaimsIdentity.DefaultNameClaimType.ToString();
-            var user = _allUsers.GetUserByEmail(userEmail);
+            string userId = HttpContext.Request.Cookies["id"];
+            var user = _allUsers.GetUserById(Convert.ToInt32(userId));
 
-            if (user.MusicId == null)
+            if (!user.Musics.Any())
             {
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }
 
-            var musicId = user.MusicId.Split(',');
             var musicObj = new MusicViewModel();
             var musicList = new List<Music>();
 
-            foreach (var item in musicId)
+            foreach (var item in user.Musics)
             {
-                musicList.Add(_allMusic.GetMusicsById(Convert.ToInt32(item)));
-            }
-
-            if (!musicList.Any())
-            {
-                return Redirect("~/Home/NoItems/Музыка не добавлена");
+                musicList.Add(_allMusic.GetMusicsById(item.Id));
             }
 
             musicObj.AllMusic = musicList;
             return View(musicObj);
+        }
+
+        [Route("~/AddMusicToUser/{musicId}")]
+        public IActionResult AddMusicToUser(int musicId)
+        {
+            string userId = HttpContext.Request.Cookies["id"];
+            _allUsers.AddMusicToUser(musicId, Convert.ToInt32(userId));
+
+            return Redirect("~/");
         }
     }
 }
