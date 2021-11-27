@@ -1,18 +1,16 @@
 ﻿@model AllMusicAndAllGroupAndAllGenreViewModel
 
-<!-- !!! Перенести изменения из AllGroup, AllGenre -->
-
 <div class="container">
     <div class="row">
         <ul class="list-group">
 
             <!-- Список ID жанров -->
-            <div class="btn-group dropend mt-2 mb-2 col-6">
+            <div class="btn-group dropend mt-3 mb-3 col-6"  style="margin-left: 10px;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Список ID жанров
                 </button>
 
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu col-6">
                     @foreach (var item in Model.AllGenre)
                     {
                         <li><a class="dropdown-item" href="~/Home/Category/@item.Id">@item.Id - @item.Name</a></li>
@@ -21,12 +19,12 @@
             </div>
 
             <!-- Список ID групп/исполнителей -->
-            <div class="btn-group dropend mt-2 mb-3 col-6">
+            <div class="btn-group dropend mt-2 mb-3 col-6"  style="margin-left: 10px;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Список ID групп/исполнителей
                 </button>
 
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu col-6">
                     @foreach (var item in Model.AllGroup)
                     {
                         <li><a class="dropdown-item" href="~/Executor/Index/@item.Id">@item.Id - @item.Name</a></li>
@@ -34,7 +32,8 @@
                 </ul>
             </div>
 
-            <div class="accordion bg-dark mt-3 mb-3" id="accordion-addGenre"
+            <!-- !!! Вёрстка - Добавление песни -->
+            <div class="accordion mt-3 mb-3" id="accordion-addGenre">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -44,21 +43,35 @@
                 </div>
             </div>
 
-            <p>Редактирование информации о музыке</p>
-            @foreach (var item in Model.AllMusic)
-            {
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading-@item.Id">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
-                            @item.Name
-                            <button class="delete-genre"><a href="~/DBRedaction/DeleteMusic/@item.Id">Удалить</a></button>
-                        </button>
-                    </h2>
-                    <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
-                        @await Html.PartialAsync("MusicRedaction", item)
+            <!-- Редактирование информации о песне -->
+            <p class="mt-2 mb-3" style="margin-left: 10px;">Редактирование информации о музыке</p>
+
+            <div class="accordion" id="accordion-redGenre">
+                @foreach (var item in Model.AllMusic)
+                {
+                    <div class="container mb-2">
+                        <div class="row">
+                            <ul style="padding-left: 0;">
+                                <div class="accordion-item col-xl-8 col-md-8 col-sm-10">
+
+                                    <h2 class="accordion-header" id="heading-@item.Id">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapseOne">
+                                            @item.Name
+                                        </button>
+                                    </h2>
+
+                                    <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
+                                        @await Html.PartialAsync("MusicRedaction", item)
+                                    </div>
+                                </div>
+
+                                <!-- Кнопка для удаления -->
+                                <button class="delete-genre mt-1"><a href="~/DBRedaction/DeleteGroup/@item.Id">Удалить</a></button>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </ul>
     </div>
 </div>
