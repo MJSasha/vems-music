@@ -54,5 +54,14 @@ namespace VemsMusic.Controllers
 
             return Redirect("~/");
         }
+
+        [Route("~/RemoveMusic/{musicId}")]
+        public IActionResult RemoveMusic(int musicId)
+        {
+            string userId = HttpContext.Request.Cookies["id"];
+            _allUsers.RemoveMusic(musicId, Convert.ToInt32(userId));
+
+            return Redirect("~/User/MyMusic");
+        }
     }
 }

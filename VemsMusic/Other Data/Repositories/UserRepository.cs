@@ -17,15 +17,30 @@ namespace VemsMusic.Other_Data.Repositories
         public void AddMusicToUser(int musicId, int userId)
         {
             var user = _dbContext.Find<User>(userId);
+            _dbContext.Musics.Include(m => m.Users).ToList();
             Music music = _dbContext.Find<Music>(musicId);
+            if (user.Musics.Contains(music))
+            {
+                user.Musics.Remove(music);
+                user.Musics.Add(music);
+            }
             user.Musics.Add(music);
+            _dbContext.SaveChanges();
+        }
+
+        public void RemoveMusic(int musicId, int userId)
+        {
+            var user = _dbContext.Find<User>(userId);
+            _dbContext.Musics.Include(m => m.Users).ToList();
+            Music music = _dbContext.Find<Music>(musicId);
+            user.Musics.Remove(music);
             _dbContext.SaveChanges();
         }
 
         public User GetUserById(int id)
         {
             var user = _dbContext.Find<User>(id);
-            var musics = _dbContext.Musics.Include(m => m.Users).ToList();
+            _dbContext.Musics.Include(m => m.Users).ToList();
 
             return user;
         }

@@ -6,5 +6,6 @@ namespace VemsMusic.Other_Data.Interfaces
     {
         User GetUserById(int id);
         void AddMusicToUser(int musicId, int userId);
+        void RemoveMusic(int musicId, int userId);
     }
 }
