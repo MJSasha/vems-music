@@ -52,7 +52,7 @@ namespace VemsMusic.Controllers
             string userId = HttpContext.Request.Cookies["id"];
             _allUsers.AddMusicToUser(musicId, Convert.ToInt32(userId));
 
-            return Redirect("~/");
+            return Redirect("~/User/MyMusic");
         }
 
         [Route("~/RemoveMusic/{musicId}")]
