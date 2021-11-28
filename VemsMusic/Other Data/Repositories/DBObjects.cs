@@ -55,7 +55,7 @@ namespace VemsMusic.Repositories
                         GenreId = 2
                     });
 
-                    // !!! Прописать M.I.A. и её треки
+                // !!! Прописать M.I.A. и её треки
             }
             if (!context.Musics.Any())
             {
@@ -94,12 +94,12 @@ namespace VemsMusic.Repositories
                     new User
                     {
                         Email = "Sasha@gmail.com",
-                        Password = "sasha-sasha",
+                        Password = "sasha-sasha"
                     },
                     new User
                     {
                         Email = "matvey@gmail.com",
-                        Password = "matvey124",
+                        Password = "matvey124"
                     });
             }
             if (!context.Roles.Any())
