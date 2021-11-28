@@ -1,5 +1,7 @@
 ﻿@model LoginViewModel
  
+<!-- !!! Заверстать -->
+
 <h2>Вход на сайт</h2>
  
 <a asp-action="Register" asp-controller="Account">Регистрация</a>
@@ -19,7 +21,7 @@
             <span asp-validation-for="Password" />
         </div>
 
-        <div class="btn form-group">    <!-- !!! Кнопку не видно -->
+        <div class="btn form-group btn-danger">    <!-- !!! Временное решение с "опасной" кнопкой -->
             <input type="submit" value="Войти" class="btn" />
         </div>
     </div>
