@@ -10,7 +10,7 @@ using VemsMusic;
 namespace VemsMusic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20211127181420_Init")]
+    [Migration("20211128103515_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

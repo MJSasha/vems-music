@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Marten;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace VemsMusic.Controllers
             string userId = HttpContext.Request.Cookies["id"];
             var user = _allUsers.GetUserById(Convert.ToInt32(userId));
 
-            if (!user.Musics.Any())
+            if (user.Musics.IsEmpty())
             {
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }

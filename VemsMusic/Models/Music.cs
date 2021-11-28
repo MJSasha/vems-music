@@ -5,6 +5,7 @@ namespace VemsMusic.Models
 {
     public class Music
     {
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Название трека")]
@@ -24,8 +25,7 @@ namespace VemsMusic.Models
 
         [Display(Name = "Id жанра")]
         public int GenreId { get; set; }
-
-        public int? UserId { get; set; }
-        public List<User> Users { get; set; } = new();
+        public int? UserId { get; set; }  
+        public List<User> Users { get; set; }
     }
 }
