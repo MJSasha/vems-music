@@ -139,7 +139,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public RedirectResult RedactGenres(Genre genre, int id)
         {
-            genre.Id=id;
+            genre.Id = id;
             _allGenre.UpdateGenre(genre);
 
             return Redirect("~/DBRedaction/AllGenre");
@@ -148,7 +148,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public RedirectResult RedactGroups(MusicalGroup musicalGroup, int id)
         {
-            musicalGroup.Id=id;
+            musicalGroup.Id = id;
             _allGroups.UpdateGroup(musicalGroup);
 
             return Redirect("~/DBRedaction/AllGroup");
@@ -157,7 +157,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public RedirectResult RedactMusics(Music music, int id)
         {
-            music.Id=id;
+            music.Id = id;
             _allMusic.UpdateMusic(music);
 
             return Redirect("~/DBRedaction/AllMusic");

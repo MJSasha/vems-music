@@ -22,7 +22,7 @@ namespace VemsMusic.Controllers
         {
             var groupWithMusics = new GroupWithMusicsViewModel
             {
-                GetMusicalGroup = _allGroups.GetMusicalGroupById(id),
+                MusicalGroup = _allGroups.GetMusicalGroupById(id),
                 GetAllMusic = _allMusic.GetAllMusic.Where(m => m.GroupId == id)
             };
 
