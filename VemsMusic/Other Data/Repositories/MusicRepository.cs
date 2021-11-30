@@ -23,9 +23,9 @@ namespace VemsMusic.Other_Data.Repositories
             }
         }
 
-        public Music GetMusicsById(int id)
+        public async Task<Music> GetMusicsByIdAsync(int id)
         {
-            return _dbContext.Find<Music>(id);
+            return await _dbContext.FindAsync<Music>(id);
         }
 
         public async Task DeleteMusicAsync(int id)

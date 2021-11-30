@@ -20,7 +20,7 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
+            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
             mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
@@ -38,7 +38,7 @@ namespace UnitTests
             var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
+            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
             mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
@@ -56,7 +56,7 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
+            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
             mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
@@ -108,7 +108,7 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupById(1)).Returns(GetTestGroup());
+            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
             mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetZeroMusic());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 

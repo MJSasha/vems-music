@@ -15,9 +15,9 @@ namespace VemsMusic.Repositories
             _dbContext = appDBContext;
         }
 
-        public MusicalGroup GetMusicalGroupById(int id)
+        public async Task<MusicalGroup> GetMusicalGroupByIdAsync(int id)
         {
-            return _dbContext.Find<MusicalGroup>(id);
+            return await _dbContext.FindAsync<MusicalGroup>(id);
         }
 
         public IEnumerable<MusicalGroup> GetMusicalGroups

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using VemsMusic.Models;
 using VemsMusic.Other_Data.Interfaces;
 using VemsMusic.Other_Data.ViewModels;
@@ -22,10 +23,10 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/User/MyMusic")]
-        public IActionResult MyMusic()
+        public async Task<IActionResult> MyMusic()
         {
             string userId = HttpContext.Request.Cookies["id"];
-            var user = _allUsers.GetUserById(Convert.ToInt32(userId));
+            var user = await _allUsers.GetUserById(Convert.ToInt32(userId));
 
             if (user.Musics.IsEmpty())
             {
@@ -37,7 +38,7 @@ namespace VemsMusic.Controllers
 
             foreach (var item in user.Musics)
             {
-                musicList.Add(_allMusic.GetMusicsById(item.Id));
+                musicList.Add(await _allMusic.GetMusicsByIdAsync(item.Id));
             }
 
             musicObj.AllMusic = musicList;
@@ -45,19 +46,19 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/AddMusicToUser/{musicId}")]
-        public IActionResult AddMusicToUser(int musicId)
+        public async Task<IActionResult> AddMusicToUser(int musicId)
         {
             string userId = HttpContext.Request.Cookies["id"];
-            _allUsers.AddMusicToUser(musicId, Convert.ToInt32(userId));
+            await _allUsers.AddMusicToUser(musicId, Convert.ToInt32(userId));
 
             return Redirect("~/User/MyMusic");
         }
 
         [Route("~/RemoveMusic/{musicId}")]
-        public IActionResult RemoveMusic(int musicId)
+        public async Task<IActionResult> RemoveMusic(int musicId)
         {
             string userId = HttpContext.Request.Cookies["id"];
-            _allUsers.RemoveMusic(musicId, Convert.ToInt32(userId));
+            await _allUsers.RemoveMusic(musicId, Convert.ToInt32(userId));
 
             return Redirect("~/User/MyMusic");
         }

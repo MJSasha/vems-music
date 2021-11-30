@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Models;
 using VemsMusic.Other_Data.Interfaces;
 
@@ -14,9 +15,9 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext = appDBContext;
         }
 
-        public void AddMusicToUser(int musicId, int userId)
+        public async Task AddMusicToUser(int musicId, int userId)
         {
-            var user = _dbContext.Find<User>(userId);
+            var user = await _dbContext.FindAsync<User>(userId);
             _dbContext.Musics.Include(m => m.Users).ToList();
             Music music = _dbContext.Find<Music>(musicId);
             if (user.Musics.Contains(music))
@@ -25,21 +26,21 @@ namespace VemsMusic.Other_Data.Repositories
                 user.Musics.Add(music);
             }
             user.Musics.Add(music);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void RemoveMusic(int musicId, int userId)
+        public async Task RemoveMusic(int musicId, int userId)
         {
-            var user = _dbContext.Find<User>(userId);
+            var user = await _dbContext.FindAsync<User>(userId);
             _dbContext.Musics.Include(m => m.Users).ToList();
             Music music = _dbContext.Find<Music>(musicId);
             user.Musics.Remove(music);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public User GetUserById(int id)
+        public async Task<User> GetUserById(int id)
         {
-            var user = _dbContext.Find<User>(id);
+            var user = await _dbContext.FindAsync<User>(id);
             _dbContext.Musics.Include(m => m.Users).ToList();
 
             return user;
