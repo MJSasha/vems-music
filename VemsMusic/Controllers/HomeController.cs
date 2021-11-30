@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 using VemsMusic.Models.ViewModels;
@@ -41,10 +42,10 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/Home/Category/{id}")]
-        public IActionResult InGenre(int id)
+        public async Task<IActionResult> InGenre(int id)
         {
             IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups.Where(g => g.GenreId == id);
-            Genre genre = _allGenre.GetGenreById(id);
+            Genre genre = await _allGenre.GetGenreByIdAsync(id);
 
             if (!musicalGroups.Any())
             {
