@@ -49,34 +49,36 @@ namespace UnitTests
             Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
         [Fact]
-        public void InGenreTest()
+        public async Task InGenreTestAsync()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
-            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", Description = "" });
+            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок",
+                Description = "" });
             mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
             mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
-            var result = controller.InGenre(1);
+            var result = await controller.InGenre(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
         }
         [Fact]
-        public void InGenreTestWithZeroGenres()
+        public async Task InGenreTestWithZeroGenresAsync()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", Description = "" });
-            mockGroup.Setup(repo => repo.GetMusicalGroups.Where(g => g.GenreId == 3)).Returns(GetZeroGroup());
+            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", 
+                Description = "" });
+            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetZeroGroup());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
-            var result = controller.InGenre(3);
+            var result = await controller.InGenre(3);
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Группы не добавлены", redirectResult.Url);

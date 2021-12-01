@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
@@ -13,7 +14,7 @@ namespace UnitTests
     public class ExecutorControllerTest
     {
         [Fact]
-        public void InGenreTest()
+        public async Task IndexTestAsync()
         {
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
@@ -21,7 +22,7 @@ namespace UnitTests
             mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
             var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
 
-            var result = controller.Index(1);
+            var result = await controller.Index(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GroupWithMusicsViewModel>(viewResult.Model);
@@ -29,7 +30,7 @@ namespace UnitTests
             Assert.NotNull(model.MusicalGroup);
         }
         [Fact]
-        public void InGenreTestWithZeroMusic()
+        public async Task IndexTestWithZeroMusicAsync()
         {
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
@@ -37,7 +38,7 @@ namespace UnitTests
             mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetZeroMusic());
             var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
 
-            var result = controller.Index(1);
+            var result = await controller.Index(1);
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Музыка не добавлена", redirectResult.Url);
