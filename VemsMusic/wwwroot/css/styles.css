@@ -179,7 +179,6 @@ nav {
 .delete-genre a {
     text-decoration: none;
     color: var(--color-dbr);
-    border-radius: 25px;
 }
 
 

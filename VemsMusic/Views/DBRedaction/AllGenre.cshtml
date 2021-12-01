@@ -4,9 +4,6 @@
     <div class="row">
         <ul class="list-group">
 
-            <!-- Тоже самое в DBRedaction/AllGroup, AllMusic -->
-            <!-- !!! Вёрстку для механизма для добавления сделать такой же в указаных сверху страницах, тоже с margin отступами в основном блоке с редактированием -->
-
             <!-- Добавление жанра -->
             <div class="accordion mt-3 mb-3" id="accordion-addGenre">
                 <div class="accordion-item bg-white col-xl-8 col-md-8 col-sm-10" style="margin-left: 10px;">
@@ -18,7 +15,7 @@
                     </h2>
 
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        @await Html.PartialAsync("AddGenre", new Genre())   <!-- !!! Расставить формам margin отступы, как в GenreRedaction -->
+                        @await Html.PartialAsync("AddGenre", new Genre())
                     </div>
                 </div>
             </div>

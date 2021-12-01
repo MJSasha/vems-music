@@ -5,7 +5,7 @@
         <ul class="list-group">
 
             <!-- Список ID жанров -->
-            <div class="btn-group dropend mt-3 mb-3 col-6"  style="margin-left: 10px;">
+            <div class="btn-group dropend mt-3 mb-3 col-6" style="margin-left: 10px;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Список ID жанров
                 </button>
@@ -19,7 +19,7 @@
             </div>
 
             <!-- Список ID групп/исполнителей -->
-            <div class="btn-group dropend mt-2 mb-3 col-6"  style="margin-left: 10px;">
+            <div class="btn-group dropend mt-2 mb-3 col-6" style="margin-left: 10px;">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Список ID групп/исполнителей
                 </button>
@@ -32,14 +32,19 @@
                 </ul>
             </div>
 
-            <!-- !!! Вёрстка - Добавление песни -->
+            <!-- Добавление музыки -->
             <div class="accordion mt-3 mb-3" id="accordion-addGenre">
-                <div class="accordion-item">
+                <div class="accordion-item bg-white col-xl-8 col-md-8 col-sm-10" style="margin-left: 10px;">
+
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            @await Html.PartialAsync("AddMusic", new Music())
+                            Добавление музыки
                         </button>
                     </h2>
+
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        @await Html.PartialAsync("AddMusic", new Music())
+                    </div>
                 </div>
             </div>
 
