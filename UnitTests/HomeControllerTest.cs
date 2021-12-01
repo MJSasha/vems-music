@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
@@ -53,9 +55,9 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
-            mockGenre.Setup(repo => repo.GetGenreById(1)).Returns(new Genre { Name = "Рок", Description = "" });
+            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", Description = "" });
             mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = controller.InGenre(1);
@@ -70,9 +72,8 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", Description = "" });
+            mockGroup.Setup(repo => repo.GetMusicalGroups.Where(g => g.GenreId == 3)).Returns(GetZeroGroup());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = controller.InGenre(3);
@@ -152,6 +153,11 @@ namespace UnitTests
                     }
             };
             return groups;
+        }
+        private static List<MusicalGroup> GetZeroGroup()
+        {
+            var group = new List<MusicalGroup>();
+            return group;
         }
         private static List<Genre> GetZeroGenres()
         {
