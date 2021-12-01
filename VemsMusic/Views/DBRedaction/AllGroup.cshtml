@@ -18,14 +18,19 @@
                 </ul>
             </div>
 
-            <!-- !!! Вёрстка - Добавление группы/исполнителя -->
+            <!-- Добавление группы/исполнителя -->
             <div class="accordion mt-3 mb-3" id="accordion-addGenre">
-                <div class="accordion-item">
+                <div class="accordion-item bg-white col-xl-8 col-md-8 col-sm-10" style="margin-left: 10px;">
+
                     <h2 class="accordion-header" id="headingOne">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            @await Html.PartialAsync("AddGroup", new MusicalGroup())
+                            Добавление группы
                         </button>
                     </h2>
+
+                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        @await Html.PartialAsync("AddGroup", new MusicalGroup())
+                    </div>
                 </div>
             </div>
 
