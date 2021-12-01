@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace VemsMusic.Models
 {
@@ -10,5 +11,8 @@ namespace VemsMusic.Models
         public string Password { get; set; }
         public int? RoleId { get; set; }
         public Role Role { get; set; }
+        public int? MusicId { get; set; }
+        public List<Music> Musics { get; set; } = new();
+
     }
 }

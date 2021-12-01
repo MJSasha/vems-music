@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 
@@ -22,27 +23,27 @@ namespace VemsMusic.Repositories
             }
         }
 
-        public Genre GetGenreById(int id)
+        public async Task<Genre> GetGenreByIdAsync(int id)
         {
-            return _dbContext.Find<Genre>(id);
+            return await _dbContext.FindAsync<Genre>(id);
         }
 
-        public void DeleteGenre(int id)
+        public async Task DeleteGenreAsync(int id)
         {
             _dbContext.Genres.Remove(_dbContext.Genres.Find(id));
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void AddGenre(Genre genre)
+        public async Task AddGenreAsync(Genre genre)
         {
             _dbContext.Genres.Add(genre);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void UpdateGenre(Genre genre)
+        public async Task UpdateGenreAsync(Genre genre)
         {
             _dbContext.Genres.Update(genre);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

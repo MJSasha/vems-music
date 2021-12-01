@@ -12,7 +12,7 @@ namespace VemsMusic.Controllers
 {
     public class AccountController : Controller
     {
-        private AppDBContext _context;
+        private readonly AppDBContext _context;
         public AccountController(AppDBContext context)
         {
             _context = context;
@@ -75,6 +75,7 @@ namespace VemsMusic.Controllers
                 if (user != null)
                 {
                     await Authenticate(user);
+                    HttpContext.Response.Cookies.Append("id", user.Id.ToString());
 
                     if (user.RoleId == 1)
                     {

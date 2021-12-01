@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace VemsMusic.Views.Shared
+namespace VemsMusic.Views.User
 {
-    public class AddGenreModel : PageModel
+    public class MyMusicModel : PageModel
     {
         public void OnGet()
         {

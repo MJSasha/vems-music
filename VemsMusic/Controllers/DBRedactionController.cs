@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 using VemsMusic.Models.ViewModels;
@@ -88,48 +89,48 @@ namespace VemsMusic.Controllers
 
         [Route("~/DBRedaction/AddGenre")]
         [HttpPost]
-        public RedirectResult AddGenre(Genre genre)
+        public async Task<RedirectResult> AddGenre(Genre genre)
         {
-            _allGenre.AddGenre(genre);
+            await _allGenre.AddGenreAsync(genre);
 
             return Redirect("~/DBRedaction/AllGenre");
         }
         [Route("~/DBRedaction/AddGroup")]
         [HttpPost]
-        public RedirectResult AddGroup(MusicalGroup group)
+        public async Task<RedirectResult> AddGroup(MusicalGroup group)
         {
-            _allGroups.AddGroup(group);
+            await _allGroups.AddGroupAsync(group);
 
             return Redirect("~/DBRedaction/AllGroup");
         }
         [Route("~/DBRedaction/AddMusic")]
         [HttpPost]
-        public RedirectResult AddMusic(Music music)
+        public async Task<RedirectResult> AddMusic(Music music)
         {
-            _allMusic.AddMusic(music);
+            await _allMusic.AddMusicAsync(music);
 
             return Redirect("~/DBRedaction/AllMusic");
         }
 
 
         [Route("~/DBRedaction/DeleteGenre/{id}")]
-        public RedirectResult DeleteGenre(int id)
+        public async Task<RedirectResult> DeleteGenre(int id)
         {
-            _allGenre.DeleteGenre(id);
+            await _allGenre.DeleteGenreAsync(id);
 
             return Redirect("~/DBRedaction/AllGenre");
         }
         [Route("~/DBRedaction/DeleteGroup/{id}")]
-        public RedirectResult DeleteGroup(int id)
+        public async Task<RedirectResult> DeleteGroup(int id)
         {
-            _allGroups.DeleteGroup(id);
+            await _allGroups.DeleteGroupAync(id);
 
             return Redirect("~/DBRedaction/AllGroup");
         }
         [Route("~/DBRedaction/DeleteMusic/{id}")]
-        public RedirectResult DeleteMusic(int id)
+        public async Task<RedirectResult> DeleteMusic(int id)
         {
-            _allMusic.DeleteMusic(id);
+            await _allMusic.DeleteMusicAsync(id);
 
             return Redirect("~/DBRedaction/AllMusic");
         }
@@ -137,28 +138,28 @@ namespace VemsMusic.Controllers
 
         [Route("~/DBRedaction/RedactGenres/{id}")]
         [HttpPost]
-        public RedirectResult RedactGenres(Genre genre, int id)
+        public async Task<RedirectResult> RedactGenres(Genre genre, int id)
         {
-            genre.Id=id;
-            _allGenre.UpdateGenre(genre);
+            genre.Id = id;
+            await _allGenre.UpdateGenreAsync(genre);
 
             return Redirect("~/DBRedaction/AllGenre");
         }
         [Route("~/DBRedaction/RedactGroups/{id}")]
         [HttpPost]
-        public RedirectResult RedactGroups(MusicalGroup musicalGroup, int id)
+        public async Task<RedirectResult> RedactGroups(MusicalGroup musicalGroup, int id)
         {
-            musicalGroup.Id=id;
-            _allGroups.UpdateGroup(musicalGroup);
+            musicalGroup.Id = id;
+            await _allGroups.UpdateGroupAsync(musicalGroup);
 
             return Redirect("~/DBRedaction/AllGroup");
         }
         [Route("~/DBRedaction/RedactMusics/{id}")]
         [HttpPost]
-        public RedirectResult RedactMusics(Music music, int id)
+        public async Task<RedirectResult> RedactMusics(Music music, int id)
         {
-            music.Id=id;
-            _allMusic.UpdateMusic(music);
+            music.Id = id;
+            await _allMusic.UpdateMusicAsync(music);
 
             return Redirect("~/DBRedaction/AllMusic");
         }

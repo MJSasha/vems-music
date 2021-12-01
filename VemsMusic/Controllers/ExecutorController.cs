@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Interfaces;
 using VemsMusic.Other_Data.Interfaces;
 using VemsMusic.Other_Data.ViewModels;
@@ -18,11 +19,11 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/Executor/Index/{id}")]
-        public IActionResult Index(int id)
+        public async Task<IActionResult> Index(int id)
         {
             var groupWithMusics = new GroupWithMusicsViewModel
             {
-                GetMusicalGroup = _allGroups.GetMusicalGroupById(id),
+                MusicalGroup = await _allGroups.GetMusicalGroupByIdAsync(id),
                 GetAllMusic = _allMusic.GetAllMusic.Where(m => m.GroupId == id)
             };
 

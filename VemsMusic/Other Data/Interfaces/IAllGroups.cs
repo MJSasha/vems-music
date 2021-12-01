@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using VemsMusic.Models;
 
 namespace VemsMusic.Interfaces
@@ -6,9 +7,9 @@ namespace VemsMusic.Interfaces
     public interface IAllGroups
     {
         IEnumerable<MusicalGroup> GetMusicalGroups { get; }
-        MusicalGroup GetMusicalGroupById(int id);
-        void DeleteGroup(int id);
-        void AddGroup(MusicalGroup musicalGroup);
-        void UpdateGroup(MusicalGroup musicalGroup);
+        Task<MusicalGroup> GetMusicalGroupByIdAsync(int id);
+        Task DeleteGroupAync(int id);
+        Task AddGroupAsync(MusicalGroup musicalGroup);
+        Task UpdateGroupAsync(MusicalGroup musicalGroup);
     }
 }

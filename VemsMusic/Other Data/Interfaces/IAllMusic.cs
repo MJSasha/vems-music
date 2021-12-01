@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using VemsMusic.Models;
 
 namespace VemsMusic.Other_Data.Interfaces
@@ -6,8 +7,9 @@ namespace VemsMusic.Other_Data.Interfaces
     public interface IAllMusic
     {
         IEnumerable<Music> GetAllMusic { get; }
-        void DeleteMusic(int id);
-        void AddMusic(Music music);
-        void UpdateMusic(Music music);
+        Task<Music> GetMusicsByIdAsync(int id);
+        Task DeleteMusicAsync(int id);
+        Task AddMusicAsync(Music music);
+        Task UpdateMusicAsync(Music music);
     }
 }

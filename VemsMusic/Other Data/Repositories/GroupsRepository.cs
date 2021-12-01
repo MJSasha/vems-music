@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 
@@ -14,9 +15,9 @@ namespace VemsMusic.Repositories
             _dbContext = appDBContext;
         }
 
-        public MusicalGroup GetMusicalGroupById(int id)
+        public async Task<MusicalGroup> GetMusicalGroupByIdAsync(int id)
         {
-            return _dbContext.Find<MusicalGroup>(id);
+            return await _dbContext.FindAsync<MusicalGroup>(id);
         }
 
         public IEnumerable<MusicalGroup> GetMusicalGroups
@@ -26,22 +27,22 @@ namespace VemsMusic.Repositories
                 return _dbContext.Groups.ToList();
             }
         }
-        public void DeleteGroup(int id)
+        public async Task DeleteGroupAync(int id)
         {
             _dbContext.Groups.Remove(_dbContext.Groups.Find(id));
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void AddGroup(MusicalGroup musicalGroup)
+        public async Task AddGroupAsync(MusicalGroup musicalGroup)
         {
             _dbContext.Groups.Add(musicalGroup);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
 
-        public void UpdateGroup(MusicalGroup musicalGroup)
+        public async Task UpdateGroupAsync(MusicalGroup musicalGroup)
         {
             _dbContext.Groups.Update(musicalGroup);
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

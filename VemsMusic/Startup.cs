@@ -51,6 +51,7 @@ namespace VemsMusic
             services.AddTransient<IAllGenre, GenreRepository>();
             services.AddTransient<IAllGroups, GroupsRepository>();
             services.AddTransient<IAllMusic, MusicRepository>();
+            services.AddTransient<IAllUsers, UserRepository>();
             services.AddTransient<AccountController>();
         }
 
