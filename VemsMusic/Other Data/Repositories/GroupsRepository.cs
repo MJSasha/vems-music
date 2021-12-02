@@ -27,6 +27,12 @@ namespace VemsMusic.Repositories
                 return _dbContext.Groups.ToList();
             }
         }
+
+        public async Task<IEnumerable<MusicalGroup>> GetMusicalGroupsAsync()
+        {
+            return await Task.Run(() => GetMusicalGroups);
+        }
+
         public async Task DeleteGroupAync(int id)
         {
             _dbContext.Groups.Remove(_dbContext.Groups.Find(id));

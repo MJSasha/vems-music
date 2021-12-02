@@ -23,6 +23,11 @@ namespace VemsMusic.Repositories
             }
         }
 
+        public async Task<IEnumerable<Genre>> GetAllGenresAsync()
+        {
+            return await Task.Run(() => GetAllGenres);
+        }
+
         public async Task<Genre> GetGenreByIdAsync(int id)
         {
             return await _dbContext.FindAsync<Genre>(id);

@@ -16,49 +16,49 @@ namespace UnitTests
     public class HomeControllerTest
     {
         [Fact]
-        public void IndexViewTestWithNonZeroGenres()
+        public async void IndexViewTestWithNonZeroGenres()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
-            var result = controller.Index();
+            var result = await controller.Index();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GenreViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGenres);
         }
         [Fact]
-        public void IndexViewTestWithZeroGenres()
+        public async void IndexViewTestWithZeroGenres()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
-            var result = controller.Index();
+            var result = await controller.Index();
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
         [Fact]
-        public async Task InGenreTestAsync()
+        public async void InGenreTestAsync()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
             mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок",
                 Description = "" });
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics);
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.InGenre(1);
@@ -68,14 +68,14 @@ namespace UnitTests
             Assert.NotEmpty(model.AllGroups);
         }
         [Fact]
-        public async Task InGenreTestWithZeroGenresAsync()
+        public async void InGenreTestWithZeroGenresAsync()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", 
                 Description = "" });
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetZeroGroup());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetZeroGroup());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.InGenre(3);
@@ -84,34 +84,34 @@ namespace UnitTests
             Assert.Equal("~/Home/NoItems/Группы не добавлены", redirectResult.Url);
         }
         [Fact]
-        public void ExecutorsTest()
+        public async void ExecutorsTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
-            var result = controller.Executors();
+            var result = await controller.Executors();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
         }
         [Fact]
-        public void AllMusicTest()
+        public async void AllMusicTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
-            var result = controller.AllMusic();
+            var result = await controller.AllMusic();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<MusicViewModel>(viewResult.Model);

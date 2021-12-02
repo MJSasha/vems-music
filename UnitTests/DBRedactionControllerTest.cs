@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
@@ -14,35 +15,35 @@ namespace UnitTests
     public class DBRedactionControllerTest
     {
         [Fact]
-        public void AllGenreTest()
+        public async void AllGenreTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AllGenre();
+            var result = await controller.AllGenre();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<GenreViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGenres);
         }
         [Fact]
-        public void AllGroupTest()
+        public async void AllGroupTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AllGroup();
+            var result = await controller.AllGroup();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<AllGroupAndAllGenreViewModel>(viewResult.Model);
@@ -50,17 +51,17 @@ namespace UnitTests
             Assert.NotNull(model.AllGroups);
         }
         [Fact]
-        public void AllMusicTest()
+        public async void AllMusicTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AllMusic();
+            var result = await controller.AllMusic();
 
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<AllMusicAndAllGroupAndAllGenreViewModel>(viewResult.Model);
@@ -70,49 +71,49 @@ namespace UnitTests
         }
 
         [Fact]
-        public void AllGenreTestWithZeroGenre()
+        public async void AllGenreTestWithZeroGenre()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetZeroGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetTestGroups());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AllGenre();
+            var result = await controller.AllGenre();
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
         [Fact]
-        public void AllGroupTestWithZeroGroup()
+        public async void AllGroupTestWithZeroGroup()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroups).Returns(GetZeroGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
+            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetZeroGroup());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AllGroup();
+            var result = await controller.AllGroup();
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Группы не добавлены", redirectResult.Url);
         }
         [Fact]
-        public void AllMusicTestWithZeroMusic()
+        public async void AllMusicTestWithZeroMusic()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenres).Returns(GetTestGenres());
+            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetZeroMusic());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetZeroMusic());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
-            var result = controller.AllMusic();
+            var result = await controller.AllMusic();
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Музыка не добавлена", redirectResult.Url);

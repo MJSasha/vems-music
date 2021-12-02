@@ -15,12 +15,17 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext = appDBContext;
         }
 
-        public IEnumerable<Music> GetAllMusic
+        private IEnumerable<Music> GetAllMusic
         {
             get
             {
                 return _dbContext.Musics.ToList();
             }
+        }
+
+        public Task<IEnumerable<Music>> GetAllMusicAsync()
+        {
+            return Task.Run(() => GetAllMusic);
         }
 
         public async Task<Music> GetMusicsByIdAsync(int id)
@@ -45,5 +50,6 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext.Musics.Update(music);
             await _dbContext.SaveChangesAsync();
         }
+
     }
 }

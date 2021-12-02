@@ -24,7 +24,7 @@ namespace VemsMusic.Controllers
             var groupWithMusics = new GroupWithMusicsViewModel
             {
                 MusicalGroup = await _allGroups.GetMusicalGroupByIdAsync(id),
-                GetAllMusic = _allMusic.GetAllMusic.Where(m => m.GroupId == id)
+                GetAllMusic = (await _allMusic.GetAllMusicAsync()).Where(m => m.GroupId == id)
             };
 
             if (!groupWithMusics.GetAllMusic.Any())

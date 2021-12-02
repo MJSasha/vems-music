@@ -14,12 +14,12 @@ namespace UnitTests
     public class ExecutorControllerTest
     {
         [Fact]
-        public async Task IndexTestAsync()
+        public async void IndexTestAsync()
         {
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetTestMusics());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
 
             var result = await controller.Index(1);
@@ -30,12 +30,12 @@ namespace UnitTests
             Assert.NotNull(model.MusicalGroup);
         }
         [Fact]
-        public async Task IndexTestWithZeroMusicAsync()
+        public async void IndexTestWithZeroMusicAsync()
         {
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusic).Returns(GetZeroMusic());
+            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetZeroMusic());
             var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
 
             var result = await controller.Index(1);

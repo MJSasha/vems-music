@@ -32,9 +32,9 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/DBRedaction/AllGenre")]
-        public IActionResult AllGenre()
+        public async Task<IActionResult> AllGenre()
         {
-            IEnumerable<Genre> genres = _allGenre.GetAllGenres;
+            IEnumerable<Genre> genres = await _allGenre.GetAllGenresAsync();
 
             if (!genres.Any())
             {
@@ -49,9 +49,9 @@ namespace VemsMusic.Controllers
             return View(genreObj);
         }
         [Route("~/DBRedaction/AllGroup")]
-        public IActionResult AllGroup()
+        public async Task<IActionResult> AllGroup()
         {
-            IEnumerable<MusicalGroup> musicalGroups = _allGroups.GetMusicalGroups;
+            IEnumerable<MusicalGroup> musicalGroups = await _allGroups.GetMusicalGroupsAsync();
 
             if (!musicalGroups.Any())
             {
@@ -61,15 +61,15 @@ namespace VemsMusic.Controllers
             var groupObj = new AllGroupAndAllGenreViewModel
             {
                 AllGroups = musicalGroups,
-                AllGenres = _allGenre.GetAllGenres
+                AllGenres = await _allGenre.GetAllGenresAsync()
             };
 
             return View(groupObj);
         }
         [Route("~/DBRedaction/AllMusic")]
-        public IActionResult AllMusic()
+        public async Task<IActionResult> AllMusic()
         {
-            IEnumerable<Music> musics = _allMusic.GetAllMusic;
+            IEnumerable<Music> musics = await _allMusic.GetAllMusicAsync();
 
             if (!musics.Any())
             {
@@ -79,8 +79,8 @@ namespace VemsMusic.Controllers
             var musicsObj = new AllMusicAndAllGroupAndAllGenreViewModel
             {
                 AllMusic = musics,
-                AllGenre = _allGenre.GetAllGenres,
-                AllGroup = _allGroups.GetMusicalGroups
+                AllGenre = await _allGenre.GetAllGenresAsync(),
+                AllGroup = await _allGroups.GetMusicalGroupsAsync()
             };
 
             return View(musicsObj);
