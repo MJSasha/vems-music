@@ -144,23 +144,54 @@ nav {
 
 /* InGenre, Executors */
 
-.group-item a {
+.artist-name {
+    margin-bottom: 0;
+    border-bottom: 3px solid var(--color-bei);
+}
+
+.artist-name a {
     color: white;
 }
 
-.group-img {
-    width: 300px;
+.artist-img {
+    /*width: 300px;*/
     height: 300px;
 }
 
-.group-item a:hover {
-    color: var(--color-lbr);
+.artist-description {
+    color: white;
 }
 
-.group-description {
-    color: var(--color-bei);
+.artist-card {
+    background-color: var(--color-lbr);
+    border: 5px solid var(--color-bei);
+    border-radius: 10px 0 10px 0;
+    transition: 0.3s;
+    width: 330px;
+    height: 428px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
+    .artist-card:hover {
+        border-radius: 0 10px 0 10px;
+        box-shadow: 0 0 10px var(--color-lbr);
+    }
+
+    .artist-card a:hover {
+        color: var(--color-dbr);
+    }
+
+    .artist-card img {
+        border: 3px solid var(--color-bei);
+        border-radius: 10px;
+    }
+
+    .artist-card img:hover {
+        box-shadow: 0 0 10px var(--color-lbr);
+    }
 
 /* AllGenre, AllGroup, AllMusic */
 
@@ -180,7 +211,4 @@ nav {
     text-decoration: none;
     color: var(--color-dbr);
 }
-
-
-/* GenreRedaction, GroupRedaction, MusicRedaction */
 

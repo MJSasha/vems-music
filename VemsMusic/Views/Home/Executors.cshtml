@@ -3,22 +3,20 @@
 <div class="container">
     <div class="row">
 
-        <!-- !!! Скопировать вёрстку из InGenre -->
-
-        <h2>@ViewBag.Genre</h2>
+        <h2 class="text-center mt-3 mb-3">Исполнители</h2>
 
         @foreach (MusicalGroup item in Model.AllGroups)
         {
-                    <div class="group-item col-xl-3 col-md-6 col-sm-12">
+            <div class="artist-card col-xl-3 col-md-6 col-sm-12 m-4">
 
-                        <img class="group-img img-thumbnail mb-3 mt-3" src="@item.Picture" alt="@item.Name"/>
-                        
-                        <h5 class="text-center">
-                            <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
-                        </h5>
+                <img class="artist-img mt-3 mb-3" src="@item.Picture" alt="@item.Name" style="width:100%" /> <!-- !!! Вставить ссылку в картинку/карту ссылок --> <!-- !!! Затемнять наводя и показывать кнопку для проигрывания всех песен -->
 
-                        <p class="group-description text-center">@item.Description</p>
-                    </div>
+                <h5 class="artist-name text-center">
+                    <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
+                </h5>
+
+                <p class="artist-description text-center mt-2">@item.Description</p>
+            </div>
         }
 
     </div>
