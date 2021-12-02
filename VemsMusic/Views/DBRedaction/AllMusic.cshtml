@@ -1,36 +1,7 @@
-﻿@model AllMusicAndAllGroupAndAllGenreViewModel
-
+﻿@model MusicViewModel
 <div class="container">
     <div class="row">
         <ul class="list-group">
-
-            <!-- Список ID жанров -->
-            <div class="btn-group dropend mt-3 mb-3 col-6" style="margin-left: 10px;">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Список ID жанров
-                </button>
-
-                <ul class="dropdown-menu col-6">
-                    @foreach (var item in Model.AllGenre)
-                    {
-                        <li><a class="dropdown-item" href="~/Home/Category/@item.Id">@item.Id - @item.Name</a></li>
-                    }
-                </ul>
-            </div>
-
-            <!-- Список ID групп/исполнителей -->
-            <div class="btn-group dropend mt-2 mb-3 col-6" style="margin-left: 10px;">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Список ID групп/исполнителей
-                </button>
-
-                <ul class="dropdown-menu col-6">
-                    @foreach (var item in Model.AllGroup)
-                    {
-                        <li><a class="dropdown-item" href="~/Executor/Index/@item.Id">@item.Id - @item.Name</a></li>
-                    }
-                </ul>
-            </div>
 
             <!-- Добавление музыки -->
             <div class="accordion mt-3 mb-3" id="accordion-addGenre">

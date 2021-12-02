@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,13 +59,8 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Группы не добавлены");
             }
 
-            var groupObj = new AllGroupAndAllGenreViewModel
-            {
-                AllGroups = musicalGroups,
-                AllGenres = await _allGenre.GetAllGenresAsync()
-            };
-
-            return View(groupObj);
+            ViewBag.Genres = new SelectList(await _allGenre.GetAllGenresAsync(), "Id", "Name");
+            return View(new GroupsViewModel { AllGroups = musicalGroups });
         }
         [Route("~/DBRedaction/AllMusic")]
         public async Task<IActionResult> AllMusic()
@@ -76,14 +72,9 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }
 
-            var musicsObj = new AllMusicAndAllGroupAndAllGenreViewModel
-            {
-                AllMusic = musics,
-                AllGenre = await _allGenre.GetAllGenresAsync(),
-                AllGroup = await _allGroups.GetMusicalGroupsAsync()
-            };
-
-            return View(musicsObj);
+            ViewBag.Genres = new SelectList(await _allGenre.GetAllGenresAsync(), "Id", "Name");
+            ViewBag.Groups = new SelectList(await _allGroups.GetMusicalGroupsAsync(), "Id", "Name");
+            return View(new MusicViewModel { AllMusic = musics });
         }
 
 

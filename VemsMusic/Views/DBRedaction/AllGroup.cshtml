@@ -1,22 +1,8 @@
-﻿@model AllGroupAndAllGenreViewModel
+﻿@model GroupsViewModel
 
 <div class="container">
     <div class="row">
         <ul class="list-group">
-
-            <!-- Список ID жанров -->
-            <div class="btn-group dropend mt-3 mb-3 col-6" style="margin-left: 10px;">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Список ID жанров
-                </button>
-
-                <ul class="dropdown-menu">
-                    @foreach (var item in Model.AllGenres)
-                    {
-                        <li><a class="dropdown-item" href="~/Home/Category/@item.Id">@item.Id - @item.Name</a></li>
-                    }
-                </ul>
-            </div>
 
             <!-- Добавление группы/исполнителя -->
             <div class="accordion mt-3 mb-3" id="accordion-addGenre">
