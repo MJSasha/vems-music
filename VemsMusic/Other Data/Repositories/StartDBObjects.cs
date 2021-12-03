@@ -124,6 +124,7 @@ namespace VemsMusic.Other_Data.Repositories
             if (!dBContext.Users.Any())
             {
                 await dBContext.AddRangeAsync(Sasha, Matvey);
+                await dBContext.AddRangeAsync(user);
             }
 
             await dBContext.SaveChangesAsync();
