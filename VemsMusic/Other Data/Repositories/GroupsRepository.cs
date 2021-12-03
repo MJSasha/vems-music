@@ -64,14 +64,22 @@ namespace VemsMusic.Repositories
             var newGenre = _dbContext.Find<Genre>(Convert.ToInt32(musicalGroup.GenreId));
             _dbContext.Genres.Include(g => g.MusicalGroups).ToList();
             musicalGroup = _dbContext.Find<MusicalGroup>(musicalGroup.Id);
+            _dbContext.Groups.Update(musicalGroup);
 
-            if (musicalGroup.Genres.Contains(newGenre))
+            if (musicalGroup.Genres == null)
             {
-                musicalGroup.Genres.Remove(newGenre);
+                musicalGroup.Genres = new List<Genre> { newGenre };
+            }
+            else
+            {
+                if (musicalGroup.Genres.Contains(newGenre))
+                {
+                    musicalGroup.Genres.Remove(newGenre);
+                }
+
+                musicalGroup.Genres.Add(newGenre);
             }
 
-            _dbContext.Groups.Update(musicalGroup);
-            musicalGroup.Genres.Add(newGenre);
             await _dbContext.SaveChangesAsync();
         }
     }
