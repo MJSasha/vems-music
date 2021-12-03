@@ -46,6 +46,7 @@ namespace VemsMusic.Controllers
                     await _context.SaveChangesAsync();
 
                     await Authenticate(user);
+                    HttpContext.Response.Cookies.Append("id", user.Id.ToString());
 
                     return Redirect("~/");
                 }
