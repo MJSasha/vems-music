@@ -98,6 +98,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Name = "Beatles",
                 Description = "Битлы",
                 Picture = "/img/group-icon/beatles.jpg",
+                Genres= new List<Genre> { Rock }
             };
 
 

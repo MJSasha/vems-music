@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VemsMusic.Interfaces;
@@ -24,7 +25,9 @@ namespace VemsMusic.Repositories
         {
             get
             {
-                return _dbContext.Groups.ToList();
+                var groups = _dbContext.Groups.ToList();
+                _dbContext.Groups.Include(g => g.Genres).ToList();
+                return groups;
             }
         }
 

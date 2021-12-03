@@ -44,8 +44,9 @@ namespace VemsMusic.Controllers
         [Route("~/Home/Category/{id}")]
         public async Task<IActionResult> InGenre(int id)
         {
-            IEnumerable<MusicalGroup> musicalGroups = (await _allGroups.GetMusicalGroupsAsync()).Where(g => g.GenreId == id);
             Genre genre = await _allGenre.GetGenreByIdAsync(id);
+            IEnumerable<MusicalGroup> musicalGroups = (await _allGroups.GetMusicalGroupsAsync()).
+                Where(g => g.Genres.Contains(genre));
 
             if (!musicalGroups.Any())
             {
