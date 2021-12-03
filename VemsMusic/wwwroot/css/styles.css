@@ -215,8 +215,8 @@ nav {
 
 /* AllMusic */
 
-.music-group {
-    font-size: 20px;
+.music-item {
+
 }
 
 .music-img {
@@ -224,12 +224,15 @@ nav {
     padding: 0;
 }
 
-.music-name .music-group {
-    border-left: 3px solid var(--color-lbr);
+.music-name, .music-group {
+    border-right: 3px solid var(--color-lbr);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
 }
 
 .music-borderline {
-    width: 90%;
+    width: 95%;
     height: 3px;
     background-color: var(--color-lbr);
     margin: 0 auto;
