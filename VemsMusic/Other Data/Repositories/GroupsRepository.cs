@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +37,16 @@ namespace VemsMusic.Repositories
             return await Task.Run(() => GetMusicalGroups);
         }
 
+        public async Task DeleteGroupsGenreAsync(int GroupId, int GenreId)
+        {
+            var group = await _dbContext.Groups.FindAsync(GroupId);
+            var genre = await _dbContext.Genres.FindAsync(GenreId);
+            _dbContext.Genres.Include(g => g.MusicalGroups).ToList();
+            group.Genres.Remove(genre);
+            await _dbContext.SaveChangesAsync();
+
+        }
+
         public async Task DeleteGroupAsync(int id)
         {
             _dbContext.Groups.Remove(_dbContext.Groups.Find(id));
@@ -50,7 +61,17 @@ namespace VemsMusic.Repositories
 
         public async Task UpdateGroupAsync(MusicalGroup musicalGroup)
         {
+            var newGenre = _dbContext.Find<Genre>(Convert.ToInt32(musicalGroup.GenreId));
+            _dbContext.Genres.Include(g => g.MusicalGroups).ToList();
+            musicalGroup = _dbContext.Find<MusicalGroup>(musicalGroup.Id);
+
+            if (musicalGroup.Genres.Contains(newGenre))
+            {
+                musicalGroup.Genres.Remove(newGenre);
+            }
+
             _dbContext.Groups.Update(musicalGroup);
+            musicalGroup.Genres.Add(newGenre);
             await _dbContext.SaveChangesAsync();
         }
     }

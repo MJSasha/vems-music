@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -153,6 +154,14 @@ namespace VemsMusic.Controllers
             await _allMusic.UpdateMusicAsync(music);
 
             return Redirect("~/DBRedaction/AllMusic");
+        }
+
+        [Route("~/DBRedaction/DeleteGroupsGenre/{Groupid},{GenreId}")]
+        public async Task<RedirectResult> DeleteGroupsGenre(int GroupId, int GenreId)
+        {
+            await _allGroups.DeleteGroupsGenreAsync(GroupId, GenreId);
+
+            return Redirect("~/DBRedaction/AllGroup");
         }
     }
 }

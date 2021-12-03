@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
@@ -49,14 +47,18 @@ namespace UnitTests
             Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
         [Fact]
-        public async void InGenreTestAsync()
+        public async void InGenreTest()
         {
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
-            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок",
-                Description = "" });
+            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre
+            {
+                Id = 1,
+                Name = "Рок",
+                Description = ""
+            });
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
@@ -73,8 +75,11 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre { Name = "Рок", 
-                Description = "" });
+            mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre
+            {
+                Name = "Рок",
+                Description = ""
+            });
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetZeroGroup());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
@@ -137,7 +142,7 @@ namespace UnitTests
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreId = 1
+                        Genres = new List<Genre>{ new Genre{Id =1, Name = "Рок",Description = ""}}
                     },
                 new MusicalGroup
                     {

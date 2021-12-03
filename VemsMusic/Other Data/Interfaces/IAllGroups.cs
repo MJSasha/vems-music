@@ -7,8 +7,9 @@ namespace VemsMusic.Interfaces
     public interface IAllGroups
     {
         Task<IEnumerable<MusicalGroup>> GetMusicalGroupsAsync();
-        Task<MusicalGroup> GetMusicalGroupByIdAsync(int id);
         Task DeleteGroupAsync(int id);
+        Task DeleteGroupsGenreAsync(int GroupId, int GenreId);
+        Task<MusicalGroup> GetMusicalGroupByIdAsync(int id);
         Task AddGroupAsync(MusicalGroup musicalGroup);
         Task UpdateGroupAsync(MusicalGroup musicalGroup);
     }

@@ -90,7 +90,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Name = "M.I.A.",
                 Description = "Миа",
                 Picture = "/img/group-icon/mia.png",
-                Genres = new List<Genre> { HipHop, IndiRock },
+                Genres = new List<Genre> { HipHop },
                 Musics = new List<Music> { Borders, GoOff }
             };
             MusicalGroup Beatles = new()
@@ -98,7 +98,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Name = "Beatles",
                 Description = "Битлы",
                 Picture = "/img/group-icon/beatles.jpg",
-                Genres= new List<Genre> { Rock }
+                Genres = new List<Genre> { Rock }
             };
 
 
