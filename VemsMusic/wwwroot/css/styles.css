@@ -212,3 +212,14 @@ nav {
     color: var(--color-dbr);
 }
 
+
+/* DBRedaction */
+
+#kit {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 0px !important;
+    border: 3px solid var(--color-bei);
+    border-radius: 10px;
+}

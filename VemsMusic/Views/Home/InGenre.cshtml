@@ -5,18 +5,20 @@
 
         <h2 class="text-center mt-3 mb-3">@ViewBag.Genre</h2>
 
+        <!-- !!! Из артистов сделать здесь карусельку с карточками поменьше (ссылка на всех исполнителей чуть ниже, показывать первых несколько, из тех, что в любимой музыке и тд). Песни по жанру ниже. -->
+
         @foreach (MusicalGroup item in Model.AllGroups)
         {
-    <div class="artist-card col-xl-3 col-md-6 col-sm-12 m-4">
+        <div class="artist-card col-xl-3 col-md-6 col-sm-12 m-4">
 
-        <img class="artist-img mt-3 mb-3" src="@item.Picture" alt="@item.Name" style="width:100%" /> <!-- !!! Вставить ссылку в картинку/карту ссылок --> <!-- !!! Затемнять наводя и показывать кнопку для проигрывания всех песен -->
+            <img class="artist-img mt-3 mb-3" src="@item.Picture" alt="@item.Name" style="width:100%" /> <!-- !!! Вставить ссылку в картинку/карту ссылок --> <!-- !!! Затемнять наводя и показывать кнопку для проигрывания всех песен -->
 
-        <h5 class="artist-name text-center">
-            <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
-        </h5>
+            <h5 class="artist-name text-center">
+                <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
+            </h5>
 
-        <p class="artist-description text-center mt-2">@item.Description</p>
-    </div>
+            <p class="artist-description text-center mt-2">@item.Description</p>
+        </div>
         }
 
     </div>
