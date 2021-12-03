@@ -3,21 +3,41 @@
 <div class="container">
     <div class="row">
 
-        @foreach (Music item in Model.AllMusic)
-        {
-            <div class="music-item col-xl-3 col-md-6 col-sm-12">
+        <h2 class="text-center mt-3 mb-3">Музыка</h2>
 
-                <img class="img-thumbnail mb-3 mt-3" src="@item.ImagePath" alt="@item.Name" />
+        <!-- !!! Сделать так, чтоб играл только один трек -->   <!-- !!! Расставить col под xl, md, sm. --> <!-- !!! Если название длинное, после опред. кол-ва символов должно идти "..." -->
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-12">
 
-                <audio src="@item.AudioPath" controls></audio>
+                    @foreach (Music item in Model.AllMusic)
+                    {
+                        <div class="container">
+                            <div class="row music-item mt-2 mb-2">
 
-                <h5 class="text-center">@item.Name</h5>
+                                <div class="col-1">
+                                    <img class="music-img" src="@item.ImagePath" alt="@item.Name" />
+                                </div>
 
-                <p class="text-center">@item.Text</p>
+                                <div class="music-name col-6">@item.Name</div>
 
-                <a href="~/AddMusicToUser/@item.Id">Сохранить</a>
+                                <div class="music-group col-4">@item.Group.Name</div>
+
+                                <div class="music-prop col-1">
+                                    <!-- <p class="col-3">@item.Text</p> !!! Выпадающая кнопка с текстом -->
+                                    <a href="~/AddMusicToUser/@item.Id">Сохранить</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="music-borderline"></div>    <!-- !!! Border делает слишком большую линию, сделать отдельно, аккуратно -->
+
+                        <audio class="mt-2" src="@item.AudioPath" controls></audio>  <!-- !!! Тоже выпадашка при нажатии на картинку (затемняется, появляется кнопка), название -->
+                    }
+
+                </div>
             </div>
-        }
+        </div>
 
     </div>
 </div>
