@@ -156,10 +156,17 @@ namespace VemsMusic.Controllers
             return Redirect("~/DBRedaction/AllMusic");
         }
 
-        [Route("~/DBRedaction/DeleteGroupsGenre/{Groupid},{GenreId}")]
+        [Route("~/DBRedaction/DeleteGroupsGenre/{GroupId},{GenreId}")]
         public async Task<RedirectResult> DeleteGroupsGenre(int GroupId, int GenreId)
         {
             await _allGroups.DeleteGroupsGenreAsync(GroupId, GenreId);
+
+            return Redirect("~/DBRedaction/AllGroup");
+        }
+        [Route("~/DBRedaction/DeleteMusicssGenre/{MusicId},{GenreId}")]
+        public async Task<RedirectResult> DeleteMusicsGenre(int MusicId, int GenreId)
+        {
+            await _allMusic.DeleteMusicsGenreAsync(MusicId, GenreId);
 
             return Redirect("~/DBRedaction/AllGroup");
         }

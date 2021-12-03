@@ -34,12 +34,6 @@
             </div>
         </div>
 
-        <div class="form-group mb-2 mx-2">
-            <label asp-for="GenreId"></label>
-            <div class="col-12">
-                <select asp-for="GenreId" asp-items="ViewBag.Genres"></select>
-            </div>
-        </div>
 
         <div class="form-group mb-2 mx-2">
             <label asp-for="GroupId"></label>
@@ -47,6 +41,25 @@
                 <select asp-for="GroupId" asp-items="ViewBag.Groups"></select>
             </div>
         </div>
+
+        <div class="form-group mb-2 mx-2">
+            <label>Жанры:</label>
+            @foreach (var item in Model.Genres)
+            {
+                <div>
+                    <label>@item.Name</label>
+                    <a href="~/DBRedaction/DeleteMusicssGenre/@Model.Id,@item.Id">Удалить</a>
+                </div>
+            }
+        </div>
+
+        <div class="form-group mb-2 mx-2">
+            <label asp-for="GenreId"></label>
+            <div class="col-12">
+                <select asp-for="GenreId" asp-items="ViewBag.Genres"></select>
+            </div>
+        </div>
+
 
         <input class="btn btn-success col-12" type="submit" value="Завершить редактирование" />
     </form>

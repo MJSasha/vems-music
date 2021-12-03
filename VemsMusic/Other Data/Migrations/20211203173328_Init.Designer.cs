@@ -10,7 +10,7 @@ using VemsMusic;
 namespace VemsMusic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20211203111505_Init")]
+    [Migration("20211203173328_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,21 @@ namespace VemsMusic.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("GenreMusic", b =>
+                {
+                    b.Property<int>("GenresId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MusicsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GenresId", "MusicsId");
+
+                    b.HasIndex("MusicsId");
+
+                    b.ToTable("GenreMusic");
+                });
 
             modelBuilder.Entity("GenreMusicalGroup", b =>
                 {
@@ -102,8 +117,6 @@ namespace VemsMusic.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GenreId");
-
                     b.HasIndex("GroupId");
 
                     b.ToTable("Musics");
@@ -174,6 +187,21 @@ namespace VemsMusic.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("GenreMusic", b =>
+                {
+                    b.HasOne("VemsMusic.Models.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VemsMusic.Models.Music", null)
+                        .WithMany()
+                        .HasForeignKey("MusicsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GenreMusicalGroup", b =>
                 {
                     b.HasOne("VemsMusic.Models.Genre", null)
@@ -206,15 +234,9 @@ namespace VemsMusic.Migrations
 
             modelBuilder.Entity("VemsMusic.Models.Music", b =>
                 {
-                    b.HasOne("VemsMusic.Models.Genre", "Genre")
-                        .WithMany("Musics")
-                        .HasForeignKey("GenreId");
-
                     b.HasOne("VemsMusic.Models.MusicalGroup", "Group")
                         .WithMany("Musics")
                         .HasForeignKey("GroupId");
-
-                    b.Navigation("Genre");
 
                     b.Navigation("Group");
                 });
@@ -226,11 +248,6 @@ namespace VemsMusic.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("VemsMusic.Models.Genre", b =>
-                {
-                    b.Navigation("Musics");
                 });
 
             modelBuilder.Entity("VemsMusic.Models.MusicalGroup", b =>

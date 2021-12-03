@@ -92,12 +92,6 @@ namespace VemsMusic.Migrations
                 {
                     table.PrimaryKey("PK_Musics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Musics_Genres_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "Genres",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_Musics_Groups_GroupId",
                         column: x => x.GroupId,
                         principalTable: "Groups",
@@ -128,6 +122,30 @@ namespace VemsMusic.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GenreMusic",
+                columns: table => new
+                {
+                    GenresId = table.Column<int>(type: "int", nullable: false),
+                    MusicsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GenreMusic", x => new { x.GenresId, x.MusicsId });
+                    table.ForeignKey(
+                        name: "FK_GenreMusic_Genres_GenresId",
+                        column: x => x.GenresId,
+                        principalTable: "Genres",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GenreMusic_Musics_MusicsId",
+                        column: x => x.MusicsId,
+                        principalTable: "Musics",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MusicUser",
                 columns: table => new
                 {
@@ -152,14 +170,14 @@ namespace VemsMusic.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_GenreMusic_MusicsId",
+                table: "GenreMusic",
+                column: "MusicsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GenreMusicalGroup_MusicalGroupsId",
                 table: "GenreMusicalGroup",
                 column: "MusicalGroupsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Musics_GenreId",
-                table: "Musics",
-                column: "GenreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Musics_GroupId",
@@ -180,19 +198,22 @@ namespace VemsMusic.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "GenreMusic");
+
+            migrationBuilder.DropTable(
                 name: "GenreMusicalGroup");
 
             migrationBuilder.DropTable(
                 name: "MusicUser");
 
             migrationBuilder.DropTable(
+                name: "Genres");
+
+            migrationBuilder.DropTable(
                 name: "Musics");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropTable(
-                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Groups");

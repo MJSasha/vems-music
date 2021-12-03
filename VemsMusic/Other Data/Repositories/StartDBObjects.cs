@@ -33,7 +33,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Name = "Breaking Up Slowly",
                 AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/Lana Del Rey" +
                 " - Breaking Up Slowly.mp3",
-                Genre = IndiRock,
+                Genres = new List<Genre> { IndiRock },
                 ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                 Text = "Поется"
             };
@@ -42,7 +42,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Name = "Chemtrails Over The Country Club",
                 AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/Lana Del Rey " +
                 "- Chemtrails Over The Country Club.mp3",
-                Genre = IndiRock,
+                Genres = new List<Genre> { IndiRock },
                 ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                 Text = "Поется",
             };
@@ -50,7 +50,7 @@ namespace VemsMusic.Other_Data.Repositories
             {
                 Name = "Borders",
                 AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/M.I.A. - Borders.mp3",
-                Genre = HipHop,
+                Genres = new List<Genre> { HipHop },
                 ImagePath = "/img/music-icon/aim.png",
                 Text = "Поется",
             };
@@ -58,7 +58,7 @@ namespace VemsMusic.Other_Data.Repositories
             {
                 Name = "Go Off",
                 AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/M.I.A. - Go Off.mp3",
-                Genre = HipHop,
+                Genres = new List<Genre> { HipHop },
                 ImagePath = "/img/music-icon/aim.png",
                 Text = "Поется",
             };

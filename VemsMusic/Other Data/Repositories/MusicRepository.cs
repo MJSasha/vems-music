@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VemsMusic.Models;
@@ -19,7 +21,9 @@ namespace VemsMusic.Other_Data.Repositories
         {
             get
             {
-                return _dbContext.Musics.ToList();
+                var musics = _dbContext.Musics.ToList();
+                _dbContext.Genres.Include(g => g.Musics).ToList();
+                return musics;
             }
         }
 
@@ -47,9 +51,35 @@ namespace VemsMusic.Other_Data.Repositories
 
         public async Task UpdateMusicAsync(Music music)
         {
+            var newGenre = _dbContext.Find<Genre>(Convert.ToInt32(music.GenreId));
+            _dbContext.Genres.Include(g => g.Musics).ToList();
+            music = _dbContext.Find<Music>(music.Id);
             _dbContext.Musics.Update(music);
+
+            if (music.Genres == null)
+            {
+                music.Genres = new List<Genre> { newGenre };
+            }
+            else
+            {
+                if (music.Genres.Contains(newGenre))
+                {
+                    music.Genres.Remove(newGenre);
+                }
+
+                music.Genres.Add(newGenre);
+            }
+
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task DeleteMusicsGenreAsync(int MusicId, int GenreId)
+        {
+            var music = await _dbContext.Musics.FindAsync(MusicId);
+            var genre = await _dbContext.Genres.FindAsync(GenreId);
+            _dbContext.Genres.Include(g => g.Musics).ToList();
+            music.Genres.Remove(genre);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
