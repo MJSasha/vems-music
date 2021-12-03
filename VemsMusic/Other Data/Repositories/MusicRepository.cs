@@ -23,6 +23,7 @@ namespace VemsMusic.Other_Data.Repositories
             {
                 var musics = _dbContext.Musics.ToList();
                 _dbContext.Genres.Include(g => g.Musics).ToList();
+                _dbContext.Groups.Include(g => g.Musics).ToList();
                 return musics;
             }
         }
@@ -34,7 +35,10 @@ namespace VemsMusic.Other_Data.Repositories
 
         public async Task<Music> GetMusicsByIdAsync(int id)
         {
-            return await _dbContext.FindAsync<Music>(id);
+            var musics = await _dbContext.FindAsync<Music>(id);
+            _dbContext.Genres.Include(g => g.Musics).ToList();
+            _dbContext.Groups.Include(g => g.Musics).ToList();
+            return musics;
         }
 
         public async Task DeleteMusicAsync(int id)

@@ -17,11 +17,6 @@ namespace VemsMusic.Repositories
             _dbContext = appDBContext;
         }
 
-        public async Task<MusicalGroup> GetMusicalGroupByIdAsync(int id)
-        {
-            return await _dbContext.FindAsync<MusicalGroup>(id);
-        }
-
         public IEnumerable<MusicalGroup> GetMusicalGroups
         {
             get
@@ -35,6 +30,13 @@ namespace VemsMusic.Repositories
         public async Task<IEnumerable<MusicalGroup>> GetMusicalGroupsAsync()
         {
             return await Task.Run(() => GetMusicalGroups);
+        }
+
+        public async Task<MusicalGroup> GetMusicalGroupByIdAsync(int id)
+        {
+            var group = await _dbContext.FindAsync<MusicalGroup>(id);
+            _dbContext.Genres.Include(g => g.Musics).ToList();
+            return group;
         }
 
         public async Task DeleteGroupsGenreAsync(int GroupId, int GenreId)
