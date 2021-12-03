@@ -10,7 +10,7 @@ using VemsMusic;
 namespace VemsMusic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20211128103515_Init")]
+    [Migration("20211203111505_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,21 @@ namespace VemsMusic.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("GenreMusicalGroup", b =>
+                {
+                    b.Property<int>("GenresId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MusicalGroupsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GenresId", "MusicalGroupsId");
+
+                    b.HasIndex("MusicalGroupsId");
+
+                    b.ToTable("GenreMusicalGroup");
+                });
 
             modelBuilder.Entity("MusicUser", b =>
                 {
@@ -67,10 +82,10 @@ namespace VemsMusic.Migrations
                     b.Property<string>("AudioPath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GenreId")
+                    b.Property<int?>("GenreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GroupId")
+                    b.Property<int?>("GroupId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImagePath")
@@ -87,6 +102,10 @@ namespace VemsMusic.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenreId");
+
+                    b.HasIndex("GroupId");
+
                     b.ToTable("Musics");
                 });
 
@@ -100,7 +119,7 @@ namespace VemsMusic.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GenreId")
+                    b.Property<int?>("GenreId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -155,6 +174,21 @@ namespace VemsMusic.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("GenreMusicalGroup", b =>
+                {
+                    b.HasOne("VemsMusic.Models.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("VemsMusic.Models.MusicalGroup", null)
+                        .WithMany()
+                        .HasForeignKey("MusicalGroupsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MusicUser", b =>
                 {
                     b.HasOne("VemsMusic.Models.Music", null)
@@ -170,6 +204,21 @@ namespace VemsMusic.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("VemsMusic.Models.Music", b =>
+                {
+                    b.HasOne("VemsMusic.Models.Genre", "Genre")
+                        .WithMany("Musics")
+                        .HasForeignKey("GenreId");
+
+                    b.HasOne("VemsMusic.Models.MusicalGroup", "Group")
+                        .WithMany("Musics")
+                        .HasForeignKey("GroupId");
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("Group");
+                });
+
             modelBuilder.Entity("VemsMusic.Models.User", b =>
                 {
                     b.HasOne("VemsMusic.Models.Role", "Role")
@@ -177,6 +226,16 @@ namespace VemsMusic.Migrations
                         .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("VemsMusic.Models.Genre", b =>
+                {
+                    b.Navigation("Musics");
+                });
+
+            modelBuilder.Entity("VemsMusic.Models.MusicalGroup", b =>
+                {
+                    b.Navigation("Musics");
                 });
 
             modelBuilder.Entity("VemsMusic.Models.Role", b =>

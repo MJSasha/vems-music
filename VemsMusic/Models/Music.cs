@@ -21,10 +21,12 @@ namespace VemsMusic.Models
         public string AudioPath { get; set; }
 
         [Display(Name = "Id группы")]
-        public int GroupId { get; set; }
+        public int? GroupId { get; set; }
+        public MusicalGroup Group { get; set; }
 
         [Display(Name = "Id жанра")]
-        public int GenreId { get; set; }
+        public int? GenreId { get; set; }
+        public Genre Genre { get; set; }
         public int? UserId { get; set; }
         public List<User> Users { get; set; }
     }

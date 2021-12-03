@@ -114,7 +114,7 @@ namespace VemsMusic.Controllers
         [Route("~/DBRedaction/DeleteGroup/{id}")]
         public async Task<RedirectResult> DeleteGroup(int id)
         {
-            await _allGroups.DeleteGroupAync(id);
+            await _allGroups.DeleteGroupAsync(id);
 
             return Redirect("~/DBRedaction/AllGroup");
         }

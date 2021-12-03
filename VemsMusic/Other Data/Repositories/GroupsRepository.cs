@@ -33,7 +33,7 @@ namespace VemsMusic.Repositories
             return await Task.Run(() => GetMusicalGroups);
         }
 
-        public async Task DeleteGroupAync(int id)
+        public async Task DeleteGroupAsync(int id)
         {
             _dbContext.Groups.Remove(_dbContext.Groups.Find(id));
             await _dbContext.SaveChangesAsync();

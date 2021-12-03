@@ -68,7 +68,7 @@ namespace VemsMusic
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 AppDBContext context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
-                await DBObjects.InitialAsync(context);
+                await StartDBObjects.InitialAsync(context);
             }
         }
     }
