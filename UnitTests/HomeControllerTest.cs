@@ -52,7 +52,6 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
             mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre
             {
                 Id = 1,
@@ -60,7 +59,6 @@ namespace UnitTests
                 Description = ""
             });
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.InGenre(1);
@@ -142,21 +140,21 @@ namespace UnitTests
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        Genres = new List<Genre>{ new Genre{Id =1, Name = "Рок",Description = ""}}
+                        Genres = new List<Genre>{ new Genre{Id = 1, Name = "Рок",Description = ""}}
                     },
                 new MusicalGroup
                     {
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreId = 2
+                        Genres = new List<Genre>{ new Genre{Id = 1, Name = "Рок",Description = ""}}
                     },
                 new MusicalGroup
                     {
                         Name = "Анархисты",
                         Description = "Анархируют",
                         Picture = "",
-                        GenreId = 1
+                        Genres = new List<Genre>{ new Genre{Id = 2, Name = "Рок",Description = ""}}
                     }
             };
             return groups;

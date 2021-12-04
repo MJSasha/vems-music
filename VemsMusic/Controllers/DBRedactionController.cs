@@ -168,7 +168,7 @@ namespace VemsMusic.Controllers
         {
             await _allMusic.DeleteMusicsGenreAsync(MusicId, GenreId);
 
-            return Redirect("~/DBRedaction/AllGroup");
+            return Redirect("~/DBRedaction/AllMusic");
         }
     }
 }

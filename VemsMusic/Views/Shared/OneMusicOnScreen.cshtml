@@ -1,0 +1,23 @@
+﻿@model Music
+
+<div class="container">
+    <div class="row music-item mt-2 mb-3">
+
+        <div class="col-1">
+            <img class="music-img" src="@Model.ImagePath" alt="@Model.Name" />
+        </div>
+
+        <div class="music-name col-5">@Model.Name</div>
+
+        <div class="music-group col-5">@Model.Group.Name</div>
+
+        <div class="music-prop col-1">
+            <!-- <p class="col-3">@Model.Text</p> !!! Выпадающая кнопка с текстом -->
+            <a href="~/AddMusicToUser/@Model.Id">Сохранить</a>
+        </div>
+    </div>
+</div>
+
+<div class="music-borderline"></div> <!-- !!! Border делает слишком большую линию, сделать отдельно, аккуратно. Мб вставить внутрь контейнера -->
+
+<audio class="mt-2" src="@Model.AudioPath" controls></audio> <!-- !!! Тоже выпадашка при нажатии на картинку (затемняется, появляется кнопка), название -->

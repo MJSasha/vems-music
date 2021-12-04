@@ -57,21 +57,27 @@ namespace VemsMusic.Other_Data.Repositories
         {
             var newGenre = _dbContext.Find<Genre>(Convert.ToInt32(music.GenreId));
             _dbContext.Genres.Include(g => g.Musics).ToList();
-            music = _dbContext.Find<Music>(music.Id);
-            _dbContext.Musics.Update(music);
+            var editableMusic = _dbContext.Find<Music>(music.Id);
 
-            if (music.Genres == null)
+            editableMusic.Name = music.Name;
+            editableMusic.Text = music.Text;
+            editableMusic.ImagePath = music.ImagePath;
+            editableMusic.AudioPath = music.AudioPath;
+
+            _dbContext.Musics.Update(editableMusic);
+
+            if (editableMusic.Genres == null)
             {
-                music.Genres = new List<Genre> { newGenre };
+                editableMusic.Genres = new List<Genre> { newGenre };
             }
             else
             {
-                if (music.Genres.Contains(newGenre))
+                if (editableMusic.Genres.Contains(newGenre))
                 {
-                    music.Genres.Remove(newGenre);
+                    editableMusic.Genres.Remove(newGenre);
                 }
 
-                music.Genres.Add(newGenre);
+                editableMusic.Genres.Add(newGenre);
             }
 
             await _dbContext.SaveChangesAsync();

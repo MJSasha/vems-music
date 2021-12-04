@@ -14,7 +14,7 @@
                     </h2>
 
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        @await Html.PartialAsync("AddMusic", new Music())
+                        @await Html.PartialAsync("Validations/AddMusic", new Music())
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                     </h2>
 
                                     <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
-                                        @await Html.PartialAsync("MusicRedaction", item)
+                                        @await Html.PartialAsync("Validations/MusicRedaction", item)
                                     </div>
                                 </div>
 

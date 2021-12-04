@@ -7,20 +7,7 @@
 
         @foreach (Music item in Model.GetAllMusic)
         {
-        <div class="music-item col-xl-3 col-md-6 col-sm-12">
-
-            <img class="img-thumbnail mb-3 mt-3" src="@item.ImagePath" alt="@item.Name" />
-
-            <audio src="@item.AudioPath" controls></audio>
-
-            <h5 class="text-center">@item.Name</h5>
-
-            <h5 class="col-4">@item.Group.Name</h5>
-
-            <p class="text-center">@item.Text</p>
-
-            <a href="~/AddMusicToUser/@item.Id">Сохранить</a>
-        </div>
+            @await Html.PartialAsync("OneMusicOnScreen", item)
         }
 
     </div>

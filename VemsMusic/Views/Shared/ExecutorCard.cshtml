@@ -1,0 +1,12 @@
+﻿@model MusicalGroup
+
+<div class="artist-card col-xl-3 col-md-6 col-sm-12 m-4">
+
+    <img class="artist-img mt-3 mb-3" src="@Model.Picture" alt="@Model.Name" style="width:100%" /> <!-- !!! Вставить ссылку в картинку/карту ссылок --> <!-- !!! Затемнять наводя и показывать кнопку для проигрывания всех песен -->
+
+    <h5 class="artist-name text-center">
+        <a class="btn" asp-controller="Executor" asp-action="Index" asp-route-id="@Model.Id">@Model.Name</a>
+    </h5>
+
+    <p class="artist-description text-center mt-2">@Model.Description</p>
+</div>

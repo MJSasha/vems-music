@@ -15,27 +15,7 @@
 
                     @foreach (Music item in Model.AllMusic)
                     {
-                        <div class="container">
-                            <div class="row music-item mt-2 mb-3">
-
-                                <div class="col-1">
-                                    <img class="music-img" src="@item.ImagePath" alt="@item.Name" />
-                                </div>
-
-                                <div class="music-name col-5">@item.Name</div>
-
-                                <div class="music-group col-5">@item.Group.Name</div>
-
-                                <div class="music-prop col-1">
-                                    <!-- <p class="col-3">@item.Text</p> !!! Выпадающая кнопка с текстом -->
-                                    <a href="~/AddMusicToUser/@item.Id">Сохранить</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="music-borderline"></div> <!-- !!! Border делает слишком большую линию, сделать отдельно, аккуратно. Мб вставить внутрь контейнера -->
-
-                        <audio class="mt-2" src="@item.AudioPath" controls></audio> <!-- !!! Тоже выпадашка при нажатии на картинку (затемняется, появляется кнопка), название -->
+                        @await Html.PartialAsync("OneMusicOnScreen", item)                    
                     }
 
                 </div>
