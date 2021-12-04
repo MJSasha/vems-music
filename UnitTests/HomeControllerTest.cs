@@ -20,8 +20,6 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.Index();
@@ -37,8 +35,6 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.Index();
@@ -92,9 +88,7 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
-            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.Executors();
@@ -109,8 +103,6 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusic = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 

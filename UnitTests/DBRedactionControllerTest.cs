@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
@@ -21,8 +20,6 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = await controller.AllGenre();
@@ -37,10 +34,7 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
-            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = await controller.AllGroup();
@@ -55,8 +49,6 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
             mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
@@ -74,8 +66,6 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetZeroGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetTestGroups());
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = await controller.AllGenre();
@@ -89,9 +79,7 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(GetZeroGroup());
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = await controller.AllGroup();
@@ -105,8 +93,6 @@ namespace UnitTests
             var mockGenre = new Mock<IAllGenre>();
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
-            mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(GetTestGenres());
-            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
             mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetZeroMusic());
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
@@ -231,6 +217,33 @@ namespace UnitTests
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
 
             var result = await controller.RedactMusics(new Music { Name = "ТуцТуц", GroupId = 1 }, 1);
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/DBRedaction/AllMusic", redirectResult.Url);
+        }
+
+        [Fact]
+        public async void DeleteGroupsGenreTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusics = new Mock<IAllMusic>();
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+
+            var result = await controller.DeleteGroupsGenre(1, 1);
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/DBRedaction/AllGroup", redirectResult.Url);
+        }
+        [Fact]
+        public async void DeleteMusicsGenreTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusics = new Mock<IAllMusic>();
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+
+            var result = await controller.DeleteMusicsGenre(1, 1);
 
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/DBRedaction/AllMusic", redirectResult.Url);
