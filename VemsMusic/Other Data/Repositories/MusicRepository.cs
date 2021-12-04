@@ -63,6 +63,7 @@ namespace VemsMusic.Other_Data.Repositories
             editableMusic.Text = music.Text;
             editableMusic.ImagePath = music.ImagePath;
             editableMusic.AudioPath = music.AudioPath;
+            editableMusic.Group = _dbContext.Find<MusicalGroup>(Convert.ToInt32(music.GroupId));
 
             _dbContext.Musics.Update(editableMusic);
 
