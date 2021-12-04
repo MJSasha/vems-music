@@ -26,8 +26,8 @@ namespace VemsMusic.Models
 
         [Display(Name = "Id жанра")]
         public int? GenreId { get; set; }
-        public List<Genre> Genres { get; set; }
+        public List<Genre> Genres { get; set; } = new();
         public int? UserId { get; set; }
-        public List<User> Users { get; set; }
+        public List<User> Users { get; set; } = new();
     }
 }

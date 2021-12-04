@@ -91,6 +91,7 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public async Task<RedirectResult> AddGroup(MusicalGroup group)
         {
+            group.Genres.Add(await _allGenre.GetGenreByIdAsync(Convert.ToInt32(group.GenreId)));
             await _allGroups.AddGroupAsync(group);
 
             return Redirect("~/DBRedaction/AllGroup");
@@ -99,6 +100,8 @@ namespace VemsMusic.Controllers
         [HttpPost]
         public async Task<RedirectResult> AddMusic(Music music)
         {
+            music.Genres.Add(await _allGenre.GetGenreByIdAsync(Convert.ToInt32(music.GenreId)));
+            music.Group = await _allGroups.GetMusicalGroupByIdAsync(Convert.ToInt32(music.GroupId));
             await _allMusic.AddMusicAsync(music);
 
             return Redirect("~/DBRedaction/AllMusic");
