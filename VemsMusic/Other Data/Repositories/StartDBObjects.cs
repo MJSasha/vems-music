@@ -49,7 +49,7 @@ namespace VemsMusic.Other_Data.Repositories
             Music Borders = new()
             {
                 Name = "Borders",
-                AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/M.I.A. - Borders.mp3",
+                AudioPath = "/music/mia/aim/M.I.A. - Borders.mp3",
                 Genres = new List<Genre> { HipHop },
                 ImagePath = "/img/music-icon/aim.png",
                 Text = "Поется",
@@ -57,7 +57,7 @@ namespace VemsMusic.Other_Data.Repositories
             Music GoOff = new()
             {
                 Name = "Go Off",
-                AudioPath = "/music/lana-del-rey/chemtrails-over-the-country-club/M.I.A. - Go Off.mp3",
+                AudioPath = "/music/mia/aim/M.I.A. - Go Off.mp3",
                 Genres = new List<Genre> { HipHop },
                 ImagePath = "/img/music-icon/aim.png",
                 Text = "Поется",

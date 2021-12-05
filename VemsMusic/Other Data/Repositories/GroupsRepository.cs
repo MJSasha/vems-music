@@ -52,7 +52,7 @@ namespace VemsMusic.Repositories
         public async Task DeleteGroupAsync(int id)
         {
             var groupToDelete = await _dbContext.Groups.FindAsync(id);
-            _dbContext.Musics.Include(m=>m.Group).ToList();
+            _dbContext.Musics.Include(m => m.Group).ToList();
 
             foreach (var item in groupToDelete.Musics)
             {
