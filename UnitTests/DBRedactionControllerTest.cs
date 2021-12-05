@@ -293,17 +293,6 @@ namespace UnitTests
             };
             return groups;
         }
-        private static MusicalGroup GetTestGroup()
-        {
-            return new MusicalGroup
-            {
-                Id = 1,
-                Name = "Анархисты",
-                Description = "Анархируют",
-                Picture = "",
-                GenreId = 1
-            };
-        }
         private static List<MusicalGroup> GetZeroGroup()
         {
             var group = new List<MusicalGroup>();

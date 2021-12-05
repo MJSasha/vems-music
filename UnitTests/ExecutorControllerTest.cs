@@ -15,9 +15,8 @@ namespace UnitTests
         public async void IndexTestAsync()
         {
             var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
+            var controller = new ExecutorController(mockGroup.Object);
 
             var result = await controller.Index(1);
 
@@ -30,10 +29,8 @@ namespace UnitTests
         public async void IndexTestWithZeroMusicAsync()
         {
             var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetZeroMusic());
-            var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
+            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroupWithZeroMusic());
+            var controller = new ExecutorController(mockGroup.Object);
 
             var result = await controller.Index(1);
 
@@ -53,40 +50,16 @@ namespace UnitTests
                 Musics = new List<Music> { new Music { Name = "lalala" } }
             };
         }
-        private static List<Music> GetTestMusics()
+        private static MusicalGroup GetTestGroupWithZeroMusic()
         {
-            return new List<Music>()
+            return new MusicalGroup
             {
-                new Music
-                {
-                    Name = "Песенка",
-                    AudioPath = "",
-                    GroupId = 1,
-                    ImagePath = "",
-                    Text = "Поется",
-                },
-                new Music
-                {
-                    Name = "Рокинка",
-                    AudioPath = "",
-                    GroupId = 1,
-                    ImagePath = "",
-                    Text = "Поется",
-                },
-                new Music
-                {
-                    Name = "Трип",
-                    AudioPath = "",
-                    GroupId = 1,
-                    ImagePath = "",
-                    Text = "Поется",
-                }
+                Id = 1,
+                Name = "Анархисты",
+                Description = "Анархируют",
+                Picture = "",
+                GenreId = 1
             };
-        }
-        private static List<Music> GetZeroMusic()
-        {
-            var music = new List<Music>();
-            return music;
         }
     }
 }

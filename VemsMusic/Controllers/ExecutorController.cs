@@ -9,12 +9,10 @@ namespace VemsMusic.Controllers
     public class ExecutorController : Controller
     {
         private readonly IAllGroups _allGroups;
-        private readonly IAllMusic _allMusic;
 
-        public ExecutorController(IAllGroups allGroups, IAllMusic allMusic)
+        public ExecutorController(IAllGroups allGroups)
         {
             _allGroups = allGroups;
-            _allMusic = allMusic;
         }
 
         [Route("~/Executor/Index/{id}")]
