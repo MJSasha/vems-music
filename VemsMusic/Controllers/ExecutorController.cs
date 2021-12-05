@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using VemsMusic.Interfaces;
 using VemsMusic.Other_Data.Interfaces;
-using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Controllers
 {
@@ -21,18 +20,14 @@ namespace VemsMusic.Controllers
         [Route("~/Executor/Index/{id}")]
         public async Task<IActionResult> Index(int id)
         {
-            var groupWithMusics = new GroupWithMusicsViewModel
-            {
-                MusicalGroup = await _allGroups.GetMusicalGroupByIdAsync(id),
-                GetAllMusic = (await _allMusic.GetAllMusicAsync()).Where(m => m.GroupId == id)
-            };
+            var musicalGroup = await _allGroups.GetMusicalGroupByIdAsync(id);
 
-            if (!groupWithMusics.GetAllMusic.Any())
+            if (!musicalGroup.Musics.Any())
             {
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }
 
-            return View(groupWithMusics);
+            return View(musicalGroup);
         }
     }
 }

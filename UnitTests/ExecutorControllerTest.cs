@@ -5,7 +5,6 @@ using VemsMusic.Controllers;
 using VemsMusic.Interfaces;
 using VemsMusic.Models;
 using VemsMusic.Other_Data.Interfaces;
-using VemsMusic.Other_Data.ViewModels;
 using Xunit;
 
 namespace UnitTests
@@ -18,15 +17,14 @@ namespace UnitTests
             var mockGroup = new Mock<IAllGroups>();
             var mockMusics = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(GetTestGroup());
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics());
             var controller = new ExecutorController(mockGroup.Object, mockMusics.Object);
 
             var result = await controller.Index(1);
 
             var viewResult = Assert.IsType<ViewResult>(result);
-            var model = Assert.IsAssignableFrom<GroupWithMusicsViewModel>(viewResult.Model);
-            Assert.NotEmpty(model.GetAllMusic);
-            Assert.NotNull(model.MusicalGroup);
+            var model = Assert.IsAssignableFrom<MusicalGroup>(viewResult.Model);
+            Assert.NotEmpty(model.Musics);
+            Assert.NotNull(model);
         }
         [Fact]
         public async void IndexTestWithZeroMusicAsync()
@@ -51,7 +49,8 @@ namespace UnitTests
                 Name = "Анархисты",
                 Description = "Анархируют",
                 Picture = "",
-                GenreId = 1
+                GenreId = 1,
+                Musics = new List<Music> { new Music { Name = "lalala" } }
             };
         }
         private static List<Music> GetTestMusics()
