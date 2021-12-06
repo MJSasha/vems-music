@@ -6,16 +6,11 @@
     --color-lpi: #d7bcb1;
 }
 
-@font-face {
-    font-family: 'Bicubik';
-    src: url(~/fonts/Bicubik.otf) format('opentype');
-}
-
 
 /* Layout */
 
 body {
-    font-family: Bicubik; /* Выставлен в bootstrap.min.css в body основным шрифтом, но и здесь прописать нужно */
+    font-family: 'Comfortaa', cursive; /* Выставлен в bootstrap.min.css в body основным шрифтом, но и здесь прописать нужно */
     background-color: var(--color-dbr);
 }
 
@@ -39,6 +34,7 @@ nav {
 
 .nav-link {
     color: var(--color-dbr);
+    font-weight: bold;
 }
 
     .navbar-collapse .nav-link:hover {
