@@ -51,6 +51,7 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }
 
+            //Three is for the test, then change
             newMusic = newMusic.OrderByDescending(m => m.AdditionDateAndTime).Take(3);
 
             var musicObj = new MusicViewModel
