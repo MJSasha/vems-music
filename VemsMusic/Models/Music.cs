@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VemsMusic.Models
@@ -20,7 +21,7 @@ namespace VemsMusic.Models
         [Display(Name = "Путь к звуковому файлу")]
         public string AudioPath { get; set; }
 
-        public string AdditionDateAndTime { get; set; }
+        public string AdditionDateAndTime { get; set; } = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss");
 
 
         [Display(Name = "Id группы")]
