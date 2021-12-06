@@ -52,7 +52,8 @@ namespace VemsMusic.Controllers
             }
 
             //Three is for the test, then change
-            newMusic = newMusic.OrderByDescending(m => m.AdditionDateAndTime).Take(3);
+            //To display the complete list, delete Take
+            newMusic = newMusic.OrderByDescending(m => m.AdditionDateAndTime).Take(3);//ToList();
 
             var musicObj = new MusicViewModel
             {
