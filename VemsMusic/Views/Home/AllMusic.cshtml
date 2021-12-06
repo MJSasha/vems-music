@@ -13,10 +13,14 @@
             <div class="row align-items-center mb-5">
                 <div class="col-12">
 
-                    @foreach (Music item in Model.AllMusic)
-                    {
-                        @await Html.PartialAsync("OneMusicOnScreen", item)                    
-                    }
+                    <div class="jouele-playlist" data-repeat="true">
+
+                        @foreach (Music item in Model.AllMusic)
+                        {
+                            @await Html.PartialAsync("OneMusicOnScreen", item)
+                        }
+
+                    </div>
 
                 </div>
             </div>

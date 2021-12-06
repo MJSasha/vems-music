@@ -220,16 +220,35 @@ nav {
     padding: 0;
 }
 
-.music-name, .music-group {
+.music-play {
+    width: 25px;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.music-add {
+    width: 35px;
+    padding: 0;
+}
+
+.music-time {
+    font-size: 18px;
+}
+
+.music-name, .music-group, .music-time {
     border-right: 3px solid var(--color-lbr);
     font-size: 18px;
     display: flex;
     align-items: center;
 }
 
+.music-name {
+    padding-left: 0 !important;
+}
+
 .music-borderline {
     width: 95%;
-    height: 3px;
+    height: 2px;
     background-color: var(--color-lbr);
     margin: 0 auto;
 }
