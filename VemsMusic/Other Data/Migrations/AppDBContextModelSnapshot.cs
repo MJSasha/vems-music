@@ -92,6 +92,9 @@ namespace VemsMusic.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AdditionDateAndTime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AudioPath")
                         .HasColumnType("nvarchar(max)");
 

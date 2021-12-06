@@ -84,6 +84,7 @@ namespace VemsMusic.Migrations
                     Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AudioPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdditionDateAndTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GroupId = table.Column<int>(type: "int", nullable: true),
                     GenreId = table.Column<int>(type: "int", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: true)

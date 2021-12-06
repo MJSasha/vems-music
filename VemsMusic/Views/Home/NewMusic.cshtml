@@ -1,0 +1,14 @@
+﻿@model MusicViewModel
+
+<div class="container">
+    <div class="row">
+
+        <h2 class="text-center mt-3 mb-3">Новое</h2>
+
+        @foreach (Music item in Model.AllMusic)
+        {
+            @await Html.PartialAsync("OneMusicOnScreen", item)
+        }
+
+    </div>
+</div>

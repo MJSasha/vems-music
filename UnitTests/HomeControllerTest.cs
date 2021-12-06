@@ -43,6 +43,37 @@ namespace UnitTests
             Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
 
+        [Fact]
+        public async void NewMusicTest()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusic = new Mock<IAllMusic>();
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetTestMusics);
+            var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
+
+            var result = await controller.NewMusic();
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<MusicViewModel>(viewResult.Model);
+            Assert.NotEmpty(model.AllMusic);
+        }
+
+        [Fact]
+        public async void NewMusicTestWithZeroMusic()
+        {
+            var mockGenre = new Mock<IAllGenre>();
+            var mockGroup = new Mock<IAllGroups>();
+            var mockMusic = new Mock<IAllMusic>();
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(GetZeroMusic);
+            var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
+
+            var result = await controller.NewMusic();
+
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("~/Home/NoItems/Музыка не добавлена", redirectResult.Url);
+        }
+
         //----------The test does not work, needs to be fixed
         //[Fact]
         //public async void InGenreTest()
@@ -193,6 +224,10 @@ namespace UnitTests
                     Text = "Поется",
                 }
             };
+        }
+        private static List<Music> GetZeroMusic()
+        {
+            return new List<Music>();
         }
     }
 }

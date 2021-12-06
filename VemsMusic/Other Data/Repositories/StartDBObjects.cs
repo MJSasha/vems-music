@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VemsMusic.Models;
@@ -35,7 +36,8 @@ namespace VemsMusic.Other_Data.Repositories
                 " - Breaking Up Slowly.mp3",
                 Genres = new List<Genre> { IndiRock },
                 ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
-                Text = "Поется"
+                Text = "Поется",
+                AdditionDateAndTime = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss")
             };
             Music Chemtrails = new()
             {
@@ -45,6 +47,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Genres = new List<Genre> { IndiRock },
                 ImagePath = "/img/music-icon/chemtrails-over-the-country-club.png",
                 Text = "Поется",
+                AdditionDateAndTime = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss")
             };
             Music Borders = new()
             {
@@ -53,6 +56,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Genres = new List<Genre> { HipHop },
                 ImagePath = "/img/music-icon/aim.png",
                 Text = "Поется",
+                AdditionDateAndTime = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss")
             };
             Music GoOff = new()
             {
@@ -61,6 +65,7 @@ namespace VemsMusic.Other_Data.Repositories
                 Genres = new List<Genre> { HipHop },
                 ImagePath = "/img/music-icon/aim.png",
                 Text = "Поется",
+                AdditionDateAndTime = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss")
             };
 
             MusicalGroup LanaDeRey = new()

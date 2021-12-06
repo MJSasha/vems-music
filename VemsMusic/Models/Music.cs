@@ -20,6 +20,9 @@ namespace VemsMusic.Models
         [Display(Name = "Путь к звуковому файлу")]
         public string AudioPath { get; set; }
 
+        public string AdditionDateAndTime { get; set; }
+
+
         [Display(Name = "Id группы")]
         public int? GroupId { get; set; }
         public MusicalGroup Group { get; set; }
@@ -27,6 +30,7 @@ namespace VemsMusic.Models
         [Display(Name = "Id жанра")]
         public int? GenreId { get; set; }
         public List<Genre> Genres { get; set; } = new();
+
         public int? UserId { get; set; }
         public List<User> Users { get; set; } = new();
     }

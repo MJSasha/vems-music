@@ -41,6 +41,26 @@ namespace VemsMusic.Controllers
             return View(genreObj);
         }
 
+        [Route("~/Home/NewMusic")]
+        public async Task<IActionResult> NewMusic()
+        {
+            var newMusic = await _allMusic.GetAllMusicAsync();
+
+            if (!newMusic.Any())
+            {
+                return Redirect("~/Home/NoItems/Музыка не добавлена");
+            }
+
+            newMusic = newMusic.OrderByDescending(m => m.AdditionDateAndTime).Take(3);
+
+            var musicObj = new MusicViewModel
+            {
+                AllMusic = newMusic
+            };
+
+            return View(musicObj);
+        }
+
         [Route("~/Home/Category/{id}")]
         public async Task<IActionResult> InGenre(int id)
         {

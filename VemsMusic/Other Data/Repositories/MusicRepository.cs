@@ -64,6 +64,7 @@ namespace VemsMusic.Other_Data.Repositories
             editableMusic.ImagePath = music.ImagePath;
             editableMusic.AudioPath = music.AudioPath;
             editableMusic.Group = _dbContext.Find<MusicalGroup>(Convert.ToInt32(music.GroupId));
+            editableMusic.AdditionDateAndTime = DateTime.Now.ToString("MM.dd.yyyy  HH:mm:ss");
 
             _dbContext.Musics.Update(editableMusic);
 

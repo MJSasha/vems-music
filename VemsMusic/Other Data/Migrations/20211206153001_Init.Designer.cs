@@ -10,7 +10,7 @@ using VemsMusic;
 namespace VemsMusic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20211203173328_Init")]
+    [Migration("20211206153001_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,9 @@ namespace VemsMusic.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdditionDateAndTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AudioPath")
                         .HasColumnType("nvarchar(max)");
