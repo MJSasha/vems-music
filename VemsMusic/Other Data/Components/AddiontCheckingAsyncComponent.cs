@@ -10,12 +10,12 @@ using VemsMusic.Other_Data.Interfaces;
 namespace VemsMusic.Other_Data.Components
 {
     [ViewComponent]
-    public class ControllingButtonLayoutComponent
+    public class AddiontCheckingAsyncComponent
     {
         private readonly IAllUsers _allUsers;
         private readonly IAllMusic _allMusic;
 
-        public ControllingButtonLayoutComponent(IAllUsers allUsers, IAllMusic allMusic)
+        public AddiontCheckingAsyncComponent(IAllUsers allUsers, IAllMusic allMusic)
         {
             _allUsers = allUsers;
             _allMusic = allMusic;
