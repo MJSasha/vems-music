@@ -15,7 +15,7 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext = appDBContext;
         }
 
-        public async Task AddMusicToUser(int musicId, int userId)
+        public async Task AddMusicToUserAsync(int musicId, int userId)
         {
             var user = await _dbContext.FindAsync<User>(userId);
             _dbContext.Musics.Include(m => m.Users).ToList();
@@ -29,7 +29,7 @@ namespace VemsMusic.Other_Data.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task RemoveMusic(int musicId, int userId)
+        public async Task RemoveMusicAsync(int musicId, int userId)
         {
             var user = await _dbContext.FindAsync<User>(userId);
             _dbContext.Musics.Include(m => m.Users).ToList();
@@ -38,7 +38,7 @@ namespace VemsMusic.Other_Data.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<User> GetUserById(int id)
+        public async Task<User> GetUserByIdAsync(int id)
         {
             var user = await _dbContext.FindAsync<User>(id);
             _dbContext.Musics.Include(m => m.Users).ToList();

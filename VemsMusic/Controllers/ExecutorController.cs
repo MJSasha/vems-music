@@ -24,6 +24,7 @@ namespace VemsMusic.Controllers
                 return Redirect("~/Home/NoItems/Музыка не добавлена");
             }
 
+            ViewBag.Id = HttpContext.Request.Cookies["id"];
             return View(musicalGroup);
         }
     }

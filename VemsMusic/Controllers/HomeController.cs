@@ -60,6 +60,7 @@ namespace VemsMusic.Controllers
                 AllMusic = newMusic
             };
 
+            ViewBag.Id = HttpContext.Request.Cookies["id"];
             return View(musicObj);
         }
 
@@ -103,6 +104,7 @@ namespace VemsMusic.Controllers
                 AllMusic = await _allMusic.GetAllMusicAsync()
             };
 
+            ViewBag.Id = HttpContext.Request.Cookies["id"];
             return View(musicsObj);
         }
 

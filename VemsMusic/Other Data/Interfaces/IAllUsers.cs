@@ -5,8 +5,8 @@ namespace VemsMusic.Other_Data.Interfaces
 {
     public interface IAllUsers
     {
-        Task<User> GetUserById(int id);
-        Task AddMusicToUser(int musicId, int userId);
-        Task RemoveMusic(int musicId, int userId);
+        Task<User> GetUserByIdAsync(int id);
+        Task AddMusicToUserAsync(int musicId, int userId);
+        Task RemoveMusicAsync(int musicId, int userId);
     }
 }

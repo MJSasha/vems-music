@@ -26,7 +26,7 @@ namespace VemsMusic.Controllers
         public async Task<IActionResult> MyMusic()
         {
             string userId = HttpContext.Request.Cookies["id"];
-            var user = await _allUsers.GetUserById(Convert.ToInt32(userId));
+            var user = await _allUsers.GetUserByIdAsync(Convert.ToInt32(userId));
 
             if (user.Musics.IsEmpty())
             {
@@ -49,7 +49,7 @@ namespace VemsMusic.Controllers
         public async Task<IActionResult> AddMusicToUser(int musicId)
         {
             string userId = HttpContext.Request.Cookies["id"];
-            await _allUsers.AddMusicToUser(musicId, Convert.ToInt32(userId));
+            await _allUsers.AddMusicToUserAsync(musicId, Convert.ToInt32(userId));
 
             return Redirect(Request.Headers["Referer"].ToString());
         }
@@ -58,9 +58,9 @@ namespace VemsMusic.Controllers
         public async Task<IActionResult> RemoveMusic(int musicId)
         {
             string userId = HttpContext.Request.Cookies["id"];
-            await _allUsers.RemoveMusic(musicId, Convert.ToInt32(userId));
+            await _allUsers.RemoveMusicAsync(musicId, Convert.ToInt32(userId));
 
-            return Redirect("~/User/MyMusic");
+            return Redirect(Request.Headers["Referer"].ToString());
         }
     }
 }

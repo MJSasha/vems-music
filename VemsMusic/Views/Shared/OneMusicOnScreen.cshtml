@@ -18,15 +18,16 @@
         </div>
 
         <div class="music-prop col-1">
+            @await Component.InvokeAsync("ControllingButtonLayoutComponent", new {music = Model, id = ViewBag.Id})
             <!-- <p class="col-3">@Model.Text</p> !!! Выпадающая кнопка с текстом -->
-            <a href="~/AddMusicToUser/@Model.Id">
+            @*<a href="~/AddMusicToUser/@Model.Id">
                 <img class="music-add" src="~/img/add.png" />
-            </a>
+            </a>*@
         </div>
 
-        <div class="jouele-control" data-type="timeline" data-href="@Model.AudioPath">
+        @*<div class="jouele-control" data-type="timeline" data-href="@Model.AudioPath">
             <div class="jouele-control" data-type="elapsed" data-href="@Model.AudioPath"></div>
-        </div>
+        </div>*@
         
         @*<a class="music-audio jouele jouele-skin-dark mt-1 mb-2" data-space-control="true" href="@Model.AudioPath">@Model.Name</a>*@ <!-- !!! Придумать, как передать в нижнюю панель и сохранить ИЛИ оставить только прогресс бар, отображающийся при нажатии на кнопку -->
 
