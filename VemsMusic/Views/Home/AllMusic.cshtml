@@ -1,7 +1,7 @@
 ﻿@model MusicViewModel
 
 <div class="container">
-    <div class="row">
+    <div class="row align-items-center mb-5">
 
         <h2 class="text-center mt-3 mb-3">Музыка</h2>
 
@@ -9,22 +9,11 @@
 
         <!-- !!! Расставить col под xl, md, sm. -->
         <!-- !!! Меньше шрифт, отступы, бордеры и прочее -->
-        <div class="container">
-            <div class="row align-items-center mb-5">
-                <div class="col-12">
 
-                    <div class="jouele-playlist" data-repeat="true">
-
-                        @foreach (Music item in Model.AllMusic)
-                        {
-                            @await Html.PartialAsync("OneMusicOnScreen", item)
-                        }
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        @foreach (Music item in Model.AllMusic)
+        {
+            @await Html.PartialAsync("OneMusicOnScreen", item)
+        }
 
     </div>
 </div>

@@ -41,6 +41,7 @@ namespace VemsMusic.Controllers
                 musicList.Add(await _allMusic.GetMusicsByIdAsync(item.Id));
             }
 
+            ViewBag.Id = HttpContext.Request.Cookies["id"];
             musicObj.AllMusic = musicList;
             return View(musicObj);
         }

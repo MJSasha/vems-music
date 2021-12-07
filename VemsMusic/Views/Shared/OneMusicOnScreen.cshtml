@@ -1,39 +1,45 @@
 ﻿@model Music
 
-<div class="container">
-    <div class="row music-item mt-4 mb-3">
 
-        <div class="col-1" style="padding-right: 0;">
-            <img class="music-img" src="@Model.ImagePath" alt="@Model.Name" />
-            <img class="music-play btn jouele-control" data-type="play-pause" data-href="@Model.AudioPath" src="~/img/play-white.png" />    <!-- !!! Менять на кнопку паузы при нажатии -->
-        </div>
+<div class="col-12">
+    <div class="jouele-playlist" data-repeat="true">
+        <div class="container">
+            <div class="row music-item mt-4 mb-3">
 
-        <div class="music-name col-5">@Model.Name</div>
+                <div class="col-1" style="padding-right: 0;">
+                    <img class="music-img" src="@Model.ImagePath" alt="@Model.Name" />
+                    <img class="music-play btn jouele-control" data-type="play-pause" data-href="@Model.AudioPath" src="~/img/play-white.png" />    <!-- !!! Менять на кнопку паузы при нажатии -->
+                </div>
 
-        <div class="music-group col-4"><a class="btn" style="color: var(--color-lbr);" asp-controller="Executor" asp-action="Index" asp-route-id="@Model.Group.Id">@Model.Group.Name</a></div>
+                <div class="music-name col-5">@Model.Name</div>
 
-        <div class="music-time col-1 justify-content-center align-items-center">    <!-- !!! Сразу показывать продолжительность -->
-            <span class="jouele-control" data-type="time-toggle" data-href="@Model.AudioPath">0:00</span>-  <!-- !!! Если "оставшееся время", то показывать минус -->
-            <span class="jouele-control" data-type="time-total" data-href="@Model.AudioPath">0:00</span>
-        </div>
+                <div class="music-group col-4"><a class="btn" style="color: var(--color-lbr);" asp-controller="Executor" asp-action="Index" asp-route-id="@Model.Group.Id">@Model.Group.Name</a></div>
 
-        <div class="music-prop col-1">
-            @await Component.InvokeAsync("AddiontCheckingAsyncComponent", new {music = Model, id = ViewBag.Id})
-            <!-- <p class="col-3">@Model.Text</p> !!! Выпадающая кнопка с текстом -->
-            @*<a href="~/AddMusicToUser/@Model.Id">
-                <img class="music-add" src="~/img/add.png" />
-            </a>*@
-        </div>
+                <div class="music-time col-1 justify-content-center align-items-center">    <!-- !!! Сразу показывать продолжительность -->
+                    <span class="jouele-control" data-type="time-toggle" data-href="@Model.AudioPath">0:00</span>-  <!-- !!! Если "оставшееся время", то показывать минус -->
+                    <span class="jouele-control" data-type="time-total" data-href="@Model.AudioPath">0:00</span>
+                </div>
 
-        @*<div class="jouele-control" data-type="timeline" data-href="@Model.AudioPath">
-            <div class="jouele-control" data-type="elapsed" data-href="@Model.AudioPath"></div>
-        </div>*@
+                <div class="music-prop col-1">
+                    @await Component.InvokeAsync("AddiontCheckingAsyncComponent", new {music = Model, id = ViewBag.Id})
+                    <!-- <p class="col-3">@Model.Text</p> !!! Выпадающая кнопка с текстом -->
+                    @*<a href="~/AddMusicToUser/@Model.Id">
+                        <img class="music-add" src="~/img/add.png" />
+                    </a>*@
+                </div>
+
+                @*<div class="jouele-control" data-type="timeline" data-href="@Model.AudioPath">
+                    <div class="jouele-control" data-type="elapsed" data-href="@Model.AudioPath"></div>
+                </div>*@
         
-        @*<a class="music-audio jouele jouele-skin-dark mt-1 mb-2" data-space-control="true" href="@Model.AudioPath">@Model.Name</a>*@ <!-- !!! Придумать, как передать в нижнюю панель и сохранить ИЛИ оставить только прогресс бар, отображающийся при нажатии на кнопку -->
+                @*<a class="music-audio jouele jouele-skin-dark mt-1 mb-2" data-space-control="true" href="@Model.AudioPath">@Model.Name</a>*@ <!-- !!! Придумать, как передать в нижнюю панель и сохранить ИЛИ оставить только прогресс бар, отображающийся при нажатии на кнопку -->
 
-        <div class="music-borderline mt-3"></div> <!-- !!! Border делает слишком большую линию, сделать отдельно, аккуратно. Мб вставить внутрь контейнера -->
+                <div class="music-borderline mt-3"></div> <!-- !!! Border делает слишком большую линию, сделать отдельно, аккуратно. Мб вставить внутрь контейнера -->
+            </div>
+        </div>
     </div>
 </div>
+
 
 <!-- https://ilyabirman.ru/projects/jouele/documentation/ - документация по Jouele
 
