@@ -7,7 +7,7 @@
 
         @foreach (MusicalGroup item in Model.AllGroups)
         {
-            @await Html.PartialAsync("ExecutorCard", item)
+            @await Html.PartialAsync("_ExecutorCard", item)
         }
 
     </div>

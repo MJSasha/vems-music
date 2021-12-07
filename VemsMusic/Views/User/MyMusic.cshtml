@@ -5,7 +5,7 @@
 
         @foreach (Music item in Model.AllMusic)
         {
-            @await Html.PartialAsync("OneMusicOnScreen", item)
+            @await Html.PartialAsync("_OneMusicOnScreen", item)
         }
 
     </div>
