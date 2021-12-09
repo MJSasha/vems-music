@@ -10,31 +10,40 @@ using VemsMusic.Other_Data.Interfaces;
 namespace VemsMusic.Other_Data.Components
 {
     [ViewComponent]
-    public class AddiontCheckingAsyncComponent
+    public class AddOrDeleteButtonForMusicComponent
     {
         private readonly IAllUsers _allUsers;
-        private readonly IAllMusic _allMusic;
 
-        public AddiontCheckingAsyncComponent(IAllUsers allUsers, IAllMusic allMusic)
+        public AddOrDeleteButtonForMusicComponent(IAllUsers allUsers)
         {
             _allUsers = allUsers;
-            _allMusic = allMusic;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(Music music, string id)
         {
+            if (id == null)
+            {
+                return new HtmlContentViewComponentResult(AddButtonForMusic(music));
+            }
             var user = await _allUsers.GetUserByIdAsync(Convert.ToInt32(id));
             if (user.Musics.Contains(music))
             {
-                return new HtmlContentViewComponentResult(
-                    new HtmlString($"<a href=\"/RemoveMusic/{music.Id}\">Удалить</a>"));
+                return new HtmlContentViewComponentResult(DeleteButtonForMusic(music));
             }
             else
             {
-                return new HtmlContentViewComponentResult(
-                    new HtmlString($"<a href=\"/AddMusicToUser/{music.Id}\">" +
-                    $"\n<img class=\"music-add\" src=\"/img/add.png\"/> \n</a>"));
+                return new HtmlContentViewComponentResult(AddButtonForMusic(music));
             }
+        }
+
+        private static HtmlString AddButtonForMusic(Music music)
+        {
+            return new HtmlString($"<a href=\"/AddMusicToUser/{music.Id}\">" +
+                    $"\n<img class=\"music-add\" src=\"/img/add.png\"/> \n</a>");
+        }
+        private static HtmlString DeleteButtonForMusic(Music music)
+        {
+            return new HtmlString($"<a href=\"/RemoveMusic/{music.Id}\">Удалить</a>");
         }
     }
 }

@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="music-prop col-1">
-                    @await Component.InvokeAsync("AddiontCheckingAsyncComponent", new {music = Model, id = ViewBag.Id})
+                    @await Component.InvokeAsync("AddOrDeleteButtonForMusicComponent", new {music = Model, id = ViewBag.Id})
                     <!-- <p class="col-3">@Model.Text</p> !!! Выпадающая кнопка с текстом -->
                     @*<a href="~/AddMusicToUser/@Model.Id">
                         <img class="music-add" src="~/img/add.png" />
