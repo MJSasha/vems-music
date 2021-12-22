@@ -11,14 +11,15 @@ namespace UnitTests
 {
     public class DBRedactionControllerTest
     {
+        Mock<IAllGenre> mockGenre = new();
+        Mock<IAllGroups> mockGroup = new();
+        Mock<IAllMusic> mockMusic = new();
+
         [Fact]
         public async void AllGenreTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(TestData.GetTestGenres);
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllGenre();
 
@@ -29,11 +30,8 @@ namespace UnitTests
         [Fact]
         public async void AllGroupTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllGroup();
 
@@ -44,11 +42,8 @@ namespace UnitTests
         [Fact]
         public async void AllMusicTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetTestMusics);
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetTestMusics);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllMusic();
 
@@ -60,11 +55,8 @@ namespace UnitTests
         [Fact]
         public async void AllGenreTestWithZeroGenre()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(TestData.GetZeroGenres);
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllGenre();
 
@@ -74,11 +66,8 @@ namespace UnitTests
         [Fact]
         public async void AllGroupTestWithZeroGroup()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetZeroGroup);
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllGroup();
 
@@ -88,11 +77,8 @@ namespace UnitTests
         [Fact]
         public async void AllMusicTestWithZeroMusic()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            mockMusics.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetZeroMusic);
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetZeroMusic);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllMusic();
 
@@ -103,10 +89,7 @@ namespace UnitTests
         [Fact]
         public async void AddGenreTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AddGenre(TestData.Rock);
 
@@ -116,10 +99,7 @@ namespace UnitTests
         [Fact]
         public async void AddGroupTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AddGroup(TestData.Slipknot);
 
@@ -129,10 +109,7 @@ namespace UnitTests
         [Fact]
         public async void AddMusicTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AddMusic(TestData.Borders);
 
@@ -143,10 +120,7 @@ namespace UnitTests
         [Fact]
         public async void DeleteGenreTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.DeleteGenre(1);
 
@@ -156,10 +130,7 @@ namespace UnitTests
         [Fact]
         public async void DeleteGroupTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.DeleteGroup(1);
 
@@ -169,10 +140,7 @@ namespace UnitTests
         [Fact]
         public async void DeleteMusicTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.DeleteMusic(1);
 
@@ -183,10 +151,7 @@ namespace UnitTests
         [Fact]
         public async void RedactGenresTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.RedactGenres(TestData.HipHop, 1);
 
@@ -196,10 +161,7 @@ namespace UnitTests
         [Fact]
         public async void RedactGroupsTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.RedactGroups(TestData.LanaDeRey, 1);
 
@@ -209,10 +171,7 @@ namespace UnitTests
         [Fact]
         public async void RedactMusicsTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.RedactMusics(TestData.BreakingUpSlowly, 1);
 
@@ -223,10 +182,7 @@ namespace UnitTests
         [Fact]
         public async void DeleteGroupsGenreTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.DeleteGroupsGenre(1, 1);
 
@@ -236,10 +192,7 @@ namespace UnitTests
         [Fact]
         public async void DeleteMusicsGenreTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusics = new Mock<IAllMusic>();
-            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusics.Object);
+            var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.DeleteMusicsGenre(1, 1);
 

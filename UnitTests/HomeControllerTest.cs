@@ -13,12 +13,13 @@ namespace UnitTests
 {
     public class HomeControllerTest
     {
+        Mock<IAllGenre> mockGenre = new();
+        Mock<IAllGroups> mockGroup = new();
+        Mock<IAllMusic> mockMusic = new();
+
         [Fact]
         public async void IndexViewTestWithNonZeroGenres()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(TestData.GetTestGenres);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
@@ -31,9 +32,6 @@ namespace UnitTests
         [Fact]
         public async void IndexViewTestWithZeroGenres()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetAllGenresAsync()).ReturnsAsync(TestData.GetZeroGenres);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
@@ -47,9 +45,6 @@ namespace UnitTests
         [Fact]
         public async void NewMusicTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             var mockHttpContex = new Mock<HttpContext>();
             mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetTestMusics);
@@ -65,9 +60,6 @@ namespace UnitTests
         [Fact]
         public async void NewMusicTestWithZeroMusic()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetZeroMusic);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
@@ -80,9 +72,6 @@ namespace UnitTests
         [Fact]
         public async void InGenreTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(TestData.HipHop);
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
@@ -97,9 +86,6 @@ namespace UnitTests
         [Fact]
         public async void InGenreTestWithZeroGenresAsync()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(new Genre
             {
                 Name = "Рок",
@@ -116,9 +102,6 @@ namespace UnitTests
         [Fact]
         public async void ExecutorsTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
@@ -132,9 +115,6 @@ namespace UnitTests
         [Fact]
         public async void AllMusicTest()
         {
-            var mockGenre = new Mock<IAllGenre>();
-            var mockGroup = new Mock<IAllGroups>();
-            var mockMusic = new Mock<IAllMusic>();
             var mockHttpContex = new Mock<HttpContext>();
             mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetTestMusics);
