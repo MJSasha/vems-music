@@ -16,6 +16,8 @@ namespace VemsMusic.Models
         [Display(Name = "Путь к картинке")]
         public string Picture { get; set; }
 
+
+
         [Display(Name = "Id жанра")]
         public int? GenreId { get; set; }
         public List<Genre> Genres { get; set; } = new();

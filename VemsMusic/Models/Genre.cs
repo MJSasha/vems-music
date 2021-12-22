@@ -15,6 +15,8 @@ namespace VemsMusic.Models
 
         [Display(Name = "Путь к картинке")]
         public string PicturePath { get; set; }
+
+
         public List<MusicalGroup> MusicalGroups { get; set; }
         public List<Music> Musics { get; set; }
     }

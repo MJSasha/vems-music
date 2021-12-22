@@ -25,7 +25,9 @@ namespace VemsMusic.Other_Data.Components
             {
                 return new HtmlContentViewComponentResult(AddButtonForMusic(music));
             }
+
             var user = await _allUsers.GetUserByIdAsync(Convert.ToInt32(id));
+
             if (user.Musics.Contains(music))
             {
                 return new HtmlContentViewComponentResult(DeleteButtonForMusic(music));
