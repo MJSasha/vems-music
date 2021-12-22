@@ -51,7 +51,9 @@ namespace VemsMusic.Controllers
                     return Redirect("~/");
                 }
                 else
+                {
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
             }
             return View(registerModel);
         }
