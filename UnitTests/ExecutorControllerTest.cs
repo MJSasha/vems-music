@@ -28,13 +28,13 @@ namespace UnitTests
             Assert.NotEmpty(model.Musics);
             Assert.NotNull(model);
         }
-        //TODO The test doesn't work. Problems getting id value from cookies
+
         [Fact]
         public async void IndexTestWithZeroMusicAsync()
         {
             var mockHttpContex = new Mock<HttpContext>();
             mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
-            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(TestData.ImagineDragons);
+            mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(2)).ReturnsAsync(TestData.ImagineDragons);
             var controller = new ExecutorController(mockGroup.Object);
 
             var result = await controller.Index(2);
