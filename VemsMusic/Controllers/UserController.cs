@@ -26,6 +26,11 @@ namespace VemsMusic.Controllers
         public async Task<IActionResult> MyMusic()
         {
             string userId = HttpContext.Request.Cookies["id"];
+            if (userId == null)
+            {
+                return Redirect("~/Home/NoItems/Ошибка. Пожалуйста перерегистрируйтесь");
+            }
+
             var user = await _allUsers.GetUserByIdAsync(Convert.ToInt32(userId));
 
             if (user.Musics.IsEmpty())

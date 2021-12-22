@@ -61,6 +61,10 @@ namespace VemsMusic.Controllers
             };
 
             ViewBag.Id = HttpContext.Request.Cookies["id"];
+            if (ViewBag.Id == null)
+            {
+                return Redirect("~/Home/NoItems/Ошибка. Пожалуйста перерегистрируйтесь");
+            }
             return View(musicObj);
         }
 
@@ -97,7 +101,7 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/Home/AllMusic")]
-        public async Task<ViewResult> AllMusic()
+        public async Task<IActionResult> AllMusic()
         {
             var musicsObj = new MusicViewModel
             {
@@ -105,6 +109,10 @@ namespace VemsMusic.Controllers
             };
 
             ViewBag.Id = HttpContext.Request.Cookies["id"];
+            if (ViewBag.Id == null)
+            {
+                return Redirect("~/Home/NoItems/Ошибка. Пожалуйста перерегистрируйтесь");
+            }
             return View(musicsObj);
         }
 

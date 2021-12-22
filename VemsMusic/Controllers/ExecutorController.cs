@@ -25,6 +25,10 @@ namespace VemsMusic.Controllers
             }
 
             ViewBag.Id = HttpContext.Request.Cookies["id"];
+            if (ViewBag.Id == null)
+            {
+                return Redirect("~/Home/NoItems/Ошибка. Пожалуйста перерегистрируйтесь");
+            }
             return View(musicalGroup);
         }
     }
