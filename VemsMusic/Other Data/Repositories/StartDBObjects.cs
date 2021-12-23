@@ -122,6 +122,12 @@ namespace VemsMusic.Other_Data.Repositories
                 Password = "matvey124",
                 Role = admin
             };
+            User Danila = new()
+            {
+                Email = "samsonchik2406@mail.ru",
+                Password = "rusH1856",
+                Role = admin
+            };
 
             if (!dBContext.Groups.Any())
             {
@@ -129,7 +135,7 @@ namespace VemsMusic.Other_Data.Repositories
             }
             if (!dBContext.Users.Any())
             {
-                await dBContext.AddRangeAsync(Sasha, Matvey);
+                await dBContext.AddRangeAsync(Sasha, Matvey, Danila);
                 await dBContext.AddRangeAsync(user);
             }
 
