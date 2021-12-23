@@ -96,7 +96,7 @@ namespace VemsMusic.Controllers
         }
 
         [Route("~/Home/AllMusic")]
-        public async Task<IActionResult> AllMusic()
+        public async Task<ViewResult> AllMusic()
         {
             var musicsObj = new MusicViewModel
             {

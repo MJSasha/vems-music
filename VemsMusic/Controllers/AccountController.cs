@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace VemsMusic.Controllers
                     await Authenticate(user);
                     HttpContext.Response.Cookies.Append("id", user.Id.ToString());
 
-                    if (user.RoleId == 1)
+                    if (user.RoleId == 1)//admin
                     {
                         return Redirect("~/DBRedaction/Index");
                     }
@@ -92,6 +93,14 @@ namespace VemsMusic.Controllers
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(loginModel);
+        }
+
+        [Route("~/Account/Logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete(".AspNetCore.Cookies");
+            return Redirect("~/");
+
         }
 
         private async Task Authenticate(User user)

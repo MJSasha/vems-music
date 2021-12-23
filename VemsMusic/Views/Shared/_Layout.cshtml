@@ -65,9 +65,21 @@
                             <a class="nav-link" href="~/AboutUs">О нас</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link active" href="~/DBRedaction/Index">Войти</a>
-                        </li>
+                        @{
+                            if(Context.Request.Cookies.TryGetValue(".AspNetCore.Cookies", out string id))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="~/Account/Logout">Выйти</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="~/DBRedaction/Index">Войти</a>
+                                </li>
+                            }
+                        }
+                        
                     </ul>
                 </div>
 
