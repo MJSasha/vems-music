@@ -52,7 +52,6 @@ namespace UnitTests
             var model = Assert.IsAssignableFrom<MusicViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllMusic);
         }
-
         [Fact]
         public async void NewMusicTestWithZeroMusic()
         {
@@ -78,7 +77,6 @@ namespace UnitTests
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
         }
-
         [Fact]
         public async void InGenreTestWithZeroGenresAsync()
         {
@@ -95,6 +93,7 @@ namespace UnitTests
             var redirectResult = Assert.IsType<RedirectResult>(result);
             Assert.Equal("~/Home/NoItems/Группы не добавлены", redirectResult.Url);
         }
+
         [Fact]
         public async void ExecutorsTest()
         {
@@ -107,6 +106,7 @@ namespace UnitTests
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
         }
+
         [Fact]
         public async void AllMusicTest()
         {

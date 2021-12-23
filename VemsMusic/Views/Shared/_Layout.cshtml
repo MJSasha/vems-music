@@ -66,6 +66,7 @@
                         </li>
 
                         @{
+                            //If will fire when the user is registered
                             if(Context.Request.Cookies.TryGetValue(".AspNetCore.Cookies", out string id))
                             {
                                 <li class="nav-item">

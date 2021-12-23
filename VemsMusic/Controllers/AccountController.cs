@@ -99,6 +99,7 @@ namespace VemsMusic.Controllers
         public IActionResult Logout()
         {
             Response.Cookies.Delete(".AspNetCore.Cookies");
+            Response.Cookies.Delete("id");
             return Redirect("~/");
 
         }
