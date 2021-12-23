@@ -12,12 +12,9 @@ namespace UnitTests
     {
         Mock<IAllGroups> mockGroup = new();
 
-        //TODO The test doesn't work. Problems getting id value from cookies
         [Fact]
         public async void IndexTestAsync()
         {
-            var mockHttpContex = new Mock<HttpContext>();
-            mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(1)).ReturnsAsync(TestData.LanaDeRey);
             var controller = new ExecutorController(mockGroup.Object);
 
@@ -32,8 +29,6 @@ namespace UnitTests
         [Fact]
         public async void IndexTestWithZeroMusicAsync()
         {
-            var mockHttpContex = new Mock<HttpContext>();
-            mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
             mockGroup.Setup(repo => repo.GetMusicalGroupByIdAsync(2)).ReturnsAsync(TestData.ImagineDragons);
             var controller = new ExecutorController(mockGroup.Object);
 

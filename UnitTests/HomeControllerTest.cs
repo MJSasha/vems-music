@@ -41,12 +41,9 @@ namespace UnitTests
             Assert.Equal("~/Home/NoItems/Жанры не добавлены", redirectResult.Url);
         }
 
-        //TODO The test doesn't work. Problems getting id value from cookies
         [Fact]
         public async void NewMusicTest()
         {
-            var mockHttpContex = new Mock<HttpContext>();
-            mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
@@ -111,12 +108,9 @@ namespace UnitTests
             var model = Assert.IsAssignableFrom<GroupsViewModel>(viewResult.Model);
             Assert.NotEmpty(model.AllGroups);
         }
-        //TODO The test doesn't work. Problems getting id value from cookies
         [Fact]
         public async void AllMusicTest()
         {
-            var mockHttpContex = new Mock<HttpContext>();
-            mockHttpContex.Setup(repo => repo.Request.Cookies["id"]).Returns("1");
             mockMusic.Setup(repo => repo.GetAllMusicAsync()).ReturnsAsync(TestData.GetTestMusics);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 

@@ -46,7 +46,6 @@ namespace VemsMusic.Controllers
                 musicList.Add(await _allMusic.GetMusicsByIdAsync(item.Id));
             }
 
-            ViewBag.Id = userId;
             musicObj.AllMusic = musicList;
             return View(musicObj);
         }
