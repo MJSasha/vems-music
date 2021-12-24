@@ -23,7 +23,7 @@ namespace VemsMusic.Other_Data.Components
             {
                 return new HtmlContentViewComponentResult(RedactionButton());
             }
-            return null;
+            return new HtmlContentViewComponentResult(new HtmlString(""));
         }
 
         private async Task<bool> UserIsAdminAsync(string userId)
