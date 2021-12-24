@@ -66,10 +66,10 @@ namespace VemsMusic.Controllers
             return View();
         }
 
-        [Route("~/Account/Login")]
+        [Route("~/Account/Login/{ReturnUrl?}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginModel)
+        public async Task<IActionResult> Login(LoginViewModel loginModel, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -81,14 +81,7 @@ namespace VemsMusic.Controllers
                     await Authenticate(user);
                     HttpContext.Response.Cookies.Append("id", user.Id.ToString());
 
-                    if (user.RoleId == 1)//admin
-                    {
-                        return Redirect("~/DBRedaction/Index");
-                    }
-                    else
-                    {
-                        return Redirect("~/");
-                    }
+                    return Redirect(ReturnUrl ?? "~/");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }

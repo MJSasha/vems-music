@@ -56,6 +56,11 @@ namespace VemsMusic.Controllers
             string userId = HttpContext.Request.Cookies["id"];
             await _allUsers.AddMusicToUserAsync(musicId, Convert.ToInt32(userId));
 
+            if (Request.Headers["Referer"].ToString().Contains("/Account/Login"))
+            {
+                return Redirect("~/User/MyMusic");
+            }
+
             return Redirect(Request.Headers["Referer"].ToString());
         }
 
