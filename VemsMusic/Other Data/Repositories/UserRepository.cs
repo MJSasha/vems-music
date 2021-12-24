@@ -42,6 +42,7 @@ namespace VemsMusic.Other_Data.Repositories
         {
             var user = await _dbContext.FindAsync<User>(id);
             _dbContext.Musics.Include(m => m.Users).ToList();
+            _dbContext.Roles.Include(m => m.Users).ToList();
 
             return user;
         }

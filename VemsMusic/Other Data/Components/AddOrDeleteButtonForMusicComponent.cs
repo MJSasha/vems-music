@@ -19,14 +19,14 @@ namespace VemsMusic.Other_Data.Components
             _allUsers = allUsers;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(Music music, string id)
+        public async Task<IViewComponentResult> InvokeAsync(Music music, string userId)
         {
-            if (id == null)
+            if (userId == null)
             {
                 return new HtmlContentViewComponentResult(AddButtonForMusic(music));
             }
 
-            var user = await _allUsers.GetUserByIdAsync(Convert.ToInt32(id));
+            var user = await _allUsers.GetUserByIdAsync(Convert.ToInt32(userId));
 
             if (user.Musics.Contains(music))
             {

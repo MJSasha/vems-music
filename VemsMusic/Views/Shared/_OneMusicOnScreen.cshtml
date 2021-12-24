@@ -22,10 +22,10 @@
 
                 <div class="music-prop col-1">
                     @{
-                        if(Context.Request.Cookies.TryGetValue("id", out string id)) //False when no id is added
+                        if(Context.Request.Cookies.TryGetValue("id", out string userId)) //False when no id is added
                         {
                             @await Component.InvokeAsync("AddOrDeleteButtonForMusicComponent", 
-                            new {music = Model, id})
+                            new {music = Model, userId})
                         }
                         else
                         {
