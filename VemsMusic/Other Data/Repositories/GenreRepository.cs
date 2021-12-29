@@ -15,7 +15,7 @@ namespace VemsMusic.Repositories
             _dbContext = appDBContext;
         }
 
-        public IEnumerable<Genre> GetAllGenres
+        private IEnumerable<Genre> GetAllGenres
         {
             get
             {
