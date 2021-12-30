@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using VemsMusic.Models;
@@ -15,6 +16,14 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext = appDBContext;
         }
 
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            var user = await _dbContext.FindAsync<User>(userId);
+            _dbContext.Musics.Include(m => m.Users).ToList();
+            _dbContext.Roles.Include(m => m.Users).ToList();
+
+            return user;
+        }
         public async Task AddMusicToUserAsync(int musicId, int userId)
         {
             var user = await _dbContext.FindAsync<User>(userId);
@@ -22,29 +31,18 @@ namespace VemsMusic.Other_Data.Repositories
             Music music = _dbContext.Find<Music>(musicId);
             if (user.Musics.Contains(music))
             {
-                user.Musics.Remove(music);
-                user.Musics.Add(music);
+                throw new Exception("MusicAlreadyAdded");
             }
             user.Musics.Add(music);
             await _dbContext.SaveChangesAsync();
         }
-
-        public async Task RemoveMusicAsync(int musicId, int userId)
+        public async Task RemoveMusicFromUserAsync(int musicId, int userId)
         {
             var user = await _dbContext.FindAsync<User>(userId);
             _dbContext.Musics.Include(m => m.Users).ToList();
             Music music = _dbContext.Find<Music>(musicId);
             user.Musics.Remove(music);
             await _dbContext.SaveChangesAsync();
-        }
-
-        public async Task<User> GetUserByIdAsync(int id)
-        {
-            var user = await _dbContext.FindAsync<User>(id);
-            _dbContext.Musics.Include(m => m.Users).ToList();
-            _dbContext.Roles.Include(m => m.Users).ToList();
-
-            return user;
         }
     }
 }

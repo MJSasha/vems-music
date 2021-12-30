@@ -68,7 +68,7 @@ namespace VemsMusic.Controllers
         public async Task<IActionResult> RemoveMusic(int musicId)
         {
             string userId = HttpContext.Request.Cookies["id"];
-            await _allUsers.RemoveMusicAsync(musicId, Convert.ToInt32(userId));
+            await _allUsers.RemoveMusicFromUserAsync(musicId, Convert.ToInt32(userId));
 
             return Redirect(Request.Headers["Referer"].ToString());
         }

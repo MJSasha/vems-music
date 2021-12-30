@@ -27,28 +27,25 @@ namespace VemsMusic.Repositories
         {
             return await Task.Run(() => GetAllGenres);
         }
-
-        public async Task<Genre> GetGenreByIdAsync(int id)
+        public async Task<Genre> GetGenreByIdAsync(int genreId)
         {
-            return await _dbContext.FindAsync<Genre>(id);
+            return await _dbContext.FindAsync<Genre>(genreId);
         }
-
-        public async Task DeleteGenreAsync(int id)
-        {
-            _dbContext.Genres.Remove(_dbContext.Genres.Find(id));
-            await _dbContext.SaveChangesAsync();
-        }
-
         public async Task AddGenreAsync(Genre genre)
         {
             _dbContext.Genres.Add(genre);
             await _dbContext.SaveChangesAsync();
         }
-
         public async Task UpdateGenreAsync(Genre genre)
         {
             _dbContext.Genres.Update(genre);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task DeleteGenreAsync(int genreId)
+        {
+            _dbContext.Genres.Remove(_dbContext.Genres.Find(genreId));
+            await _dbContext.SaveChangesAsync();
+        }
+
     }
 }

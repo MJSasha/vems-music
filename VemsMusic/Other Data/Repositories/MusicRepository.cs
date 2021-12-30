@@ -32,27 +32,18 @@ namespace VemsMusic.Other_Data.Repositories
         {
             return Task.Run(() => GetAllMusic);
         }
-
-        public async Task<Music> GetMusicsByIdAsync(int id)
+        public async Task<Music> GetMusicsByIdAsync(int musicId)
         {
-            var musics = await _dbContext.FindAsync<Music>(id);
+            var musics = await _dbContext.FindAsync<Music>(musicId);
             _dbContext.Genres.Include(g => g.Musics).ToList();
             _dbContext.Groups.Include(g => g.Musics).ToList();
             return musics;
         }
-
-        public async Task DeleteMusicAsync(int id)
-        {
-            _dbContext.Musics.Remove(_dbContext.Musics.Find(id));
-            await _dbContext.SaveChangesAsync();
-        }
-
         public async Task AddMusicAsync(Music music)
         {
             _dbContext.Musics.Add(music);
             await _dbContext.SaveChangesAsync();
         }
-
         public async Task UpdateMusicAsync(Music music)
         {
             var newGenre = _dbContext.Find<Genre>(Convert.ToInt32(music.GenreId));
@@ -84,13 +75,17 @@ namespace VemsMusic.Other_Data.Repositories
 
             await _dbContext.SaveChangesAsync();
         }
-
         public async Task DeleteMusicsGenreAsync(int MusicId, int GenreId)
         {
             var music = await _dbContext.Musics.FindAsync(MusicId);
             var genre = await _dbContext.Genres.FindAsync(GenreId);
             _dbContext.Genres.Include(g => g.Musics).ToList();
             music.Genres.Remove(genre);
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task DeleteMusicAsync(int musicId)
+        {
+            _dbContext.Musics.Remove(_dbContext.Musics.Find(musicId));
             await _dbContext.SaveChangesAsync();
         }
     }

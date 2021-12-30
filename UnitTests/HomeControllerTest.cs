@@ -68,7 +68,7 @@ namespace UnitTests
         public async void InGenreTest()
         {
             mockGenre.Setup(repo => repo.GetGenreByIdAsync(1)).ReturnsAsync(TestData.HipHop);
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
+            mockGroup.Setup(repo => repo.GetAllMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.InGenre(1);
@@ -85,7 +85,7 @@ namespace UnitTests
                 Name = "Рок",
                 Description = ""
             });
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetZeroGroup);
+            mockGroup.Setup(repo => repo.GetAllMusicalGroupsAsync()).ReturnsAsync(TestData.GetZeroGroup);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.InGenre(3);
@@ -97,7 +97,7 @@ namespace UnitTests
         [Fact]
         public async void ExecutorsTest()
         {
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
+            mockGroup.Setup(repo => repo.GetAllMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
             var controller = new HomeController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.Executors();

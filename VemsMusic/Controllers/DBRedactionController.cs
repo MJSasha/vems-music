@@ -53,7 +53,7 @@ namespace VemsMusic.Controllers
         [Route("~/DBRedaction/AllGroup")]
         public async Task<IActionResult> AllGroup()
         {
-            IEnumerable<MusicalGroup> musicalGroups = await _allGroups.GetMusicalGroupsAsync();
+            IEnumerable<MusicalGroup> musicalGroups = await _allGroups.GetAllMusicalGroupsAsync();
 
             if (!musicalGroups.Any())
             {
@@ -74,7 +74,7 @@ namespace VemsMusic.Controllers
             }
 
             ViewBag.Genres = new SelectList(await _allGenre.GetAllGenresAsync(), "Id", "Name");
-            ViewBag.Groups = new SelectList(await _allGroups.GetMusicalGroupsAsync(), "Id", "Name");
+            ViewBag.Groups = new SelectList(await _allGroups.GetAllMusicalGroupsAsync(), "Id", "Name");
             return View(new MusicViewModel { AllMusic = musics });
         }
 

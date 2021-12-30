@@ -67,7 +67,7 @@ namespace VemsMusic.Controllers
         public async Task<IActionResult> InGenre(int id)
         {
             Genre genre = await _allGenre.GetGenreByIdAsync(id);
-            IEnumerable<MusicalGroup> musicalGroups = (await _allGroups.GetMusicalGroupsAsync()).
+            IEnumerable<MusicalGroup> musicalGroups = (await _allGroups.GetAllMusicalGroupsAsync()).
                 Where(g => g.Genres.Contains(genre));
 
             if (!musicalGroups.Any())
@@ -89,7 +89,7 @@ namespace VemsMusic.Controllers
         {
             var groupsObj = new GroupsViewModel
             {
-                AllGroups = await _allGroups.GetMusicalGroupsAsync()
+                AllGroups = await _allGroups.GetAllMusicalGroupsAsync()
             };
 
             return View(groupsObj);

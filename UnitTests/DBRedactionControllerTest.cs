@@ -30,7 +30,7 @@ namespace UnitTests
         [Fact]
         public async void AllGroupTest()
         {
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
+            mockGroup.Setup(repo => repo.GetAllMusicalGroupsAsync()).ReturnsAsync(TestData.GetTestGroups);
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllGroup();
@@ -66,7 +66,7 @@ namespace UnitTests
         [Fact]
         public async void AllGroupTestWithZeroGroup()
         {
-            mockGroup.Setup(repo => repo.GetMusicalGroupsAsync()).ReturnsAsync(TestData.GetZeroGroup);
+            mockGroup.Setup(repo => repo.GetAllMusicalGroupsAsync()).ReturnsAsync(TestData.GetZeroGroup);
             var controller = new DBRedactionController(mockGenre.Object, mockGroup.Object, mockMusic.Object);
 
             var result = await controller.AllGroup();
