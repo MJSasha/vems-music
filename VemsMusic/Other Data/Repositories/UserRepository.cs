@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using VemsMusic.Models;
 using VemsMusic.Other_Data.Interfaces;
+using VemsMusic.Other_Data.PersonalExceptions;
+using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Other_Data.Repositories
 {
@@ -16,6 +18,39 @@ namespace VemsMusic.Other_Data.Repositories
             _dbContext = appDBContext;
         }
 
+        public async Task AddNewUser(User user)
+        {
+            Role userRole = await _dbContext.Roles.FirstOrDefaultAsync(r => r.Name == "user");
+            if (userRole != null)
+            {
+                user.Role = userRole;
+            }
+
+            _dbContext.Users.Add(user);
+            await _dbContext.SaveChangesAsync();
+        }
+        public async Task<User> GetUserByLoginModelAsync(LoginViewModel loginModel)
+        {
+            User user = await _dbContext.Users
+                    .Include(u => u.Role)
+                    .FirstOrDefaultAsync(u => u.Email == loginModel.Email && u.Password == loginModel.Password);
+            if (user == null)
+            {
+                throw new NotFound("User is not found");
+            }
+            _dbContext.Roles.Include(m => m.Users).ToList();
+            return user;
+        }
+        public async Task<User> GetUserByRegistraterModelAsync(RegisterViewModel registerModel)
+        {
+            User user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == registerModel.Email);
+            if (user == null)
+            {
+                throw new NotFound("User is not found");
+            }
+            _dbContext.Roles.Include(m => m.Users).ToList();
+            return user;
+        }
         public async Task<User> GetUserByIdAsync(int userId)
         {
             var user = await _dbContext.FindAsync<User>(userId);
@@ -44,5 +79,6 @@ namespace VemsMusic.Other_Data.Repositories
             user.Musics.Remove(music);
             await _dbContext.SaveChangesAsync();
         }
+
     }
 }

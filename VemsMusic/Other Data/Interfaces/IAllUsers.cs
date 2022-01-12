@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using VemsMusic.Models;
+using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Other_Data.Interfaces
 {
@@ -8,6 +9,25 @@ namespace VemsMusic.Other_Data.Interfaces
     /// </summary>
     public interface IAllUsers
     {
+        /// <summary>
+        /// Writes a new user to the database.
+        /// </summary>
+        /// <param name="user">Added user.</param>
+        Task AddNewUser(User user);
+        /// <summary>
+        /// Returns a user matching the registration model from the database.
+        /// </summary>
+        /// <param name="registerModel">The registration model of the searched for user.</param>
+        /// <returns><see cref="User"/></returns>
+        /// <exception cref="Other_Data.PersonalExceptions.NotFound"></exception>
+        Task<User> GetUserByRegistraterModelAsync(RegisterViewModel registerModel);
+        /// <summary>
+        /// Returns a user matching the login model from the database.
+        /// </summary>
+        /// <param name="loginModel">The login model of the searched for user.</param>
+        /// <returns><see cref="User"/></returns>
+        /// <exception cref="Other_Data.PersonalExceptions.NotFound"></exception>
+        Task<User> GetUserByLoginModelAsync(LoginViewModel loginModel);
         /// <summary>
         /// Returns the user with the specified id from the database.
         /// </summary>

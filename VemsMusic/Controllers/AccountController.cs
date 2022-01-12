@@ -2,21 +2,22 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using VemsMusic.Models;
+using VemsMusic.Other_Data.Interfaces;
+using VemsMusic.Other_Data.PersonalExceptions;
 using VemsMusic.Other_Data.ViewModels;
 
 namespace VemsMusic.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly AppDBContext _context;
-        public AccountController(AppDBContext context)
+        private readonly IAllUsers _allUsers;
+        public AccountController(IAllUsers allUsers)
         {
-            _context = context;
+            _allUsers = allUsers;
         }
 
         [Route("~/Account/Register")]
@@ -33,27 +34,20 @@ namespace VemsMusic.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == registerModel.Email);
-                if (user == null)
+                try
                 {
-                    user = new User { Email = registerModel.Email, Password = registerModel.Password };
-                    Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
-                    if (userRole != null)
-                    {
-                        user.Role = userRole;
-                    }
-
-                    _context.Users.Add(user);
-                    await _context.SaveChangesAsync();
+                    await _allUsers.GetUserByRegistraterModelAsync(registerModel);
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
+                catch (NotFound)
+                {
+                    User user = new User { Email = registerModel.Email, Password = registerModel.Password };
+                    await _allUsers.AddNewUser(user);
 
                     await Authenticate(user);
                     HttpContext.Response.Cookies.Append("id", user.Id.ToString());
 
                     return Redirect("~/");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
             }
             return View(registerModel);
@@ -73,17 +67,18 @@ namespace VemsMusic.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users
-                    .Include(u => u.Role)
-                    .FirstOrDefaultAsync(u => u.Email == loginModel.Email && u.Password == loginModel.Password);
-                if (user != null)
+                try
                 {
+                    User user = await _allUsers.GetUserByLoginModelAsync(loginModel);
                     await Authenticate(user);
                     HttpContext.Response.Cookies.Append("id", user.Id.ToString());
 
                     return Redirect(ReturnUrl ?? "~/");
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                catch (NotFound)
+                {
+                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
             }
             return View(loginModel);
         }
