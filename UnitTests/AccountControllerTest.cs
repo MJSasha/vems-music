@@ -2,9 +2,7 @@
 using Moq;
 using VemsMusic.Controllers;
 using VemsMusic.Models;
-using VemsMusic.Models.ViewModels;
 using VemsMusic.Other_Data.Interfaces;
-using VemsMusic.Other_Data.PersonalExceptions;
 using VemsMusic.Other_Data.ViewModels;
 using Xunit;
 
