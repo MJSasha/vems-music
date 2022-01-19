@@ -36,20 +36,20 @@ namespace VemsMusic.Other_Data.Repositories
                     .FirstOrDefaultAsync(u => u.Email == loginModel.Email && u.Password == loginModel.Password);
             if (user == null)
             {
-                throw new NotFound("User is not found");
+                throw new NotFoundException("User is not found");
             }
             _dbContext.Roles.Include(m => m.Users).ToList();
             return user;
         }
-        public async Task<User> GetUserByRegistraterModelAsync(RegisterViewModel registerModel)
+        public async Task<bool> UserIsInDatabase(RegisterViewModel registerModel)
         {
             User user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == registerModel.Email);
             if (user == null)
             {
-                throw new NotFound("User is not found");
+                return false;
             }
             _dbContext.Roles.Include(m => m.Users).ToList();
-            return user;
+            return true;
         }
         public async Task<User> GetUserByIdAsync(int userId)
         {
@@ -66,6 +66,7 @@ namespace VemsMusic.Other_Data.Repositories
             Music music = _dbContext.Find<Music>(musicId);
             if (user.Musics.Contains(music))
             {
+                //TODO - to new exeption
                 throw new Exception("MusicAlreadyAdded");
             }
             user.Musics.Add(music);

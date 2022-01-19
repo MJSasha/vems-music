@@ -34,12 +34,11 @@ namespace VemsMusic.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                if (await _allUsers.UserIsInDatabase(registerModel))
                 {
-                    await _allUsers.GetUserByRegistraterModelAsync(registerModel);
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }
-                catch (NotFound)
+                else
                 {
                     User user = new User { Email = registerModel.Email, Password = registerModel.Password };
                     await _allUsers.AddNewUser(user);
@@ -75,7 +74,7 @@ namespace VemsMusic.Controllers
 
                     return Redirect(ReturnUrl ?? "~/");
                 }
-                catch (NotFound)
+                catch (NotFoundException)
                 {
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
                 }

@@ -5,12 +5,12 @@ namespace VemsMusic.Other_Data.PersonalExceptions
     /// <summary>
     /// Fires when the element is not found in the database.
     /// </summary>
-    public class NotFound : Exception
+    public class NotFoundException : Exception
     {
         /// <summary>
         /// Fires when the element is not found in the database.
         /// </summary>
-        public NotFound()
+        public NotFoundException()
         {
 
         }
@@ -18,7 +18,7 @@ namespace VemsMusic.Other_Data.PersonalExceptions
         /// Fires when the element is not found in the database.
         /// </summary>
         /// <param name="message">Specification for the item you are looking for.</param>
-        public NotFound(string message) : base(message)
+        public NotFoundException(string message) : base(message)
         {
 
         }
