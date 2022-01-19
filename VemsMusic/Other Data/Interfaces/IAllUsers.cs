@@ -38,7 +38,7 @@ namespace VemsMusic.Other_Data.Interfaces
         /// </summary>
         /// <param name="musicId">The id of the music to be added to the user.</param>
         /// <param name="userId">The id of the user to which the music will be added.</param>
-        /// <exception cref="MusicAlreadyAdded">Music has already been added to the user.</exception>
+        /// <exception cref="Other_Data.PersonalExceptions.AlreadyContainsException"></exception>
         Task AddMusicToUserAsync(int musicId, int userId);
         /// <summary>
         /// Removes the link between the user and the music.

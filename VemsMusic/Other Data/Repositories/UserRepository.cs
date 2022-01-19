@@ -66,8 +66,7 @@ namespace VemsMusic.Other_Data.Repositories
             Music music = _dbContext.Find<Music>(musicId);
             if (user.Musics.Contains(music))
             {
-                //TODO - to new exeption
-                throw new Exception("MusicAlreadyAdded");
+                throw new AlreadyContainsException();
             }
             user.Musics.Add(music);
             await _dbContext.SaveChangesAsync();
