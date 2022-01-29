@@ -7,3 +7,5 @@
 /UnitTests/obj
 /UnitTests/bin/Debug/net5.0
 /VemsMusic/VemsMusic.csproj.user
+/VemsMusic/bin/Release/net5.0
+/VemsMusic/Properties/PublishProfiles
